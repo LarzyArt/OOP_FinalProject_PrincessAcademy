@@ -14,6 +14,10 @@ public class MobNPC {
         this.weapon = weapon;
         this.healthPoints = healthPoints;
     }
+    
+    public String getName() {
+        return name;
+    }
 
     //=================== Skill System ==================
     public void useSkill(int skill) {
@@ -97,5 +101,7 @@ public class MobNPC {
         System.out.println("Type: " + type);
         System.out.println("Weapon: " + weapon);
         System.out.println("Health Points: " + healthPoints);
+        System.out.println("------------------");
+        System.out.println();
     }
 }

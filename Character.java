@@ -14,7 +14,10 @@ public class Character {
         this.healthPoints = healthPoints;
         this.manaPoints = manaPoints;
     }
-
+    
+    public String getName() {
+        return name;
+    }
     // ================== Skill System ==================
     public void useSkill(int skill) {
         switch (name.toLowerCase()) {
@@ -177,5 +180,6 @@ public class Character {
         System.out.println("Weapon: " + weapon);
         System.out.println("HP: " + healthPoints + ", MP: " + manaPoints);
         System.out.println("------------------");
+        System.out.println();
     }
 }
