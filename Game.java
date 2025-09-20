@@ -16,10 +16,9 @@ public class Game {
             new MobNPC("Student Puppet", "Minion", "Melee", "Wooden Sword", 100)
         };
 
-        BattleSystem battle = new BattleSystem(characters, skillinput);
-        battle.startBattle();
-
-        skillinput.close();
+        BattleSystem battleSystem = new BattleSystem(characters, mobs, skillinput);
+        battleSystem.MainMenu();
+        
+    skillinput.close();
     }
-    
 }
