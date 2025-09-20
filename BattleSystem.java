@@ -2,74 +2,79 @@ import java.util.Scanner;
 
 public class BattleSystem {
     private Character[] characters;
+    private MobNPC[] mobs;
     private Scanner skillInput;
 
-    public BattleSystem(Character[] characters, Scanner skillInput) {
+
+    public BattleSystem(Character[] characters,MobNPC[] mobs, Scanner skillInput) {
         this.characters = characters;
+        this.mobs = mobs;
         this.skillInput = skillInput;
     }
+    public void MainMenu(){
+        int choice = 0;
 
-    public void startBattle() {
-        boolean continueBattle = true;
-
-        while (continueBattle) {
-            for (Character character : characters) {
-                character.showStats();
-
-                boolean validChoice = false;
-
-                while (!validChoice) {
-                    System.out.println("Choose a skill for " + character.name + ":");
-                    switch (character.name.toLowerCase()) {
-                        case "audry":
-                            System.out.println("1. Slime Bounce");
-                            System.out.println("2. Acid Shot");
-                            System.out.println("3. Beyond the Abyss");
-                            break;
-                        case "giantha":
-                            System.out.println("1. Giant Punch");
-                            System.out.println("2. Giant's Roar");
-                            System.out.println("3. Club Smash");
-                            break;
-                        case "lazuli":
-                            System.out.println("1. Basic Heal");
-                            System.out.println("2. Ocean's Blessing");
-                            System.out.println("3. Harmonic Wave");
-                            break;
-                        case "lynzi":
-                            System.out.println("1. Majestic Kick");
-                            System.out.println("2. Galactic Fist");
-                            System.out.println("3. Meteoric Smash");
-                            break;
-                        case "shiera":
-                            System.out.println("1. Stone Spikes");
-                            System.out.println("2. Earth Wall");
-                            System.out.println("3. Iron Maiden");
-                            break;
+        while(choice != 3){
+            System.out.println("What do you want to do?");
+            System.out.println("1. Attack");
+            System.out.println("2. Show Stats");
+            System.out.println("3. Exit");
+            System.out.print("Enter next Action: ");
+                choice = skillInput.nextInt();
+                    if(choice == 1){
+                        System.out.println("Attack function is non existent");
+                        System.out.println("Returning to main menu.");
+                        MainMenu();
+                        }else if(choice == 2){
+                            showStats();
+                        }else if(choice == 3){
+                            System.out.println("Exiting game.");
+                        }else{
+                            System.out.println("Invalid choice. Returning to main menu.");
                     }
-
-                    System.out.print("Enter skill number (1-3): ");
-                    int skill = skillInput.nextInt();
-
-                    if (skill >= 1 && skill <= 3) {
-                        character.useSkill(skill);
-                        validChoice = true;
-                    } else {
-                        System.out.println("Invalid choice! Try again.");
-                    }
-                }
-
-                System.out.println();
-            }
-
-            System.out.println("All characters have used their skills this turn.");
-            System.out.print("Continue to next turn? (yes/no): ");
-            String nextTurn = skillInput.next();
-
-            if (nextTurn.equalsIgnoreCase("no")) {
-                continueBattle = false;
-                System.out.println("Battle ended.");
-            }
+                    System.out.println();
         }
+    }
+    public void showStats(){
+        // Show stats for characters or mobs based on user input
+        System.out.println("Do you want to see Character or Mob Stats? (c/m)");
+            char choice = skillInput.next().toLowerCase().charAt(0);
+            // c for characters
+            if (choice == 'c') { 
+                System.out.println("Choose a character to view stats:");
+                for (int i = 0; i < characters.length; i++) {
+                System.out.println((i + 1) + ". " + characters[i].getName());
+                }
+            // Get user input for character choice
+            int charchoice = skillInput.nextInt();
+            if (charchoice >= 1 && charchoice <= characters.length) {
+                characters[charchoice - 1].showStats();
+            } else {
+                System.out.println("Invalid choice. Chose a valid character.(1 - 5)");
+            }
+            } // m for mobs
+             else if (choice == 'm') {
+                    System.out.println("Choose a mob to view stats:");
+                    for (int i = 0; i < mobs.length; i++) {
+                    System.out.println((i + 1) + ". " + mobs[i].getName());
+                }
+                // Get user input for mob choice
+                int mobchoice = skillInput.nextInt();
+                if (mobchoice >= 1 && mobchoice <= mobs.length) {
+                    mobs[mobchoice - 1].showStats();
+                } else {
+                    System.out.println("Invalid choice. Chose a valid mob.(1 - 3)");
+                }
+            } else {
+                System.out.println("Invalid choice.");
+            } // Ask if they want to view another stats
+            System.out.println("Do you want to view another stats? (y/n)");
+            char again = skillInput.next().toLowerCase().charAt(0);
+            if (again == 'y') {
+                showStats();
+            } else {
+                System.out.println("Exiting stats view.");
+            }
+            
     }
 }
