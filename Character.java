@@ -178,42 +178,4 @@ public class Character {
         System.out.println("HP: " + healthPoints + ", MP: " + manaPoints);
         System.out.println("------------------");
     }
-
-    // ================== MAIN ==================
-    public static void main(String[] args) {
-        Character audry   = new Character("Audry",   "Assassin", "Melee",  "Acidic Slime", 100, 25);
-        Character giantha = new Character("Giantha", "Tank",     "Melee",  "World Tree Branch", 250, 20);
-        Character lazuli  = new Character("Lazuli",  "Healer",   "Ranged", "Staff", 150, 30);
-        Character lynzi   = new Character("Lynzi",   "Dealer",   "Melee",  "Star Magic", 170, 30);
-        Character shiera  = new Character("Shiera",  "Support",  "Ranged", "Earth Magic", 120, 25);
-
-        audry.showStats();
-        audry.useSkill(1);
-        audry.useSkill(2);
-        audry.useSkill(3);
-        System.out.println();
-
-        giantha.showStats();
-        giantha.useSkill(1);
-        giantha.useSkill(2);
-        giantha.useSkill(3);
-        System.out.println();
-
-        lazuli.showStats();
-        lazuli.useSkill(1);
-        lazuli.useSkill(2);
-        lazuli.useSkill(3);
-        System.out.println();
-
-        lynzi.showStats();
-        lynzi.useSkill(1);
-        lynzi.useSkill(2);
-        lynzi.useSkill(3);
-        System.out.println();
-
-        shiera.showStats();
-        shiera.useSkill(1);
-        shiera.useSkill(2);
-        shiera.useSkill(3);
-    }
 }

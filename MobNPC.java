@@ -98,25 +98,4 @@ public class MobNPC {
         System.out.println("Weapon: " + weapon);
         System.out.println("Health Points: " + healthPoints);
     }
-
-    // ================== MAIN ==================
-    public static void main(String[] args) {
-        MobNPC twinkle = new MobNPC("Twinkle", "Boss", "Melee", "Technomancy", 520);
-        MobNPC kassundre = new MobNPC("Kassundre", "Miniboss", "Ranged", "Nature", 350);
-        MobNPC studentPuppet = new MobNPC("Student Puppet", "Minion", "Melee", "Puppet", 100);
-
-        twinkle.showStats();
-        twinkle.useSkill(1);
-        twinkle.useSkill(2);
-        twinkle.useSkill(3);
-        System.out.println();
-        kassundre.showStats();
-        kassundre.useSkill(1);
-        kassundre.useSkill(2);
-        kassundre.useSkill(3);
-        System.out.println();
-        studentPuppet.showStats();
-        studentPuppet.useSkill(1);
-        studentPuppet.useSkill(2);
-    }
 }
