@@ -18,7 +18,7 @@ public class Game {
 
         BattleSystem battleSystem = new BattleSystem(characters, mobs, skillinput);
         battleSystem.MainMenu();
-        
+
     skillinput.close();
     }
 }
