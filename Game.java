@@ -11,13 +11,31 @@ public class Game {
             new Character("Shiera", "Support", "Ranged", "Earth Magic", 120, 25)
         };
         MobNPC[] mobs = {
+            //Boss
             new MobNPC("Twinkle", "Boss", "Melee", "Puppet", 500),
+            //Minibosses
             new MobNPC("Kassundre", "Miniboss", "Ranged", "Dark Magic", 300),
-            new MobNPC("Student Puppet", "Minion", "Melee", "Wooden Sword", 100)
+            new MobNPC("Lava Beast", "Miniboss", "Melee", "Fire Magic", 350),
+            new MobNPC("Siren Empress", "Miniboss", "Ranged", "Water Magic", 320),
+            new MobNPC("Resonara", "Miniboss", "Ranged", "Sound Magic", 310),
+            new MobNPC("Eclipse Core", "Miniboss", "Melee", "Astral Magic", 350),
+            //Mobs
+            new MobNPC("Student Puppet", "Minion", "Melee", "Wooden Sword", 100),
+            new MobNPC("Corrupted Skeleton", "Minion", "Melee", "Bone Sword", 120),
+            new MobNPC("Water Sprite", "Minion", "Ranged", "Water Magic", 130),
+            new MobNPC("Echo Imp", "Minion", "Ranged", "Sound Magic", 130),
+            new MobNPC("Astral Glob", "Minion", "Melee", "Astral Slime", 110),
+        };
+        Credits[] credits = {
+            new Credits("Laurence Baraga", "Developer", "Student", "Pencil", 2, 1),
+            new Credits("Kimberly Daydayan","Developer", "Student", "Crochet Hookja", 50, 50),
+            new Credits("Neilcen Pedrosa", "Developer", "Student", "World Tree Branch", 250, 20),
+            new Credits("Abigail Rodrigo", "Developer", "Student", "Staff", 150, 30),
+            new Credits("Melody Ecarma", "Developer", "Student", "Star Magic", 170, 30),
         };
 
-        BattleSystem battleSystem = new BattleSystem(characters, mobs, skillinput);
-        battleSystem.MainMenu();
+        GameSystem gameSystem = new GameSystem(characters, mobs, credits, skillinput);
+        gameSystem.MainMenu();
 
     skillinput.close();
     }
