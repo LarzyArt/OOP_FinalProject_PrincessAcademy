@@ -18,23 +18,29 @@ public class Character {
     public String getName() {
         return name;
     }
+    void takedamage(int damage){
+        healthPoints -= damage;
+        if(healthPoints < 0) healthPoints = 0;
+        System.out.println(name + "took " + damage + "damage! Remaining HP: " + healthPoints);
+    }
+
     // ================== Skill System ==================
-    public void useSkill(int skill) {
+    public void useSkill(int skill, MobNPC target, Character ally) {
         switch (name.toLowerCase()) {
             case "audry":
-                audrySkills(skill);
+                audrySkills(skill, target);
                 break;
             case "giantha":
-                gianthaSkills(skill);
+                gianthaSkills(skill, target);
                 break;
             case "lazuli":
-                lazuliSkills(skill);
+                lazuliSkills(skill, ally);
                 break;
             case "lynzi":
-                lynziSkills(skill);
+                lynziSkills(skill, target);
                 break;
             case "shiera":
-                shieraSkills(skill);
+                shieraSkills(skill, target, ally);
                 break;
             default:
                 System.out.println(name + " has no skills defined!");
@@ -42,12 +48,14 @@ public class Character {
     }
 
     // ----------------- Audry's Skills -----------------
-    private void audrySkills(int skill) {
+    private void audrySkills(int skill, MobNPC target) {
+        int damage = 0;
         switch (skill) {
             case 1: // Slime Bounce
                 if (manaPoints >= 3) {
                     manaPoints -= 3;
-                    int damage = (int)(Math.random() * 21) + 20;
+                    damage = (int)(Math.random() * 21) + 20;
+                    target.takedamage(damage);
                     System.out.println(name + " used Slime Bounce! Deals " + damage + " damage.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
@@ -55,28 +63,32 @@ public class Character {
                 if (manaPoints >= 7) {
                     manaPoints -= 7;
                     int hits = (int)(Math.random() * 3) + 1;
-                    int totalDamage = 0;
+                    damage = 0;
                     for (int i = 0; i < hits; i++) {
-                        totalDamage += (int)(Math.random() * 11) + 5;
+                        damage += (int)(Math.random() * 11) + 5;
                     }
-                    System.out.println(name + " used Acid Shot! Hits " + hits + " times for " + totalDamage + " damage.");
+                    target.takedamage(damage);
+                    System.out.println(name + " used Acid Shot! Hits " + hits + " times for " + damage + " damage.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
             case 3: // Beyond the Abyss
                 if (manaPoints >= 15) {
                     manaPoints -= 15;
-                    int dmg = 150;
-                    System.out.println(name + " used Ultimate, Beyong the Abyss! Deals " + dmg + " fixed damage.");
+                    damage = 150;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Ultimate, Beyong the Abyss! Deals " + damage + " fixed damage.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
         }
     }
 
     // ----------------- Giantha's Skills -----------------
-    private void gianthaSkills(int skill) {
+    private void gianthaSkills(int skill, MobNPC target) {
+        int damage = 0;
         switch (skill) {
             case 1: // Giant Punch
-                int damage = (int)(Math.random() * 6) + 5;
+                damage = (int)(Math.random() * 6) + 5;
+                target.takedamage(damage);
                 System.out.println(name + " used Giant Punch! Deals " + damage + " damage.");
                 break;
             case 2: // Giant's Roar
@@ -88,15 +100,16 @@ public class Character {
             case 3: // Club Smash
                 if (manaPoints >= 9) {
                     manaPoints -= 9;
-                    int dmg = (int)(Math.random() * 21) + 20;
-                    System.out.println(name + " used Ultimate, Club Smash! Deals " + dmg + " damage, enemies can't attack for 1 turn.");
+                    damage = (int)(Math.random() * 21) + 20;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Ultimate, Club Smash! Deals " + damage + " damage, enemies can't attack for 1 turn.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
         }
     }
 
     // ----------------- Lazuli's Skills -----------------
-    private void lazuliSkills(int skill) {
+    private void lazuliSkills(int skill, Character ally) {
         switch (skill) {
             case 1: // Basic Heal
                 if (manaPoints >= 10) {
@@ -119,41 +132,46 @@ public class Character {
     }
 
     // ----------------- Lynzi's Skills -----------------
-    private void lynziSkills(int skill) {
+    private void lynziSkills(int skill, MobNPC target) {
+        int damage = 0;
         switch (skill) {
             case 1: // Majestic Kick
-                int damage = (int)(Math.random() * 21) + 20;
+                damage = (int)(Math.random() * 21) + 20;
                 System.out.println(name + " used Majestic Kick! Deals " + damage + " damage.");
                 break;
             case 2: // Galactic Fist
                 if (manaPoints >= 2) {
                     manaPoints -= 2;
-                    int dmg = (int)(Math.random() * 36) + 20;
-                    System.out.println(name + " used Galactic Fist! Deals " + dmg + " damage.");
+                    damage = (int)(Math.random() * 36) + 20;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Galactic Fist! Deals " + damage + " damage.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
             case 3: // Meteoric Smash
                 if (manaPoints >= 10) {
                     manaPoints -= 10;
-                    int dmg2 = (int)(Math.random() * 151) + 100;
-                    System.out.println(name + " used Ultimate, Meteoric Smash! Deals " + dmg2 + " damage but can't move for 2 turns.");
+                    damage = (int)(Math.random() * 151) + 100;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Ultimate, Meteoric Smash! Deals " + damage + " damage but can't move for 2 turns.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
         }
     }
 
     // ----------------- Shiera's Skills -----------------
-    private void shieraSkills(int skill) {
+    private void shieraSkills(int skill, MobNPC target, Character ally) {
+        int damage = 0;
         switch (skill) {
             case 1: // Stone Spikes
                 if (manaPoints >= 4) {
                     manaPoints -= 4;
                     int hits = (int)(Math.random() * 4) + 1;
-                    int totalDamage = 0;
+                    damage = 0;
                     for (int i = 0; i < hits; i++) {
-                        totalDamage += (int)(Math.random() * 10) + 1;
+                        damage += (int)(Math.random() * 10) + 1;
                     }
-                    System.out.println(name + " used Stone Spikes! Hits " + hits + " times for " + totalDamage + " damage.");
+                    target.takedamage(damage);
+                    System.out.println(name + " used Stone Spikes! Hits " + hits + " times for " + damage + " damage.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
             case 2: // Earth Wall
@@ -165,7 +183,8 @@ public class Character {
             case 3: // Iron Maiden
                 if (manaPoints >= 10) {
                     manaPoints -= 10;
-                    int damage = 50;
+                    damage = 50;
+                    target.takedamage(damage);
                     System.out.println(name + " used Ultimate, Iron Maiden! Deals " + damage + " fixed damage and stuns enemy for 1 turn.");
                     } else System.out.println(name + " doesn't have enough mana!");
                 break;
