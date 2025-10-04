@@ -140,10 +140,10 @@ public class MobNPC {
                     target.takedamage(damage);
                     System.out.println(name + " used Magma Flow! Hits " + hits + " times for " + damage + " damage.");
                 break;
-            case 3: // COrrupted Eruption
+            case 3: // Corrupted Eruption
                     damage = (int)(Math.random() * 31) + 20;
                     target.takedamage(damage);
-                    System.out.println(name + " used ERUPTION! Deals " + damage + " damage to all enemies!");
+                    System.out.println(name + " used Corrupted Eruption! Deals " + damage + " damage to all enemies!");
                 break;
         }
     }
