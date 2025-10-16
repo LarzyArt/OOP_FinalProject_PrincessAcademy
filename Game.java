@@ -38,5 +38,6 @@ public class Game {
         gameSystem.MainMenu();
 
     skillinput.close();
+    hi
     }
 }
