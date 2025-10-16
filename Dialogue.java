@@ -115,7 +115,7 @@ public class Dialogue{
         System.out.println("=======================================================");
     }
 
-    public void ResonaraInteraction(){
+    public void resonaraInteraction(){
         System.out.println("===================Heart of the Living Forest===================");
         System.out.println("As Giantha venture deeper into the Garden of Ancients");
         System.out.println("She felt a strange melody in the air, a song that called to her very soul");
@@ -136,7 +136,7 @@ public class Dialogue{
 
     }
 
-    public void ResonaraDefeated(){
+    public void resonaraDefeated(){
         System.out.println("Giantha: panting softly Your power... it's unlike anything I've faced before.");
         System.out.println("Resonara: Ha... and yet, your rhythm overpowered mine. Such grace, such control. The forest hums your victory.");
         System.out.println("Giantha: I didn't wish to destroy your song — only to calm it. The forest breathes again.");
@@ -368,17 +368,7 @@ public class Dialogue{
         System.out.println("[Error]: I'll be waiting for you...");
         System.out.println("You can find me in the place where the Cretor of this Universe resides...");
         System.out.println("[Error]: HAHAHHAHAHAHHA!!");
-        System.out.println("SEE YOU SOON!! <><>BA-");
+        System.out.println("SEE YOU SOON!!  WSWSADADZXZX-");
     }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
+
 }
