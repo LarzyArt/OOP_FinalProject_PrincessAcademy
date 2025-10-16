@@ -16,10 +16,10 @@ public class GameSystem {
     public void MainMenu(){
         int choice = 0;
         UI menu = new UI(characters, mobs,credits, skillInput);
-        //Basically menu when you start the game
         while(choice != 4){
                 menu.displayMenu();
                 choice = skillInput.nextInt();
+                System.out.println();
                 menu.prompt(choice);
         }
     }
