@@ -2,7 +2,7 @@ public class Dialogue{
 
     public void sirenEmpressInteraction(){
         System.out.println("===================The Battle of Sea===================");
-        System.out.println("As pricess Lynzi was thrown into the aquarium, she saw the empress of the sea");
+        System.out.println("As princess Lynzi was thrown into the aquarium, she saw the empress of the sea");
         System.out.println("The Siren Empress, the ruler of the deep sea");
         System.out.println("===================================================");
 
@@ -49,8 +49,115 @@ public class Dialogue{
         System.out.println("===================================================");
     }
 
+    public void lavaBeastInteraction(){
+        System.out.println("===================The Survival===================");
+        System.out.println("The air grows heavy as molten cracks glow beneath Audry's feet...");
+        System.out.println("From the fiery depths, the Lava Beast rises, its body burning like a living volcano.");
+        System.out.println("===================================================");
 
-    public void sassundreInteraction(){
+        System.out.println("Audry: So... you're the guardian of this place? You don't scare me.");
+        System.out.println("Lava Beast: FOOLISH HUMAN... I AM THE HEART OF FIRE! NONE SHALL PASS MY DOMAIN!");
+        System.out.println("Audry: Then I'll just have to cool you down a little.");
+        System.out.println("Lava Beast: YOUR WORDS WILL TURN TO ASH ONCE YOU FACE MY WRATH!");
+
+        System.out.println("*The battlefield quakes as lava erupts and flames surround Audry.*");
+        System.out.println("Audry dashes through the fire, her eyes glowing with determination.");
+
+    }
+
+    public void lavaBeastDefeated(){
+        System.out.println("Audry: I've fought shadows darker than your flames... this ends now!");
+        System.out.println("Lava Beast: IMPOSSIBLE! MY FIRE IS ETERNAL!");
+
+        System.out.println("*With a final strike, Audry pierces through the beast's molten core.*");
+        System.out.println("Lava Beast stumbles, cracks spreading across its blazing body.");
+        System.out.println("Lava Beast: No... this cannot be... My flames... fading...");
+        System.out.println("Audry: Rest now, mighty beast. The world needs peace, not destruction.");
+
+        System.out.println("*The Lava Beast lets out a final roar as its body cools and turns to stone.*");
+        System.out.println("The molten battlefield falls silent, and the air becomes calm once more.");
+        System.out.println("Audry: Another battle won... but I can still feel the heat of its power.");
+        System.out.println("Audry looks to the horizon, her core glowing faintly in the light of victory.");
+
+        System.out.println("===================The Self===================");
+        System.out.println("With the Lava Beast defeated, Audry feels a renewed sense of purpose.");
+        System.out.println("With the beast gone, the path to the throne room is clear.");
+        System.out.println("SHe knows what awaits, the queen, her creator, her mother.");
+        System.out.println("====================================================");
+    }
+
+    public void eclipseCoreInteraction() {
+        System.out.println("===================Darkness and Void===================");
+        System.out.println("As SHIERA was thrown through the portal, she found herself in a desolate wasteland.");
+        System.out.println("It was dark, void of life, and filled with an eerie silence.");
+        System.out.println("Then she was ambushed");
+        System.out.println("========================================================");
+
+        System.out.println("Eclipse Core attacks with [Dark Ooze]");
+        System.out.println("Shiera: (dodging) You'll have to do better than that.");
+        System.out.println("Eclipse Core: I'll drain your power dry! [Stellar Absorb!]");
+        System.out.println("Shiera: (gritting) Not enough to stop me!");
+        System.out.println("Eclipse Core prepares [Eclipse Burst]");
+        System.out.println("Shiera: Big move... then I'll strike first!");
+    }
+
+    public void eclipseCoreDefeated() {
+        System.out.println("Eclipse Core: Impossible... a girl without emotion... defeated me...");
+        System.out.println("Shiera: You talk too much.");
+        System.out.println("Eclipse Core shatters into light.");
+        System.out.println("Shiera: Mission complete.");
+
+        System.out.println("===================Calm and Serene===================");
+        System.out.println("With the Eclipse Core defeated, Shiera feels a strange calmness.");
+        System.out.println("She knows the path to the throne room is clear.");
+        System.out.println("For the first time she felt an emotion she didn't know she could feel.");
+        System.out.println("FEAR");
+        System.out.println("=======================================================");
+    }
+
+    public void ResonaraInteraction(){
+        System.out.println("===================Heart of the Living Forest===================");
+        System.out.println("As Giantha venture deeper into the Garden of Ancients");
+        System.out.println("She felt a strange melody in the air, a song that called to her very soul");
+        System.out.println("The air Shimmers faintly — a hum of vibration runs through the trees.");
+        System.out.println("Between the trees she saw, a strange figure, humming between dryads");
+        System.out.println("The Queen of Serenity, Resonara");
+        System.out.println("===============================================================");
+
+        System.out.println("Resonara: Mmm... this forest sings beautifully. Each leaf... each heartbeat... a perfect note.");
+        System.out.println("Giantha: That song — it's not from the forest. It's you, isn't it?");
+        System.out.println("Resonara: Ah! A voice of thunder wrapped in gentleness. You must be the Giant Princess I've heard whispers of.");
+        System.out.println("Giantha: Giantha II, daughter of the Chief. This forest is my domain — and your music disturbs its rhythm.");
+        System.out.println("Resonara: Disturbs? No, my dear — I enhance it. I turn silence into melody, stillness into motion!");
+        System.out.println("Giantha: Music is beautiful, but only when it's in harmony with life. What you create... is chaos.");
+        System.out.println("Resonara: Chaos is part of every song! Without tension, there can be no release!");
+        System.out.println("Giantha: Then allow me to restore balance to this forest — even if it means silencing your song.");
+        System.out.println("Resonara: How poetic. Then let us compose together — your strength, my melody. A duet!");
+
+    }
+
+    public void ResonaraDefeated(){
+        System.out.println("Giantha: panting softly Your power... it's unlike anything I've faced before.");
+        System.out.println("Resonara: Ha... and yet, your rhythm overpowered mine. Such grace, such control. The forest hums your victory.");
+        System.out.println("Giantha: I didn't wish to destroy your song — only to calm it. The forest breathes again.");
+        System.out.println("Resonara: Hmph... To be defeated, yet admired... How very humbling.");
+
+        System.out.println("Giantha: You fought beautifully. Maybe... you could use your sound to heal, not harm.");
+        System.out.println("Resonara: Heal... with music? Perhaps your words strike deeper than your fists, Giant Princess.");
+        System.out.println("Giantha: The forest welcomes beauty that protects. You're free to stay — if your melody can live in peace.");
+        System.out.println("Resonara: Hah... Then perhaps I shall. A new song, born from harmony rather than battle.");
+        System.out.println("The forest glows softly as both warrior and minstrel share a silent understanding.");
+        System.out.println("The melody of the Living Forest plays on — peaceful once more.");
+
+        System.out.println("===================The Sound of Silence===================");
+        System.out.println("With Resonara defeated, Giantha feels a deep connection to the forest.");
+        System.out.println("The path to the throne room is now clear.");
+        System.out.println("She wonders what awaits her there, but she knows one thing for sure.");
+        System.out.println("She will face it with the strength of the earth and the harmony of the forest.");
+        System.out.println("===========================================================");
+    }
+
+    public void kassundreInteraction(){
         System.out.println("===================The Castle Memoir===================");
         System.out.println("As the princesses opened the door, What they saw was utter disgust.");
         System.out.println("Princesses from different world covered in dark ooze, with expressions of dread, fear, and death");
@@ -74,11 +181,11 @@ public class Dialogue{
         System.out.println("*The ooze spreads covering Kassundre and attacks Lazuli and her party*");
     }
 
-    public void KassundreDefeated(){
+    public void kassundreDefeated(){
         System.out.println("*Kassundre regained a bit of her conciousness*");
         System.out.println("Kassundre: I'm sorry... I was too weak... please... finish me...");
         System.out.println("Lazuli: I'm sorry Kassundre... I love you...");
-            for("int i = 0; i < 5; i++"){
+            for(int i = 0; i < 5; i++){
                 System.out.println("*Lazuli used Harmonic Wave*");    
             }
 
@@ -99,7 +206,7 @@ public class Dialogue{
         System.out.println("========================================================");
     }
 
-    public void TwinkleInteraction(){
+    public void twinkleInteraction(){
         System.out.println("====================The Final Show===================");
         System.out.println("As they entered the throne room, they saw her, Twinkle Star");
         System.out.println("With the princesses filled with anger and hatred");
@@ -168,7 +275,7 @@ public class Dialogue{
         System.out.println("Lynzi: I can't forgive her that easily...");
         System.out.println("Not until I destroy every piece of her legacy...");
         System.out.println("If you want to call that avengement... then so be it...");
-        SysSystem.out.println("*Lynzi walks away in anger*");
+        System.out.println("*Lynzi walks away in anger*");
 
         System.out.println("Everyone else: Where are you going?");
         System.out.println("Lynzi: To destroy her legacy... starting with this academy...");
@@ -206,7 +313,7 @@ public class Dialogue{
         System.out.println("Lynzi: I can't forgive her that easily...");
         System.out.println("Not until I destroy every piece of her legacy...");
         System.out.println("If you want to call that avengement... then so be it...");
-        SysSystem.out.println("*Lynzi walks away in anger*");
+        System.out.println("*Lynzi walks away in anger*");
 
         System.out.println("Everyone else: Where are you going?");
         System.out.println("Lynzi: To destroy her legacy... starting with this academy...");
@@ -253,7 +360,7 @@ public class Dialogue{
         System.out.println("================================================");
     }
 
-    public void Glitch(){
+    public void glitch(){
         System.out.println("[Error]: Hey! You don't belong here!");
         System.out.println("But hey not bad... your good at this game!!");
         System.out.println("[Error]: I'd like to offer you a deal...");
