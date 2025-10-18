@@ -8,8 +8,107 @@ public class Dialogue{
     
     //Rodrigo contribution
     
-    //Baraga contribution
+    //Baraga contribution: Kassundre and twinkle dialogue
+    public void kassundreInteraction(){
+        System.out.println("===================The Castle Memoir===================");
+        System.out.println("As the princesses opened the door, What they saw was utter disgust.");
+        System.out.println("Princesses from different world covered in dark ooze, with expressions of dread, fear, and death");
+        System.out.println("As the walked through the corridor filled with the stench of death, and the slime of dark ooze");
+        System.out.println("In the distance, they saw, a girl, long of hair, stance of a ghoul, and eyes crying dark ooze");
+        System.out.println("They saw her, she saw her, Lazuli's love who was thought to be dead, Kassundrre");
+        System.out.println("========================================================");
 
+        System.out.println("Kassundre: Help me... please");
+        System.out.println("Lazuli: Kassundre... is that you?");
+        System.out.println("Lazuli: What has she done to you...?");
+
+        System.out.println("Kassundre: I... cant... control it... the ooze... it... it won't stop...");
+        System.out.println("Kassundre: Please... end my suffering...");
+        System.out.println("NO!! THere's got to be a way!! I can save you!!");
+        System.out.println("*Lazuli used Harmonic Wave*");
+
+        System.out.println("*Kassundre flinched, her conciousness slowly fading*");
+        System.out.println("Kassundre: Lazuli... I'm sorry... I love you...");
+        System.out.println("NOO!! Kassundre!!");
+        System.out.println("*The ooze spreads covering Kassundre and attacks Lazuli and her party*");
+    }
+
+    public void kassundreDefeated(){
+        System.out.println("*Kassundre regained a bit of her conciousness*");
+        System.out.println("Kassundre: I'm sorry... I was too weak... please... finish me...");
+        System.out.println("Lazuli: I'm sorry Kassundre... I love you...");
+            for(int i = 0; i < 5; i++){
+                System.out.println("*Lazuli used Harmonic Wave*");    
+            }
+
+        System.out.println("===================The Face of Beauty===================");
+        System.out.println("As the ooze dissipates, Kassundre took her last breath.");
+        System.out.println("Her body void of mana, void of life.");
+        System.out.println("As she looked up, she saw Lazuli, her love, crying over her.");
+        System.out.println("With her last breath, she smiled,");
+        System.out.println("As her body crumbles to dust, together with the dark ooze.");
+        System.out.println("Lazuli saw her lips moving, she leaned in and heared");
+        System.out.println("Kassundre: Don't cry... Beenie... Smile for once...");
+
+        System.out.println("As Kassundre's body turned to dust together with the other bodies of the princesses");
+        System.out.println("The dark ooze dissapeared, and with that Lazuli had the resolve to fight on");
+        System.out.println("As they went through the castle, they saw the throne room");
+        System.out.println("In there they saw her, the cause of their suffering, the mastermind");
+        System.out.println("The First Princess, Twinkle Star");
+        System.out.println("========================================================");
+    }
+
+    public void twinkleInteraction(){
+        System.out.println("====================The Final Show===================");
+        System.out.println("As they entered the throne room, they saw her, Twinkle Star");
+        System.out.println("With the princesses filled with anger and hatred");
+        System.out.println("They looked right at her, composed and calm");
+        System.out.println("=======================================================");
+
+        System.out.println("Twinkle: Oh... I see you've met my lovely puppets");
+        System.out.println("How do you like them? I made them myself");
+        System.out.println("Lazuli: Why... What did they ever do to you?");
+        System.out.println("Lynzi: THEY WERE INNOCENT!! THY'VE DONE NOTHING WRONG!!");
+
+        System.out.println("Twinkle: So? They were nothing more than simple nutrients");
+        System.out.println("Twinkle: Ever wondered?");
+        System.out.println("\"How is she so young?\" \"Is she really immortal?\"");
+        System.out.println("Twinle: Hahaha... IMMORTALITY IS IMPOSSIBLE!");
+        System.out.println("Twinkle: Not even time magic can save you from death...");
+        System.out.println("So I found a way... a way to cheat death...");
+        System.out.println("Twinkle: See this crown? it's made from the purest star");
+        System.out.println("or should I say... the first star... the star that birthed all stars...");
+        System.out.println("The WISHING STAR...");
+        System.out.println("Twinkle: With the technology of my era, I was able to harness its power");
+        System.out.println("The power to grant wishes... to bend reality...");
+        System.out.println("Twinkle: But of course, everything comes with a price...");
+        System.out.println("the price of immortality... simply put... pure blood...");
+        System.out.println("Twinkle: The blood of princesses... the purest of them all...");
+        System.out.println("HAHAHAHHAHAHA!...");
+
+        System.out.println("Lazuli: YOU MONSTER!!");
+        System.out.println("Giantha: You've disobed the natural order of life and death!");
+        System.out.println("Audry: Your no princess, you're a monster!");
+        System.out.println("SHIERA: you... will be punished...");
+        System.out.println("Lynzi: You wasted all... those innocent lives... just to extend yours....");
+        System.out.println("Lynzi: ..............");
+        System.out.println("Lynzi: ..... sisters... Don't show mercy...");
+        System.out.println("*Lynzi jumps and with an enraged face attacks Twinkle Star*");
+        System.out.println("Twinkle: Oh!! So the game begins!!"); 
+    }
+
+    public void twinkleDefeated(){
+        System.out.println("*Twinkle Star falls to the ground, her crown shatters into pieces*");
+        System.out.println("Twinkle: No... this can't be... I was supposed to be immortal...");
+        System.out.println("Twinkle: How... how could this be...");
+        System.out.println("Lynzi: You dont deserve to be a princess...");
+        System.out.println("*Lynzi uses Meteoric Smash*");
+        System.out.println("*.... Again... and Again.. And Again...*");
+        System.out.println("Lazuli: Lynzi Calm down!! She's alread daed!!");
+        System.out.println("Lynzi: I'm sorry... I killed her... I couldn't control my anger...");
+        System.out.println("I... I should've tortured her... made her suffer...");
+        System.out.println("Everyone else: ...What...?");
+    }
     
     //Everyone contributed
     public void ending(){

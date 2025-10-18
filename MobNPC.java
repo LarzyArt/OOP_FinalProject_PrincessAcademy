@@ -32,18 +32,33 @@ public class MobNPC {
     // Ecarma contribution
 
     //-------------------------------- Character Skills ------------------------------
-    //Daydayan contribution
-
-    //Pedrosa contribution
-    
-    //Ecarma contribution
-    
-    //Rodrigo contribution
-    
-    //Baraga contribution
-
     // -------------------- Final Boss --------------------
-    //Baraga contribution
+    //Baraga contribution: Twinkle's Skills
+    // ----------------- Twinkle's Skills -----------------
+    private void twinkleSkills(int skill, Character target) {
+        //Boss fight skills
+        int damage = 0;
+        switch (skill) {
+            case 1: // Puppet Slash
+                    damage = (int)(Math.random() * 26) + 5;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Puppet Slash! Deals " + damage + " damage.");
+            case 2: // Lazer Devastation
+                    int hits = (int)(Math.random() * 2) + 1;
+                    damage = 0;
+                    for (int i = 0; i < hits; i++) {
+                        damage += 20;
+                    }
+                    target.takedamage(damage);
+                    System.out.println(name + " used Lazer Devastation! Hits " + hits + " times for " + damage + " damage.");
+                break;
+            case 3: // Corruption
+                    damage = 60;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Corruption! Deals " + damage + " fixed damage.");
+                break;
+        }
+    }
 
     // --------------------- Mini Boss ----------------------
     //Daydayan contribution
@@ -54,7 +69,34 @@ public class MobNPC {
     
     //Rodrigo contribution
     
-    //Baraga contribution
+    //Baraga contribution: Kassundre's Skills
+    // ----------------- Kassundre's Skills -----------------
+    private void kassundreSkills(int skill, Character target) {
+        //Miniboss fight skills
+        int damage = 0;
+        switch (skill) {
+            case 1: // Corrupted tears
+                    int hits = (int)(Math.random() * 4) + 1;
+                    damage = 0;
+                    for (int i = 0; i < hits; i++) {
+                        damage += (int)(Math.random() * 6) + 5;
+                    }
+                    target.takedamage(damage);
+                    System.out.println(name + " used Corrupted Tears! Hits " + hits + " times for " + damage + " damage.");
+                break;
+            case 2: // Corrupted Hug
+                    damage = (int)(Math.random() * 26) + 10;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Corrupted Hug! Deals " + damage + " damage.");
+                break;
+            case 3: // Corrupted FLora
+                    damage = (int)(Math.random() * 21) + 20;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Corrupted Flora! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
     // ------------------------ Mobs -----------------------------
     
     //Daydayan contribution
@@ -65,7 +107,24 @@ public class MobNPC {
     
     //Rodrigo contribution
     
-    //Baraga contribution
+    //Baraga contribution: Student Puppet's Skills
+    // ----------------- Student Puppet's Skills -----------------
+    private void studentPuppetSkills(int skill, Character target) {
+        //Minion fight skills
+        int damage = 0;
+        switch (skill) {
+            case 1: // Puppet Punch
+                damage = (int)(Math.random() * 6) + 5;
+                target.takedamage(damage);
+                System.out.println(name + " used Puppet Punch! Deals " + damage + " damage.");
+                break;
+            case 2: // Puppet Slash
+                    damage = (int)(Math.random() * 11) + 10;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Puppet Slash! Deals " + damage + " damage.");
+                break;
+        }
+    }
     
     //----------------- Show Stats -----------------
     //Everyone contributed

@@ -38,7 +38,29 @@ public class Character {
     
     //Rodrigo contribution
     
-    //Baraga contribution
+    //Baraga contribution: Lazuli's Skills
+    // ----------------- Lazuli's Skills -----------------
+        private void lazuliSkills(int skill, Character ally) {
+            switch (skill) {
+                case 1: // Basic Heal
+                    if (manaPoints >= 10) {
+                        manaPoints -= 10;
+                        System.out.println(name + " used Basic Heal! Restores 25% HP + MP to one ally.");
+                    } else System.out.println(name + " doesn't have enough mana!");
+                    break;
+                case 2: // Ocean's Blessing
+                    if (manaPoints >= 20) {
+                        manaPoints -= 20;
+                        System.out.println(name + " used Ocean's Blessing! Heals 15% HP and restores 10 MP to all allies.");
+                    } else System.out.println(name + " doesn't have enough mana!");
+                    break;
+                case 3: // Harmonic Wave
+                    if (manaPoints == 0) {
+                        System.out.println(name + " used Ultimate, Harmonic Wave! Restores 100% MP and 50% HP to all allies.");
+                    } else System.out.println(name + " must have 0 mana to use Harmonic Wave!");
+                    break;
+            }
+        }
 
     // ----------------- Show Stats -----------------
     //Everyone contributed
