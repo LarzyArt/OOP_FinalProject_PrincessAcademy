@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+//
 public class Game {
     public static void main(String[] args) {
         Scanner skillinput = new Scanner(System.in);
