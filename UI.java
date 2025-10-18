@@ -1,5 +1,5 @@
 import java.util.Scanner;
-//
+//Everyone contributed to making this file and methods
 public class UI {
     protected Character[] characters;
     protected MobNPC[] mobs;

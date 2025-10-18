@@ -1,3 +1,4 @@
+//Everyone contributed to making this file and methods
 public class Dialogue{
     //Daydayan contribution
 
@@ -10,6 +11,7 @@ public class Dialogue{
     //Baraga contribution
 
     
+    //Everyone contributed
     public void ending(){
 
         System.out.println("===================The Aftermath===================");

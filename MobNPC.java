@@ -1,3 +1,4 @@
+//Everyone contributed to making this file and methods
 public class MobNPC {
     String name;
     String charClass;

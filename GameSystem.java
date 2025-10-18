@@ -1,4 +1,4 @@
-//
+//Everyone contributed to making this file and methods
 import java.util.Scanner;
 
 public class GameSystem {

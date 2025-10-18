@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-//
+//Everyone contributed to making this file and methods
 public class Game {
     public static void main(String[] args) {
         Scanner skillinput = new Scanner(System.in);

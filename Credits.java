@@ -1,4 +1,4 @@
-//
+//Everyone contributed to making this file and methods
 public class Credits {
     String name;
     String Position;

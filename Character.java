@@ -1,3 +1,4 @@
+//Everyone contributed to making this file and methods
 public class Character {
     String name;
     String charClass;
@@ -40,7 +41,7 @@ public class Character {
     //Baraga contribution
 
     // ----------------- Show Stats -----------------
-    //
+    //Everyone contributed
     public void showStats() {
         System.out.println("---- " + name + " ----");
         System.out.println("Class: " + charClass);
