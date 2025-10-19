@@ -1,5 +1,9 @@
 //Everyone contributed to making this file and methods
 public class Dialogue{
+    public void playerDefeated(){
+        System.out.println("[Error]: That can't be right... You lost...");
+        System.out.println("Go back and set the timeline right...\n");
+    }
     //Daydayan contribution
 
     //Pedrosa contribution
