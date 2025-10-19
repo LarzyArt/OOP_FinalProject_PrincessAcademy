@@ -5,6 +5,11 @@ public class UI {
     protected MobNPC[] mobs;
     protected Credits[] credits;
     protected Scanner skillInput;
+    protected int currentChapter = -1;
+    // flag set when player requests to abort the current battle and return to the menu
+    protected boolean abortBattle = false;
+    // flag set when the last battle was aborted so StartGame can skip post-battle dialogues
+    protected boolean lastBattleAborted = false;
 
 
     public UI(Character[] characters, MobNPC[] mobs,Credits[] credits, Scanner skillInput) {
