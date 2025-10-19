@@ -66,6 +66,12 @@ public class UI {
     public void StartGame(){
         Dialogue dialogue = new Dialogue();
         int chapter = -1;
+        boolean tag2 = false;
+        boolean tag3 = false;
+        boolean tag4 = false;
+        boolean tag5 = false;
+        boolean tag6 = false;
+
         System.out.println("==== Story Mode ====\n");
         System.out.println("Chapter 1: Battle of the Sea");
         System.out.println("Chapter 2: The Survival");
@@ -93,35 +99,95 @@ public class UI {
         }
 
         if (chapter >= 1 && chapter <= 6) {
-            System.out.println("Starting Chapter " + chapter + "...");
+            this.currentChapter = chapter;
         } else {
             System.out.println("Invalid chapter. Returning to main menu...");
         }
         switch(chapter){
             case 1:
                 dialogue.sirenEmpressInteraction();
-                dialogue.sirenEmpressDefeated();
+                BattleHUD();
+                StartBattle(characters, mobs);// enemies take their turn and attack alive characters
+                if (lastBattleAborted) { lastBattleAborted = false; break; }
+                if (!isChapterEnemyAlive(chapter)) {
+                    tag2 = true;
+                    dialogue.sirenEmpressDefeated();
+                } else dialogue.playerDefeated();
                 break;
             case 2:
-                dialogue.lavaBeastInteraction();
-                dialogue.lavaBeastDefeated();
+                if(tag2 == false){
+                    System.out.println("\n====================");
+                    System.out.println("[Error]: You have not finished chapter 1.");
+                    System.out.println("Finish chapter 1 to unlock chapter 2.\n");
+                }else{
+                    dialogue.lavaBeastInteraction();
+                    BattleHUD();
+                    StartBattle(characters, mobs);// enemies take their turn and attack alive characters
+                    if (lastBattleAborted) { lastBattleAborted = false; break; }
+                    if (!isChapterEnemyAlive(chapter)) {
+                        tag3 = true;
+                        dialogue.lavaBeastDefeated();
+                    } else dialogue.playerDefeated();
+                }
                 break;
-
             case 3:
-                dialogue.eclipseCoreInteraction();
-                dialogue.eclipseCoreDefeated(); 
+                if(tag3 == false){
+                    System.out.println("[Error]: You have not finished chapter 1.");
+                    System.out.println("Finish chapter 1 to unlock chapter 2\n");
+                }else{
+                    dialogue.eclipseCoreInteraction();
+                    BattleHUD();
+                    StartBattle(characters, mobs);// enemies take their turn and attack alive characters
+                    if (lastBattleAborted) { lastBattleAborted = false; break; }
+                    if (!isChapterEnemyAlive(chapter)) {
+                        tag4 = true;
+                        dialogue.eclipseCoreDefeated(); 
+                    } else dialogue.playerDefeated();
+                }
                 break;
             case 4:
-                dialogue.resonaraInteraction();
-                dialogue.resonaraDefeated();
+                if(tag4 == false){
+                    System.out.println("[Error]: You have not finished chapter 1.");
+                    System.out.println("Finish chapter 1 to unlock chapter 2\n");
+                }else{
+                    dialogue.resonaraInteraction();
+                    BattleHUD();
+                    StartBattle(characters, mobs);// enemies take their turn and attack alive characters
+                    if (lastBattleAborted) { lastBattleAborted = false; break; }
+                    if (!isChapterEnemyAlive(chapter)) {
+                        tag5 = true;
+                        dialogue.resonaraDefeated();
+                    } else dialogue.playerDefeated();
+                }
                 break;
             case 5:
-                dialogue.kassundreInteraction();
-                dialogue.kassundreDefeated();
+                if(tag5 == false){
+                    System.out.println("[Error]: You have not finished chapter 1.");
+                    System.out.println("Finish chapter 1 to unlock chapter 2\n");
+                }else{
+                    dialogue.kassundreInteraction();
+                    BattleHUD();
+                    StartBattle(characters, mobs);// enemies take their turn and attack alive characters
+                    if (lastBattleAborted) { lastBattleAborted = false; break; }
+                    if (!isChapterEnemyAlive(chapter)) {
+                        tag6 = true;
+                        dialogue.kassundreDefeated();
+                    } else dialogue.playerDefeated();
+                }
                 break;
             case 6:
-                dialogue.twinkleInteraction();
-                dialogue.twinkleDefeated();
+                if(tag6 == false){
+                    System.out.println("[Error]: You have not finished chapter 1.");
+                    System.out.println("Finish chapter 1 to unlock chapter 2\n");
+                }else{
+                    dialogue.twinkleInteraction();
+                    BattleHUD();
+                    StartBattle(characters, mobs);// enemies take their turn and attack alive characters
+                    if (lastBattleAborted) { lastBattleAborted = false; break; }
+                    if (!isChapterEnemyAlive(chapter)) {
+                        dialogue.twinkleDefeated();
+                    } else dialogue.playerDefeated();
+                }
                 break;
         }
 
@@ -133,6 +199,15 @@ public class UI {
             System.out.println();
             System.out.println("Returning to main menu...");
         }
+    }
+
+    //returns true if any enemy for the given chapter is alive
+    private boolean isChapterEnemyAlive(int chapter) {
+        for (MobNPC enemy : mobs) {
+            if (enemy.chapter != chapter) continue;
+            if (enemy.isAlive()) return true;
+        }
+        return false;
     }
     
 }
