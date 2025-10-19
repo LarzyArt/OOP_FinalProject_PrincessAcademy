@@ -13,12 +13,13 @@ public class MobNPC {
     //Mobs don't use mana
     //int manaPoints;
 
-    public MobNPC(String name, String charClass, String type, String weapon, int healthPoints) {
+    public MobNPC(String name, String charClass, String type, String weapon, int healthPoints, int chapter) {
         this.name = name;
         this.charClass = charClass;
         this.type = type;
         this.weapon = weapon;
         this.healthPoints = healthPoints;
+        this.chapter = chapter;
     }
 
     public void takedamage(int damage){
