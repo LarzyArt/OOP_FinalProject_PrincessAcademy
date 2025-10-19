@@ -116,7 +116,10 @@ public class Character {
             case 2: // Earth Wall
                 if (manaPoints >= 6) {
                     manaPoints -= 6;
-                    System.out.println(name + " used Earth Wall! Reduces damage by 20% for 4 turns.");
+                    // apply damage reduction to self
+                    this.damageReductionPercent = 0.20;
+                    this.damageReductionTurns = Math.max(this.damageReductionTurns, 4);
+                    System.out.println(name + " used Earth Wall! Reduces incoming damage by 20% for 4 turns.");
                 } else System.out.println(name + " doesn't have enough mana!");
                 break;
             case 3: // Iron Maiden
@@ -124,6 +127,8 @@ public class Character {
                     manaPoints -= 10;
                     damage = 50;
                     target.takedamage(damage);
+                    // stun the enemy for 1 turn
+                    target.applyStun(1);
                     System.out.println(name + " used Ultimate, Iron Maiden! Deals " + damage + " fixed damage and stuns enemy for 1 turn.");
                     } else System.out.println(name + " doesn't have enough mana!");
                 break;
