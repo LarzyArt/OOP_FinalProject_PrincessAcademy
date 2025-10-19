@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 //Everyone contributed to making this file and methods
 public class UI {
@@ -273,6 +274,68 @@ public class UI {
             for (MobNPC m : mobs) m.tickStatus();
             turnCount++;
             if (turnCount > 1000) break;
+        }
+    }
+
+    //Everyone Contributed via Discord and Messenger VC
+    // enemies attack: each alive enemy in the active chapter uses a random skill on a random alive character
+    private void enemyPhase() {
+          ArrayList<Integer> aliveCharacterIndexes = new java.util.ArrayList<>();
+        for (int i = 0; i < characters.length; i++) {
+            if (characters[i].isAlive()) aliveCharacterIndexes.add(i);
+        }
+        if (aliveCharacterIndexes.isEmpty()) return; // no targets
+
+        for (MobNPC enemy : mobs) {
+            if (enemy.chapter != this.currentChapter) continue;
+            if (!enemy.isAlive()) continue;
+
+            // if monster is stunned, they skip their action
+            if (enemy.isStunned()) {
+                System.out.println(enemy.getName() + " is stunned and cannot act this turn.");
+                continue;
+            }
+
+            // prefer taunted party members if any
+            ArrayList<Integer> tauntedTargets = new ArrayList<>();
+            for (int i = 0; i < characters.length; i++) {
+                if (characters[i].isAlive() && characters[i].tauntTurns > 0) tauntedTargets.add(i);
+            }
+
+            int randIndex = -1;
+            if (!tauntedTargets.isEmpty()) {
+                int pick = (int) (Math.random() * tauntedTargets.size());
+                randIndex = tauntedTargets.get(pick);
+            } else {
+                int randomListIndex = (int) (Math.random() * aliveCharacterIndexes.size());
+                randIndex = aliveCharacterIndexes.get(randomListIndex);
+            }
+            Character target = characters[randIndex];
+
+            // pick a random skill between 1 and 3 (most mobs define 1-3)
+            int skill = (int) (Math.random() * 3) + 1;
+
+            System.out.println();
+            // handle lava beast AoE case explicitly
+            if (enemy.getName().equalsIgnoreCase("lava beast") && skill == 3) {
+                int damage = (int)(Math.random() * 31) + 20;
+                System.out.println(enemy.getName() + " used Corrupted Eruption! Deals " + damage + " damage to all party members!");
+                for (Character c : characters) {
+                    if (c.isAlive()) c.takedamage(damage);
+                }
+            } else {
+                enemy.useSkill(skill, target);
+            }
+
+            // remove target from list if they died
+            if (!target.isAlive()) {
+                // rebuild aliveCharacterIndexes to avoid duplicates and removed dead targets
+                aliveCharacterIndexes.clear();
+                for (int i = 0; i < characters.length; i++) {
+                    if (characters[i].isAlive()) aliveCharacterIndexes.add(i);
+                }
+                if (aliveCharacterIndexes.isEmpty()) return; // all characters dead
+            }
         }
     }
 
