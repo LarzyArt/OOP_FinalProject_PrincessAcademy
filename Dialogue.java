@@ -151,44 +151,6 @@ public class Dialogue{
         System.out.println("Lynzi: I'm sorry everyone...");
         System.out.println("======================================");
 
-        System.out.println("===================The Aftermath===================");
-        System.out.println("Lynzi: She died too easily... I wanted her to suffer... like what she did to them...");
-        System.out.println("to Audry... to us!!");
-        System.out.println("Giantha: Warrior Lynzi... thine justice have been served");
-        System.out.println("Calm thy self");
-        System.out.println("Audry: Giantha's right... isn't it good that she's gone now?");
-        System.out.println("SHIERA: Yes... let us not dwell on the past...");
-        System.out.println("Lazuli: Yeah their right... We avenged them... we avenged Kassundr-");
-        System.out.println("Lynzi: NO!! you call that avengement!? She got away too easily!!");
-        System.out.println("SHE BUILT THIS ACADEMY INORDER TO GROOM US, TO USE US!!");
-        System.out.println("SHE'S DONE THIS FOR WHO KNOWS HOW LONG!!");
-        System.out.println("NOT ONLY THAT SHE TURNED MILLIONS OF PRINCESSES INTO PUPPETS!!");
-        System.out.println("Lynzi: I can't forgive her that easily...");
-        System.out.println("Not until I destroy every piece of her legacy...");
-        System.out.println("If you want to call that avengement... then so be it...");
-        System.out.println("*Lynzi walks away in anger*");
-
-        System.out.println("Everyone else: Where are you going?");
-        System.out.println("Lynzi: To destroy her legacy... starting with this academy...");
-        System.out.println("Lazuli: NO... if you do that the universe will be in chaos...");
-        System.out.println("Giantha: Kingdoms of old will fall knowing their daughters are mere machines...");
-        System.out.println("SHIERA: Hope will be lost...");
-        System.out.println("Lynzi: So you'd rather let the world live in a lie? ");
-        System.out.println("Everyone else: ....");
-        System.out.println("Aundry: ... I'm sorry Lynzi... but their right...");
-        System.out.println("This Academy gives hope for small nations/kingdoms...");
-        System.out.println("It allows them to have a chance in this world... to start a new with their daughters...");
-        System.out.println("Lynzi: ....");
-        System.out.println("Lynzi: then... you leave me no choice...");
-        
-        System.out.println("*Lynzi swiftly takes Audry'ss core and crushes it*");
-        System.out.println("Audry: Ahhh... Lynzi... why...?");
-        System.out.println("Lynz: I'm sorry Audry... but I can't let the universe live in a lie...");
-        System.out.println("Lynzi: Farewell... sister...");
-        System.out.println("*Audry's body melts down to a watery goop*");
-        System.out.println("Lynzi: I'm sorry everyone...");
-        System.out.println("======================================");
-
         System.out.println("===================A New Dawn===================");
         System.out.println("As the sun rises, a deep sea colored in red  flooded the throne room");
         System.out.println("The princesses left lifeless on the floor, as the sunlight hits their bodies");
