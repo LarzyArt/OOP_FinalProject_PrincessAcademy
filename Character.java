@@ -185,4 +185,60 @@ public class Character {
         System.out.println("------------------");
         System.out.println();
     }
+
+    // Return the skill list for this character as an array of strings
+    // Each entry should describe the skill name and any MP cost or requirement
+    public String[] getSkillList() {
+        switch (name.toLowerCase()) {
+            case "audry":
+                return new String[]{"1) Slime Bounce - Cost: 3 MP","2) Acid Shot - Cost: 7 MP","3) Beyond the Abyss - Cost: 15 MP"};
+            case "giantha":
+                return new String[]{"1) Giant Punch - Cost: 0 MP","2) Giant's Roar - Cost: 1 MP","3) Club Smash - Cost: 9 MP"};
+            case "lazuli":
+                return new String[]{"1) Basic Heal - Cost: 10 MP","2) Ocean's Blessing - Cost: 20 MP","3) Harmonic Wave - Requires 0 MP"};
+            case "lynzi":
+                return new String[]{"1) Majestic Kick - Cost: 0 MP","2) Galactic Fist - Cost: 2 MP","3) Meteoric Smash - Cost: 10 MP"};
+            case "shiera":
+                return new String[]{"1) Stone Spikes - Cost: 4 MP","2) Earth Wall - Cost: 6 MP","3) Iron Maiden - Cost: 10 MP"};
+            default:
+                return new String[0];
+        }
+    }
+
+    //Everyone Contributed
+    // Return a string indicating the target type for a given skill index.
+    // Possible return values: "ENEMY", "ALLY", "ALL", "SELF".
+    public String getSkillTargetType(int skill) {
+        switch (name.toLowerCase()) {
+            case "audry":
+            case "giantha":
+            case "lynzi":
+                return "ENEMY";
+            case "lazuli":
+                switch (skill) {
+                    case 1: return "ALLY"; // Basic Heal
+                    case 2: return "ALL";  // Ocean's Blessing
+                    case 3: return "ALL";  // Harmonic Wave
+                    default: return "ALLY";
+                }
+            case "shiera":
+                switch (skill) {
+                    case 2: return "SELF"; // Earth Wall
+                    default: return "ENEMY";
+                }
+            default:
+                return "ENEMY";
+        }
+    }
+
+    //Everyone Contributed
+    // Decrement status durations each turn
+    public void tickStatus() {
+        if (tauntTurns > 0) tauntTurns--;
+        if (stunnedTurns > 0) stunnedTurns--;
+        if (damageReductionTurns > 0) {
+            damageReductionTurns--;
+            if (damageReductionTurns == 0) damageReductionPercent = 0.0;
+        }
+    }
 }
