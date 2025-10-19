@@ -5,9 +5,13 @@ public class MobNPC {
     String type;
     String weapon;
     int healthPoints;
+    //Status effects
+    int stunnedTurns = 0;
+    int tauntTurns = 0; // when >0, this mob will prefer targeting the taunting character (handled by UI)
+    int damageReductionTurns = 0;
+    double damageReductionPercent = 0.0;
     //Mobs don't use mana
     //int manaPoints;
-
 
     public MobNPC(String name, String charClass, String type, String weapon, int healthPoints) {
         this.name = name;
@@ -17,14 +21,42 @@ public class MobNPC {
         this.healthPoints = healthPoints;
     }
 
-    void takedamage(int damage){
+    public void takedamage(int damage){
+        // apply damage reduction if active
+        if (damageReductionTurns > 0 && damageReductionPercent > 0.0) {
+            int reduced = (int) Math.round(damage * (1.0 - damageReductionPercent));
+            damage = Math.max(0, reduced);
+        }
         healthPoints -= damage;
-        if(healthPoints < 0) healthPoints = 0;
-        System.out.println(name + "took " + damage + "damage! Remaining HP: " + healthPoints);
+        if (healthPoints <= 0) {
+            healthPoints = 0;
+            System.out.println(name + " took " + damage + " damage! Remaining HP: " + healthPoints);
+            System.out.println(name + " HP has dropped to 0! It has been defeated!");
+        } else {
+            System.out.println(name + " took " + damage + " damage! Remaining HP: " + healthPoints);
+        }
     }
     
+    public boolean isAlive(){
+        return healthPoints > 0;
+    }
+
     public String getName() {
         return name;
+    }
+
+    // status helpers
+    public boolean isStunned() { return stunnedTurns > 0; }
+    public void applyStun(int turns) { stunnedTurns = Math.max(stunnedTurns, turns); System.out.println(name + " is stunned for " + stunnedTurns + " turn(s)."); }
+    public void applyTaunt(int turns) { tauntTurns = Math.max(tauntTurns, turns); System.out.println(name + " is taunted for " + tauntTurns + " turn(s)."); }
+    public void applyDamageReduction(double percent, int turns) { damageReductionPercent = percent; damageReductionTurns = Math.max(damageReductionTurns, turns); System.out.println(name + " has damage reduction for " + damageReductionTurns + " turn(s)."); }
+    public void tickStatus() {
+        if (stunnedTurns > 0) stunnedTurns--;
+        if (tauntTurns > 0) tauntTurns--;
+        if (damageReductionTurns > 0) {
+            damageReductionTurns--;
+            if (damageReductionTurns == 0) damageReductionPercent = 0.0;
+        }
     }
 
     //=================== Skill System ==================
@@ -248,7 +280,7 @@ public class MobNPC {
                 break;
         }
     }
-    
+
     //----------------- Show Stats -----------------
     //Everyone contributed
     public void showStats() {
