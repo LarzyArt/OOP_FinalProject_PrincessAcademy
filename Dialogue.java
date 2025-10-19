@@ -9,7 +9,48 @@ public class Dialogue{
     //Pedrosa contribution
     
     //Ecarma contribution
-    
+    public void resonaraInteraction(){
+        System.out.println("===================Heart of the Living Forest===================");
+        System.out.println("As Giantha venture deeper into the Garden of Ancients");
+        System.out.println("She felt a strange melody in the air, a song that called to her very soul");
+        System.out.println("The air Shimmers faintly — a hum of vibration runs through the trees.");
+        System.out.println("Between the trees she saw, a strange figure, humming between dryads");
+        System.out.println("The Queen of Serenity, Resonara");
+        System.out.println("===============================================================");
+
+        System.out.println("Resonara: Mmm... this forest sings beautifully. Each leaf... each heartbeat... a perfect note.");
+        System.out.println("Giantha: That song — it's not from the forest. It's you, isn't it?");
+        System.out.println("Resonara: Ah! A voice of thunder wrapped in gentleness. You must be the Giant Princess I've heard whispers of.");
+        System.out.println("Giantha: Giantha II, daughter of the Chief. This forest is my domain — and your music disturbs its rhythm.");
+        System.out.println("Resonara: Disturbs? No, my dear — I enhance it. I turn silence into melody, stillness into motion!");
+        System.out.println("Giantha: Music is beautiful, but only when it's in harmony with life. What you create... is chaos.");
+        System.out.println("Resonara: Chaos is part of every song! Without tension, there can be no release!");
+        System.out.println("Giantha: Then allow me to restore balance to this forest — even if it means silencing your song.");
+        System.out.println("Resonara: How poetic. Then let us compose together — your strength, my melody. A duet!");
+
+    }
+
+    public void resonaraDefeated(){
+        System.out.println("Giantha: panting softly Your power... it's unlike anything I've faced before.");
+        System.out.println("Resonara: Ha... and yet, your rhythm overpowered mine. Such grace, such control. The forest hums your victory.");
+        System.out.println("Giantha: I didn't wish to destroy your song — only to calm it. The forest breathes again.");
+        System.out.println("Resonara: Hmph... To be defeated, yet admired... How very humbling.");
+
+        System.out.println("Giantha: You fought beautifully. Maybe... you could use your sound to heal, not harm.");
+        System.out.println("Resonara: Heal... with music? Perhaps your words strike deeper than your fists, Giant Princess.");
+        System.out.println("Giantha: The forest welcomes beauty that protects. You're free to stay — if your melody can live in peace.");
+        System.out.println("Resonara: Hah... Then perhaps I shall. A new song, born from harmony rather than battle.");
+        System.out.println("The forest glows softly as both warrior and minstrel share a silent understanding.");
+        System.out.println("The melody of the Living Forest plays on — peaceful once more.");
+
+        System.out.println("===================The Sound of Silence===================");
+        System.out.println("With Resonara defeated, Giantha feels a deep connection to the forest.");
+        System.out.println("The path to the throne room is now clear.");
+        System.out.println("She wonders what awaits her there, but she knows one thing for sure.");
+        System.out.println("She will face it with the strength of the earth and the harmony of the forest.");
+        System.out.println("===========================================================");
+    }
+
     //Rodrigo contribution: Eclipse Core and Shiera dialogue
     public void eclipseCoreInteraction() {
         System.out.println("===================Darkness and Void===================");
