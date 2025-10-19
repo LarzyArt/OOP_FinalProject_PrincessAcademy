@@ -5,6 +5,7 @@ public class MobNPC {
     String type;
     String weapon;
     int healthPoints;
+    int chapter;
     //Status effects
     int stunnedTurns = 0;
     int tauntTurns = 0; // when >0, this mob will prefer targeting the taunting character (handled by UI)

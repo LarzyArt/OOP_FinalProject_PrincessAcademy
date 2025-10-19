@@ -209,5 +209,42 @@ public class UI {
         }
         return false;
     }
-    
+    //check if battle is ongoing
+    private boolean isBattleOngoing(){
+        boolean partyAlive = false, enemiesAlive = false;
+        for (Character party : characters) if (party.isAlive()) partyAlive = true;
+        // only count enemies that belong to the current chapter
+        for (MobNPC enemies : mobs) if (enemies.chapter == this.currentChapter && enemies.isAlive()) enemiesAlive = true;
+        return partyAlive && enemiesAlive;
+    }
+
+    //Screen for when battle starts
+    public void BattleHUD(){
+        System.out.println("\n===============================");
+        System.out.println("         BATTLE STATUS");
+        System.out.println("===============================");
+
+        //party stats
+        System.out.println("\nParty:");
+        for (Character party : characters) {
+            if (party.isAlive())
+                System.out.println(party.name + " | HP: " + party.healthPoints + " | MP: " + party.manaPoints);
+            else
+                System.out.println(party.name + " | has been Defeated!!!");
+        }
+
+        //Everyone contributed via Discord VC
+        //mob stats
+        System.out.println("\nEnemies: ");
+        for (MobNPC enemies : mobs) {
+            // only show enemies for the active chapter
+            if (enemies.chapter != this.currentChapter) continue;
+            if (enemies.isAlive())
+                System.out.println(enemies.name + " | HP: " + enemies.healthPoints);
+            else
+                System.out.println(enemies.name + " | has been Defeated!!!");
+                
+        }
+        System.out.println("===============================");
+    }
 }
