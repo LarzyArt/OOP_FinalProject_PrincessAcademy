@@ -55,6 +55,27 @@ public class UI {
     
 
     //Pedrosa contribution
+    public void ShowCredits(){
+        System.out.println("\n---- Credits ----\n");
+            for (Credits credit : credits) {
+            credit.ShowCredits();
+        }
+        System.out.println("\n========================");
+        System.out.print("Press x to exit: ");
+        char opts = skillInput.next().charAt(0);
+            if(opts == 'x'){
+                return;
+            }else {
+                while(opts != 'x'){
+                System.out.println("Invalid input...\n");
+                System.out.println("========================");
+                System.out.print("Press x to exit: ");
+                opts = skillInput.next().charAt(0);
+                System.out.println("Returning to main menu...\n");
+
+            }
+        }
+    }
     
 
     //Baraga contribution: StartGame method to handle story mode (currently unfinished)

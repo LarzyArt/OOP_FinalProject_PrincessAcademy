@@ -33,6 +33,41 @@ public class Character {
     //Daydayan contribution
 
     //Pedrosa contribution
+    // ----------------- Audry's Skills -----------------
+    private void audrySkills(int skill, MobNPC target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Slime Bounce
+                if (manaPoints >= 3) {
+                    manaPoints -= 3;
+                    damage = (int)(Math.random() * 21) + 20;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Slime Bounce! Deals " + damage + " damage.");
+                } else System.out.println(name + " doesn't have enough mana!");
+                break;
+            case 2: // Acid Shot
+                if (manaPoints >= 7) {
+                    manaPoints -= 7;
+                    int hits = (int)(Math.random() * 3) + 1;
+                    damage = 0;
+                    for (int i = 0; i < hits; i++) {
+                        damage += (int)(Math.random() * 11) + 5;
+                    }
+                    target.takedamage(damage);
+                    System.out.println(name + " used Acid Shot! Hits " + hits + " times for " + damage + " damage.");
+                } else System.out.println(name + " doesn't have enough mana!");
+                break;
+            case 3: // Beyond the Abyss
+                if (manaPoints >= 15) {
+                    manaPoints -= 15;
+                    damage = 150;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Ultimate, Beyong the Abyss! Deals " + damage + " fixed damage.");
+                } else System.out.println(name + " doesn't have enough mana!");
+                break;
+        }
+    }
+
     
     //Ecarma contribution
     

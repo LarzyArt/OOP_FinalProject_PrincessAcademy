@@ -3,6 +3,43 @@ public class Dialogue{
     //Daydayan contribution
 
     //Pedrosa contribution
+    public void lavaBeastInteraction(){
+        System.out.println("===================The Survival===================");
+        System.out.println("The air grows heavy as molten cracks glow beneath Audry's feet...");
+        System.out.println("From the fiery depths, the Lava Beast rises, its body burning like a living volcano.");
+        System.out.println("===================================================");
+
+        System.out.println("Audry: So... you're the guardian of this place? You don't scare me.");
+        System.out.println("Lava Beast: FOOLISH HUMAN... I AM THE HEART OF FIRE! NONE SHALL PASS MY DOMAIN!");
+        System.out.println("Audry: Then I'll just have to cool you down a little.");
+        System.out.println("Lava Beast: YOUR WORDS WILL TURN TO ASH ONCE YOU FACE MY WRATH!");
+
+        System.out.println("*The battlefield quakes as lava erupts and flames surround Audry.*");
+        System.out.println("Audry dashes through the fire, her eyes glowing with determination.");
+
+    }
+
+public void lavaBeastDefeated(){
+        System.out.println("Audry: I've fought shadows darker than your flames... this ends now!");
+        System.out.println("Lava Beast: IMPOSSIBLE! MY FIRE IS ETERNAL!");
+
+        System.out.println("*With a final strike, Audry pierces through the beast's molten core.*");
+        System.out.println("Lava Beast stumbles, cracks spreading across its blazing body.");
+        System.out.println("Lava Beast: No... this cannot be... My flames... fading...");
+        System.out.println("Audry: Rest now, mighty beast. The world needs peace, not destruction.");
+
+        System.out.println("*The Lava Beast lets out a final roar as its body cools and turns to stone.*");
+        System.out.println("The molten battlefield falls silent, and the air becomes calm once more.");
+        System.out.println("Audry: Another battle won... but I can still feel the heat of its power.");
+        System.out.println("Audry looks to the horizon, her core glowing faintly in the light of victory.");
+
+        System.out.println("===================The Self===================");
+        System.out.println("With the Lava Beast defeated, Audry feels a renewed sense of purpose.");
+        System.out.println("With the beast gone, the path to the throne room is clear.");
+        System.out.println("SHe knows what awaits, the queen, her creator, her mother.");
+        System.out.println("====================================================");
+    }
+
     
     //Ecarma contribution
     
