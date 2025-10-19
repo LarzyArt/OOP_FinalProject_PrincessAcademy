@@ -28,6 +28,27 @@ public class Character {
     // ================== Skill System ==================
     //To use skills
     //Rodrigo contribution
+    public void useSkill(int skill, MobNPC target, Character ally) {
+        switch (name.toLowerCase()) {
+            case "audry":
+                audrySkills(skill, target);
+                break;
+            case "giantha":
+                gianthaSkills(skill, target);
+                break;
+            case "lazuli":
+                lazuliSkills(skill, ally);
+                break;
+            case "lynzi":
+                lynziSkills(skill, target);
+                break;
+            case "shiera":
+                shieraSkills(skill, target, ally);
+                break;
+            default:
+                System.out.println(name + " has no skills defined!");
+        }
+    }
 
     //-------------------------------- Character Skills ------------------------------
     //Daydayan contribution
@@ -37,7 +58,39 @@ public class Character {
     //Ecarma contribution
     
     //Rodrigo contribution
-    
+    // ----------------- Shiera's Skills -----------------
+    private void shieraSkills(int skill, MobNPC target, Character ally) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Stone Spikes
+                if (manaPoints >= 4) {
+                    manaPoints -= 4;
+                    int hits = (int)(Math.random() * 4) + 1;
+                    damage = 0;
+                    for (int i = 0; i < hits; i++) {
+                        damage += (int)(Math.random() * 10) + 1;
+                    }
+                    target.takedamage(damage);
+                    System.out.println(name + " used Stone Spikes! Hits " + hits + " times for " + damage + " damage.");
+                } else System.out.println(name + " doesn't have enough mana!");
+                break;
+            case 2: // Earth Wall
+                if (manaPoints >= 6) {
+                    manaPoints -= 6;
+                    System.out.println(name + " used Earth Wall! Reduces damage by 20% for 4 turns.");
+                } else System.out.println(name + " doesn't have enough mana!");
+                break;
+            case 3: // Iron Maiden
+                if (manaPoints >= 10) {
+                    manaPoints -= 10;
+                    damage = 50;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Ultimate, Iron Maiden! Deals " + damage + " fixed damage and stuns enemy for 1 turn.");
+                    } else System.out.println(name + " doesn't have enough mana!");
+                break;
+        }
+    }
+
     //Baraga contribution: Lazuli's Skills
     // ----------------- Lazuli's Skills -----------------
         private void lazuliSkills(int skill, Character ally) {

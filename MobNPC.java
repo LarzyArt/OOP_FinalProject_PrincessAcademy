@@ -68,7 +68,30 @@ public class MobNPC {
     //Ecarma contribution
     
     //Rodrigo contribution
-    
+    //-----------------------Eclipse Core-------------------------
+    private void eclipseCoreSkills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Dark Ooze
+                damage = 30;
+                target.takedamage(damage);
+                System.out.println(name + " used Dark Ooze! Deals " + damage + " damage.");
+                break;
+            case 2: // Stellar Absorb
+                damage = (int)(Math.random() * 10) + 15;
+                target.takedamage(damage);
+                System.out.println(name + " used Stellar Absorb! Deals " + damage + " damage.");
+                break;
+            case 3: // Eclipse
+                damage = (int)(Math.random() * 11) + 30;
+                target.takedamage(damage);
+                System.out.println(name + " used Eclipse! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
+
+
     //Baraga contribution: Kassundre's Skills
     // ----------------- Kassundre's Skills -----------------
     private void kassundreSkills(int skill, Character target) {
@@ -106,7 +129,21 @@ public class MobNPC {
     //Ecarma contribution
     
     //Rodrigo contribution
-    
+    //----------------- Astral Glob Skills -----------------
+    private void astralGlobSkills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Glob Smash
+                damage = (int)(Math.random() * 8)+ 10;
+                System.out.println(name + " used Glob Smash! Deals " + damage + " damage.");
+                break;
+            case 2: // Glowing Drip
+                damage = (int)(Math.random() * 12) + 15;
+                System.out.println(name + " used Glowing Drip! Deals " + damage + " magic damage.");
+                break;
+        }
+    }
+
     //Baraga contribution: Student Puppet's Skills
     // ----------------- Student Puppet's Skills -----------------
     private void studentPuppetSkills(int skill, Character target) {

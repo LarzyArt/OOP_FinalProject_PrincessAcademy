@@ -6,7 +6,35 @@ public class Dialogue{
     
     //Ecarma contribution
     
-    //Rodrigo contribution
+    //Rodrigo contribution: Eclipse Core and Shiera dialogue
+    public void eclipseCoreInteraction() {
+        System.out.println("===================Darkness and Void===================");
+        System.out.println("As SHIERA was thrown through the portal, she found herself in a desolate wasteland.");
+        System.out.println("It was dark, void of life, and filled with an eerie silence.");
+        System.out.println("Then she was ambushed");
+        System.out.println("========================================================");
+
+        System.out.println("Eclipse Core attacks with [Dark Ooze]");
+        System.out.println("Shiera: (dodging) You'll have to do better than that.");
+        System.out.println("Eclipse Core: I'll drain your power dry! [Stellar Absorb!]");
+        System.out.println("Shiera: (gritting) Not enough to stop me!");
+        System.out.println("Eclipse Core prepares [Eclipse Burst]");
+        System.out.println("Shiera: Big move... then I'll strike first!");
+    }
+
+    public void eclipseCoreDefeated() {
+        System.out.println("Eclipse Core: Impossible... a girl without emotion... defeated me...");
+        System.out.println("Shiera: You talk too much.");
+        System.out.println("Eclipse Core shatters into light.");
+        System.out.println("Shiera: Mission complete.");
+
+        System.out.println("===================Calm and Serene===================");
+        System.out.println("With the Eclipse Core defeated, Shiera feels a strange calmness.");
+        System.out.println("She knows the path to the throne room is clear.");
+        System.out.println("For the first time she felt an emotion she didn't know she could feel.");
+        System.out.println("FEAR");
+        System.out.println("=======================================================");
+    }
     
     //Baraga contribution: Kassundre and twinkle dialogue
     public void kassundreInteraction(){
