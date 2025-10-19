@@ -162,6 +162,92 @@ public class MobNPC {
                 break;
         }
     }
+
+    // ----------------- Princess Puppet's Skills -----------------
+    private void princessPuppetSkills(int skill, Character target) {
+        //Minion fight skills
+        int damage = 0;
+        switch (skill) {
+            case 1: // Puppet Punch
+                damage = (int)(Math.random() * 6) + 5;
+                target.takedamage(damage);
+                System.out.println(name + " used Puppet Punch! Deals " + damage + " damage.");
+                break;
+            case 2: // Puppet Slash
+                    damage = (int)(Math.random() * 11) + 10;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Puppet Slash! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
+    //----------------- Magma Skeleton's Skills -----------------
+    private void magmaSkeletonSkills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Bone Slash
+                damage = (int)(Math.random() * 11) + 5;
+                target.takedamage(damage);
+                System.out.println(name + " used Bone Slash! Deals " + damage + " damage.");
+                break;
+            case 2: // Dark Stab
+                damage = (int)(Math.random() * 6) + 10;
+                target.takedamage(damage);
+                System.out.println(name + " used Dark Stab! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
+    //----------------- Water Blob's Skills -----------------
+    private void waterblobSKills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Water Jet
+                damage = (int)(Math.random() * 11) + 5;
+                target.takedamage(damage);
+                System.out.println(name + " used Water Jet! Deals " + damage + " damage.");
+                break;
+
+            case 2: // Bubble Bash
+                damage = (int)(Math.random() * 16) + 10;
+                target.takedamage(damage);
+                System.out.println(name + " used Bubble Bash! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
+        //----------------- Resonance Goblin's Skills -----------------
+        private void resonanceGoblinSkills(int skill, Character target) {
+            int damage = 0;
+            switch (skill) {
+            case 1: // Piercing Squeak
+                damage = (int)(Math.random() * 6) + 10;
+                target.takedamage(damage);
+                System.out.println(name + " used Piercing Squeak! Deals " + damage + " damage.");
+                break;
+
+            case 2: // Loud Clap
+                damage = (int)(Math.random() * 10) + 15;
+                target.takedamage(damage);
+                System.out.println(name + " used Loud Clap! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
+    //----------------- Moon Sprite's Skills -----------------
+    private void moonSpriteSkills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Glob Smash
+                damage = (int)(Math.random() * 8)+ 10;
+                System.out.println(name + " used Glob Smash! Deals " + damage + " damage.");
+                break;
+            case 2: // Glowing Drip
+                damage = (int)(Math.random() * 12) + 15;
+                System.out.println(name + " used Glowing Drip! Deals " + damage + " magic damage.");
+                break;
+        }
+    }
     
     //----------------- Show Stats -----------------
     //Everyone contributed

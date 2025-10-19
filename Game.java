@@ -26,6 +26,11 @@ public class Game {
             new MobNPC("Water Sprite", "Minion", "Ranged", "Water Magic", 130),
             new MobNPC("Echo Imp", "Minion", "Ranged", "Sound Magic", 130),
             new MobNPC("Astral Glob", "Minion", "Melee", "Astral Slime", 110),
+            new MobNPC("Princess Puppet", "Minion", "Melee", "wand", 100,5),
+            new MobNPC("Magma Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
+            new MobNPC("Water Blob", "Minion", "Ranged", "Water Magic", 130,1),
+            new MobNPC("Resonance Goblin", "Minion", "Ranged", "Sound Magic", 130, 4),
+            new MobNPC("Moon Sprite", "Minion", "Melee", "Astral magic", 110, 3),
         };
         Credits[] credits = {
             new Credits("Laurence Baraga", "Developer", "Student", "Pencil", 2, 1),
