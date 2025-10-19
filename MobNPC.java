@@ -152,7 +152,31 @@ public class MobNPC {
     }
 
     // --------------------- Mini Boss ----------------------
-    //Daydayan contribution
+    //Daydayan contribution: Siren Empress
+    //-----------------------Siren Empress-------------------------
+    private void sirenEmpressSKills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Water Vortex
+                    damage = (int)(Math.random() * 26) + 10;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Water Vortex! Deals " + damage + " damage.");
+                break;
+            case 2: // Tidal Wave
+                    int hits = (int)(Math.random() * 3) + 1;
+                    for (int i = 0; i < hits; i++){
+                    damage += (int)(Math.random() * 6) + 5;
+                    }
+                    target.takedamage(damage);
+                    System.out.println(name + " used Tidal Wave! Hits " + hits + " times for " + damage + " damage.");
+                break;
+            case 3: // Siren's Call
+                    damage = (int)(Math.random() * 21) + 25;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Siren's Call! Deals " + damage + " damage.");
+                break;
+        }
+    }
 
     //Pedrosa contribution
     
@@ -244,7 +268,24 @@ public class MobNPC {
 
     // ------------------------ Mobs -----------------------------
     
-    //Daydayan contribution
+    //Daydayan contribution: Water Sprite Skills
+    //----------------- Water Sprite Skills -----------------
+private void waterSpriteSKills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Water Jet
+                damage = (int)(Math.random() * 11) + 5;
+                target.takedamage(damage);
+                System.out.println(name + " used Water Jet! Deals " + damage + " damage.");
+                break;
+
+            case 2: // Bubble Bash
+                damage = (int)(Math.random() * 16) + 10;
+                target.takedamage(damage);
+                System.out.println(name + " used Bubble Bash! Deals " + damage + " damage.");
+                break;
+        }
+    }
 
     //Pedrosa contribution
     

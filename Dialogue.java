@@ -5,6 +5,54 @@ public class Dialogue{
         System.out.println("Go back and set the timeline right...\n");
     }
     //Daydayan contribution
+    public void sirenEmpressInteraction(){
+        System.out.println("===================The Battle of Sea===================");
+        System.out.println("As princess Lynzi was thrown into the aquarium, she saw the empress of the sea");
+        System.out.println("The Siren Empress, the ruler of the deep sea");
+        System.out.println("===================================================");
+
+        System.out.println("Lynzi: (gasping for air) Where am I...? This place... it's suffocating...");
+        System.out.println("Lynzi: (breathing heavily) This is it... the final battle...");
+        System.out.println("Siren Empress: So, the anxious little princess finally comes to my domain.");
+        
+        System.out.println("Lynzi: (nervous) The water... it always drowns me... but I can't turn back now!");
+        System.out.println("Siren Empress: Your cursed family poisoned my waters, killed my beloved, and left me with nothing!");
+        System.out.println("Lynzi: (shaking) WHAT?.. My family never did such a thing-");
+        System.out.println("Wait... her eyes... their black... just like the others...");
+        System.out.println("AHHH... She's corrupted too...");
+        
+        System.out.println("Siren Empress: Your family will pay for what they did... and so will you!");
+        System.out.println("Lynzi: (shaking) I... I never wanted this fight... but if it's the only way...");
+    }
+    public void sirenEmpressDefeated(){
+        System.out.println("Siren Empress: Huh?... where am I...?");
+        System.out.println("Lynzi: (panting) you... you were corrupted by the dark ooze...");
+        System.out.println("Siren Empress: (confused) Corrupted? No... I was just protecting my domain...");
+        System.out.println("Ahh... I see the first princess... she offered us protection...");
+        System.out.println("(crying) I should've known... I should've known");
+        System.out.println("Lynzi: It's okay... you're safe now...");
+
+        System.out.println("*Siren Empress' body starts crumbling*");
+        System.out.println("Lynzi: WHAT?? NO.. NO.. NOOOO!! WHAT'S HAPPENING TO YOU??");
+        System.out.println("Siren Empress: Child... this is what happens once a body is corrupted...");
+        System.out.println("Once the corruption had grown weak... it corrodes the body...");
+        System.out.println("leaving us with nothing but dust...");
+        System.out.println("Lynzi: NOO! NO! WAIT! HOLD ON A LITTLE LONGER MY SISTER CAN HEAL YOU!");
+        
+        System.out.println("Siren Empress: I thank you... for trying to save me child.. even though...");
+        System.out.println("I was trying to kill you earlier... But I'm sorry... once corrupted the body rejects healing magic...");
+        System.out.println("Child please... avenge us... those she corrupted...");
+        System.out.println("Lynzi: WHO?? WHO DID THIS TO YOU?");
+        System.out.println("Siren Empress: .... the... first... princess...");
+        System.out.println("*The Siren Empress crumbles to dust*");
+
+        System.out.println("===================The Anger===================");
+        System.out.println("The princess was angered as she found the culprit");
+        System.out.println("She never said a word, she rushed to the nearest door");
+        System.out.println("With the serious look on her face, she lost her smile");
+        System.out.println("It was time she got serious, As she was approaching the throne room");
+        System.out.println("===================================================");
+    }
 
     //Pedrosa contribution
     
