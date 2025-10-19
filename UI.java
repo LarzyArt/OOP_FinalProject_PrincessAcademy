@@ -247,4 +247,33 @@ public class UI {
         }
         System.out.println("===============================");
     }
+    
+    //Everyone Contributed via Discord VC
+    //turn based battle here
+    public void StartBattle(Character[] characters, MobNPC[] mobs){
+        int turnCount = 1;
+        abortBattle = false;
+        lastBattleAborted = false;
+        while (isBattleOngoing()) {
+            System.out.println("\n========== TURN " + turnCount + " ==========");
+            // enemy phase: each alive enemy in the current chapter attacks a random alive character
+            characterPhase();
+            if (abortBattle) {
+                System.out.println("Battle aborted. Returning to main menu...");
+                lastBattleAborted = true;
+                abortBattle = false;
+                break;
+            }
+                // enemy phase: each alive enemy in the current chapter attacks a random alive character
+                enemyPhase();
+            // show status after the turn
+            BattleHUD();
+            // tick status durations for characters and mobs
+            for (Character c : characters) c.tickStatus();
+            for (MobNPC m : mobs) m.tickStatus();
+            turnCount++;
+            if (turnCount > 1000) break;
+        }
+    }
+
 }
