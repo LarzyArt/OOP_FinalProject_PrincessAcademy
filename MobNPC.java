@@ -179,6 +179,33 @@ public class MobNPC {
     }
 
     //Pedrosa contribution
+    //---------------------- Lava Beast ---------------------
+    private void lavaBeastSkills(int skill, Character target) {
+        //Miniboss fight skills
+        int damage = 0;
+        switch (skill) {
+            case 1: // Lava Burst
+                    damage = (int)(Math.random() * 16) + 20;
+                    target.takedamage(damage);
+                    System.out.println(name + " used Lava Burst! Deals " + damage + " damage.");
+                break;
+            case 2: // Magma Flow
+                    int hits = (int)(Math.random() * 2) + 1;
+                    for (int i = 0; i < hits; i++){
+                    damage += (int)(Math.random() * 6) + 5;
+                    }
+                    target.takedamage(damage);
+                    System.out.println(name + " used Magma Flow! Hits " + hits + " times for " + damage + " damage.");
+                break;
+            case 3: // Corrupted Eruption
+                    damage = (int)(Math.random() * 31) + 20;
+                    // AoE: should be handled by UI.enemypase print and expect caller to apply to party
+                    System.out.println(name + " used Corrupted Eruption! Deals " + damage + " damage to all enemies!");
+                    //UI will handle applying AoE.
+                break;
+        }
+    }
+
     
     //Ecarma contribution
     //-----------------------Resonanara-------------------------
@@ -288,6 +315,24 @@ private void waterSpriteSKills(int skill, Character target) {
     }
 
     //Pedrosa contribution
+      //----------------- Corrupted Skeleton Skills -----------------
+    private void corruptedSkeletonSkills(int skill, Character target) {
+        int damage = 0;
+        switch (skill) {
+            case 1: // Bone Slash
+                damage = (int)(Math.random() * 11) + 5;
+                target.takedamage(damage);
+                System.out.println(name + " used Bone Slash! Deals " + damage + " damage.");
+                break;
+            case 2: // Dark Stab
+                damage = (int)(Math.random() * 6) + 10;
+                target.takedamage(damage);
+                System.out.println(name + " used Dark Stab! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
+
     
     //Ecarma contribution
     //----------------- Echo Imp Skills -----------------
