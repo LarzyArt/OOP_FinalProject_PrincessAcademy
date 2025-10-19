@@ -64,6 +64,63 @@ public class MobNPC {
     //=================== Skill System ==================
     //To use skills 
     // Ecarma contribution
+    public void useSkill(int skill, Character target) {
+        switch (name.toLowerCase()) {
+            //Boss
+            case "twinkle":
+                twinkleSkills(skill, target);
+                break;
+            //MiniBosses
+            case "kassundre":
+                kassundreSkills(skill, target);
+                break;
+            case "lava beast":
+                lavaBeastSkills(skill, target);
+                break;
+            case "siren empress":
+                sirenEmpressSKills(skill, target);
+                break;
+            case "Resonara":
+                resonaraSkills(skill, target);
+                break;
+            case "eclipse core":
+                eclipseCoreSkills(skill, target);
+                break;
+            //Mobs
+            case "student puppet":
+                studentPuppetSkills(skill, target);
+                break;
+            case "corrupted skeleton":
+                corruptedSkeletonSkills(skill, target);
+                break;
+            case "water sprite":
+                waterSpriteSKills(skill, target);
+                break;
+            case "echo imp":
+                echoImpSkills(skill, target);
+                break;
+            case "astral glob":
+                astralGlobSkills(skill, target);
+                break;
+            case "Princess Puppet":
+                princessPuppetSkills(skill, target);
+                break;
+            case "Magma Skeleton":
+                magmaSkeletonSkills(skill, target);
+                break;
+            case "water blob":
+                waterblobSKills(skill, target);
+                break;
+            case "Resonance Goblin":
+                resonanceGoblinSkills(skill, target);
+                break;
+            case "Moon sprite":
+                moonSpriteSkills(skill, target);
+                break;    
+            default:
+                System.out.println(name + " has no skills defined!");
+        }
+    }
 
     //-------------------------------- Character Skills ------------------------------
     // -------------------- Final Boss --------------------
@@ -100,7 +157,38 @@ public class MobNPC {
     //Pedrosa contribution
     
     //Ecarma contribution
-    
+    //-----------------------Resonanara-------------------------
+    private void resonaraSkills(int skill, Character target) {
+        int damage = 0;
+        int hits = 0;
+        switch (skill) {
+            case 1: // Dissonant Chords
+                hits = (int)(Math.random() * 3) + 2; 
+                damage = 0;
+                for (int i = 0; i < hits; i++) {
+                    damage += (int)(Math.random() * 6) + 6;
+                }
+                target.takedamage(damage);
+                System.out.println(name + " used Dissonant Chords! Hits " + hits + " times for " + damage + " damage.");
+                break;
+
+            case 2: // Sonic Wave
+                damage = 35;
+                target.takedamage(damage);
+                System.out.println(name + " used Sonic Wave! Deals " + damage + " fixed damage."); 
+                break;
+
+            case 3: // Crescendo
+                hits = (int)(Math.random() * 4) + 2;
+                for (int i = 0; i < hits; i++) {
+                    damage += (int)(Math.random() * 11) + 10;
+                }
+                target.takedamage(damage);
+                System.out.println(name + " used Crescendo! Hits " + hits + " times for " + damage + " damage.");
+                break;
+        }
+    }
+
     //Rodrigo contribution
     //-----------------------Eclipse Core-------------------------
     private void eclipseCoreSkills(int skill, Character target) {
@@ -161,7 +249,24 @@ public class MobNPC {
     //Pedrosa contribution
     
     //Ecarma contribution
-    
+    //----------------- Echo Imp Skills -----------------
+        private void echoImpSkills(int skill, Character target) {
+            int damage = 0;
+            switch (skill) {
+            case 1: // Piercing Squeak
+                damage = (int)(Math.random() * 6) + 10;
+                target.takedamage(damage);
+                System.out.println(name + " used Piercing Squeak! Deals " + damage + " damage.");
+                break;
+
+            case 2: // Loud Clap
+                damage = (int)(Math.random() * 10) + 15;
+                target.takedamage(damage);
+                System.out.println(name + " used Loud Clap! Deals " + damage + " damage.");
+                break;
+        }
+    }
+
     //Rodrigo contribution
     //----------------- Astral Glob Skills -----------------
     private void astralGlobSkills(int skill, Character target) {
