@@ -58,6 +58,62 @@ public class UI {
     }
 
     //Daydayan contribution
+    public void showStats(){
+        // Show stats for characters or mobs based on user input
+        System.out.println("Do you want to see Character or Mob Stats? (c/m)");
+        System.out.print("Enter choice: ");
+
+            char choice = skillInput.next().toLowerCase().charAt(0);
+            System.out.println();
+            // c for characters
+            if (choice == 'c') { 
+                System.out.println("Choose a character to view stats:");
+                System.out.println("====================");
+                for (int i = 0; i < characters.length; i++) {
+                System.out.println((i + 1) + ". " + characters[i].getName());
+                }
+                System.out.println("====================");
+            // Get user input for character choice
+            System.out.print("Enter Character (1 - 5): ");
+            int charchoice = skillInput.nextInt();
+            System.out.println();
+            if (charchoice >= 1 && charchoice <= characters.length) {
+                characters[charchoice - 1].showStats();
+            } else {
+                System.out.println("Invalid choice. \nChoose a valid character: (1 - 5)\n");
+            }
+            } // m for mobs
+             else if (choice == 'm') {
+                    System.out.println("Choose a mob to view stats:");
+                    System.out.println("====================");
+                    for (int i = 0; i < mobs.length; i++) {
+                    System.out.println((i + 1) + ". " + mobs[i].getName());
+                }
+                System.out.println("====================");
+                // Get user input for mob choice
+                System.out.print("Enter Mob (1 - 11): ");
+                int mobchoice = skillInput.nextInt();
+                System.out.println();
+                if (mobchoice >= 1 && mobchoice <= mobs.length) {
+                    mobs[mobchoice - 1].showStats();
+                } else {
+                    System.out.println("Invalid choice. \nChoose a valid mob: (1 - 11)\n");
+                }
+            } else {
+                System.out.println("Invalid choice.");
+            } // Ask if they want to view another stats
+            System.out.println("====================");
+            System.out.println("Do you want to view another stats? (y/n)");
+            System.out.println("====================");
+            System.out.print("Enter choice: ");
+            char again = skillInput.next().toLowerCase().charAt(0);
+            if (again == 'y') {
+                System.out.println();
+                showStats();
+            } else {
+                System.out.println("Exiting stats view...");
+            }
+    }
     
 
     //Pedrosa contribution
