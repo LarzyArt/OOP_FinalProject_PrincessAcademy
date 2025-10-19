@@ -13,19 +13,19 @@ public class Game {
         };
         MobNPC[] mobs = {
             //Boss
-            new MobNPC("Twinkle", "Boss", "Melee", "Puppet", 500),
+            new MobNPC("Twinkle", "Boss", "Melee", "Puppet", 500,6),
             //Minibosses
-            new MobNPC("Kassundre", "Miniboss", "Ranged", "Dark Magic", 300),
-            new MobNPC("Lava Beast", "Miniboss", "Melee", "Fire Magic", 350),
-            new MobNPC("Siren Empress", "Miniboss", "Ranged", "Water Magic", 320),
-            new MobNPC("Resonara", "Miniboss", "Ranged", "Sound Magic", 310),
-            new MobNPC("Eclipse Core", "Miniboss", "Melee", "Astral Magic", 350),
+            new MobNPC("Kassundre", "Miniboss", "Ranged", "Dark Magic", 300,5),
+            new MobNPC("Lava Beast", "Miniboss", "Melee", "Fire Magic", 350,2),
+            new MobNPC("Siren Empress", "Miniboss", "Ranged", "Water Magic", 320,1),
+            new MobNPC("Resonara", "Miniboss", "Ranged", "Sound Magic", 310,4),
+            new MobNPC("Eclipse Core", "Miniboss", "Melee", "Astral Magic", 350, 3),
             //Mobs
-            new MobNPC("Student Puppet", "Minion", "Melee", "Wooden Sword", 100),
-            new MobNPC("Corrupted Skeleton", "Minion", "Melee", "Bone Sword", 120),
-            new MobNPC("Water Sprite", "Minion", "Ranged", "Water Magic", 130),
-            new MobNPC("Echo Imp", "Minion", "Ranged", "Sound Magic", 130),
-            new MobNPC("Astral Glob", "Minion", "Melee", "Astral Slime", 110),
+            new MobNPC("Student Puppet", "Minion", "Melee", "Wooden Sword", 100,5),
+            new MobNPC("Corrupted Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
+            new MobNPC("Water Sprite", "Minion", "Ranged", "Water Magic", 130,1),
+            new MobNPC("Echo Imp", "Minion", "Ranged", "Sound Magic", 130, 4),
+            new MobNPC("Astral Glob", "Minion", "Melee", "Astral Slime", 110, 3),
             new MobNPC("Princess Puppet", "Minion", "Melee", "wand", 100,5),
             new MobNPC("Magma Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
             new MobNPC("Water Blob", "Minion", "Ranged", "Water Magic", 130,1),
