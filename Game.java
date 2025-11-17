@@ -1,48 +1,45 @@
-import java.util.Scanner;
+// Scanner removed; GUI uses Swing for input
 
 //Everyone contributed to making this file and methods
 public class Game {
     public static void main(String[] args) {
-        Scanner skillinput = new Scanner(System.in);
+        // No console Scanner - GUI will handle input
         Character[] characters = {
-            new Character("Audry", "Assassin", "Melee", "Acidic Slime", 100, 25),
-            new Character("Giantha", "Tank", "Melee", "World Tree Branch", 250, 20),
-            new Character("Lazuli", "Healer", "Ranged", "Staff", 150, 30),
-            new Character("Lynzi", "Dealer", "Melee", "Star Magic", 170, 30),
-            new Character("Shiera", "Support", "Ranged", "Earth Magic", 120, 25)
+            new Audry(),
+            new Giantha(),
+            new Lynzi(),
+            new Shiera(),
+            new Lazuli(),
         };
         MobNPC[] mobs = {
             //Boss
-            new MobNPC("Twinkle", "Boss", "Melee", "Puppet", 500,6),
+            new ChapterSix(), 
             //Minibosses
-            new MobNPC("Kassundre", "Miniboss", "Ranged", "Dark Magic", 300,5),
-            new MobNPC("Lava Beast", "Miniboss", "Melee", "Fire Magic", 350,2),
-            new MobNPC("Siren Empress", "Miniboss", "Ranged", "Water Magic", 320,1),
-            new MobNPC("Resonara", "Miniboss", "Ranged", "Sound Magic", 310,4),
-            new MobNPC("Eclipse Core", "Miniboss", "Melee", "Astral Magic", 350, 3),
+            new ChapterOne(),
+            new ChapterTwo(),
+            new ChapterThree(),
+            new ChapterFour(),
+            new ChapterFive(),
             //Mobs
-            new MobNPC("Student Puppet", "Minion", "Melee", "Wooden Sword", 100,5),
-            new MobNPC("Corrupted Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
-            new MobNPC("Water Sprite", "Minion", "Ranged", "Water Magic", 130,1),
-            new MobNPC("Echo Imp", "Minion", "Ranged", "Sound Magic", 130, 4),
-            new MobNPC("Astral Glob", "Minion", "Melee", "Astral Slime", 110, 3),
-            new MobNPC("Princess Puppet", "Minion", "Melee", "wand", 100,5),
-            new MobNPC("Magma Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
-            new MobNPC("Water Blob", "Minion", "Ranged", "Water Magic", 130,1),
-            new MobNPC("Resonance Goblin", "Minion", "Ranged", "Sound Magic", 130, 4),
-            new MobNPC("Moon Sprite", "Minion", "Melee", "Astral magic", 110, 3),
-        };
-        Credits[] credits = {
-            new Credits("Laurence Baraga", "Developer", "Student", "Pencil", 2, 1),
-            new Credits("Kimberly Daydayan","Developer", "Student", "Crochet Hookja", 50, 50),
-            new Credits("Neilcen Pedrosa", "Developer", "Student", "World Tree Branch", 250, 20),
-            new Credits("Abigail Rodrigo", "Developer", "Student", "Staff", 150, 30),
-            new Credits("Melody Ecarma", "Developer", "Student", "Star Magic", 170, 30),
+            new NormalEnemy("Student Puppet", "Minion", "Melee", "Wooden Sword", 100,5),
+            new NormalEnemy("Corrupted Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
+            new NormalEnemy("Water Sprite", "Minion", "Ranged", "Water Magic", 130,1),
+            new NormalEnemy("Echo Imp", "Minion", "Ranged", "Sound Magic", 130, 4),
+            new NormalEnemy("Astral Glob", "Minion", "Melee", "Astral Slime", 110, 3),
+            new NormalEnemy("Princess Puppet", "Minion", "Melee", "wand", 100,5),
+            new NormalEnemy("Magma Skeleton", "Minion", "Melee", "Bone Sword", 120,2),
+            new NormalEnemy("Water Blob", "Minion", "Ranged", "Water Magic", 130,1),
+            new NormalEnemy("Resonance Goblin", "Minion", "Ranged", "Sound Magic", 130, 4),
+            new NormalEnemy("Moon Sprite", "Minion", "Melee", "Astral magic", 110, 3),
         };
 
-        GameSystem gameSystem = new GameSystem(characters, mobs, credits, skillinput);
-        gameSystem.MainMenu();
+        GameSystem gameSystem = new GameSystem(characters, mobs);
+        
+        // Create and display the main menu UI using Swing Event Dispatch Thread
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new SplashScreenUI(gameSystem).setVisible(true);
+        });
 
-    skillinput.close();
+        // No console scanner to close
     }
 }

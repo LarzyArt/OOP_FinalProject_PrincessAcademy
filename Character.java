@@ -1,11 +1,24 @@
-//Everyone contributed to making this file and methods
+
 public class Character {
-    String name;
-    String charClass;
-    String type;
-    String weapon;
-    int healthPoints;
-    int manaPoints;
+    protected String name;
+    protected String charClass;
+    protected String type;
+    protected String weapon;
+    protected int healthPoints;
+    protected int manaPoints;
+    protected int maxHealthPoints;
+    protected int maxManaPoints;
+
+    //Status effects
+    int damageReductionTurns = 0;
+    double damageReductionPercent = 0.0;
+    int stunnedTurns = 0;
+    // If true, the stun was applied this turn and will only become active next turn
+    boolean stunJustApplied = false;
+
+    // last skill metadata (helpful for UI logging)
+    protected int lastSkillHits = 0;
+    protected int lastSkillDamage = 0;
 
     public Character(String name, String charClass, String type, String weapon, int healthPoints, int manaPoints) {
         this.name = name;
@@ -14,92 +27,104 @@ public class Character {
         this.weapon = weapon;
         this.healthPoints = healthPoints;
         this.manaPoints = manaPoints;
+        this.maxHealthPoints = healthPoints;
+        this.maxManaPoints = manaPoints;
     }
-    
-    public String getName() {
-        return name;
-    }
-    void takedamage(int damage){
+
+    //simply getname
+    public String getName() { return name; }
+
+    //when character takes damage
+    public void takeDamage(int damage){
+        if (damageReductionTurns > 0 && damageReductionPercent > 0.0) {
+            int reduced = (int) Math.round(damage * (1.0 - damageReductionPercent));
+            damage = Math.max(0, reduced);
+        }
         healthPoints -= damage;
-        if(healthPoints < 0) healthPoints = 0;
-        System.out.println(name + "took " + damage + "damage! Remaining HP: " + healthPoints);
     }
 
-    // ================== Skill System ==================
-    //To use skills
-    //Rodrigo contribution
+    //heals character
+    public void healAlly(int heal){
+        healthPoints += heal;
+        if (healthPoints > maxHealthPoints) {
+            healthPoints = maxHealthPoints;
+        }
+        System.out.println(name + " healed for " + heal + " HP. Current HP: " + healthPoints);
+    }
 
-    //-------------------------------- Character Skills ------------------------------
-    //Daydayan contribution: Lynzi's Skills
-    // ----------------- Lynzi's Skills -----------------
-    private void lynziSkills(int skill, MobNPC target) {
-        int damage = 0;
-        
+    //restores mana
+    public void restoreMP(int mp){
+        manaPoints += mp;
+        if (manaPoints > maxManaPoints) {
+            manaPoints = maxManaPoints;
+        }
+        System.out.println(name + " restored " + mp + " MP. Current MP: " + manaPoints);
+    }
+
+    //flag to check if character is alive
+    public boolean isAlive(){
+        return healthPoints > 0;
+    }
+
+    public boolean isStunned(){
+        // stun is considered active only after the turn it was applied
+        return stunnedTurns > 0 && !stunJustApplied;
+    }
+
+    public void applyStun(int turns) {
+        // mark stun to take effect starting next turn
+        stunnedTurns = Math.max(stunnedTurns, turns);
+        stunJustApplied = true;
+        System.out.println(name + " will be stunned for " + stunnedTurns + " turn(s) starting next turn.");
+    }
+
+    public boolean isManaSufficient(int cost){
+        return manaPoints >= cost;
+    }
+
+    //basically timer
+    public void tickStatus(){
+        // If a stun was just applied this turn, make it active next turn but don't decrement yet
+        if (stunJustApplied) {
+            // clear the just-applied flag so the stun becomes active on subsequent turns
+            stunJustApplied = false;
+        } else {
+            if (stunnedTurns > 0) stunnedTurns--;
+        }
+        if(damageReductionTurns > 0){
+            damageReductionTurns--;
+            if(damageReductionTurns == 0) damageReductionPercent = 0.0;
+        }
+    }
+
+    // Skill implementations 
+    public void useSkill(int skill, MobNPC target, Character ally, Character[] party) {
+        // if this character is stunned, they cannot use skills
+        // reset last skill metadata
+        lastSkillHits = 0;
+        lastSkillDamage = 0;
+
+        if(isStunned()){
+            System.out.println(name + " is stunned and cannot use any skills!");
+            return;
+        }
+    }
+
+    // skill list per character
+    public String[] getSkillList() {
+        return new String[] {};
+    }
+
+    //target type per skill
+    public String getSkillTargetType(int skill) {
         switch (skill) {
-            case 1: // Majestic Kick
-                damage = (int)(Math.random() * 21) + 20;
-                System.out.println(name + " used Majestic Kick! Deals " + damage + " damage.");
-                break;
-            case 2: // Galactic Fist
-                if (manaPoints >= 2) {
-                    manaPoints -= 2;
-                    damage = (int)(Math.random() * 36) + 20;
-                    target.takedamage(damage);
-                    System.out.println(name + " used Galactic Fist! Deals " + damage + " damage.");
-                } else System.out.println(name + " doesn't have enough mana!");
-                break;
-            case 3: // Meteoric Smash
-                if (manaPoints >= 10) {
-                    manaPoints -= 10;
-                    damage = (int)(Math.random() * 151) + 100;
-                    target.takedamage(damage);
-                    // Lynzi becomes unable to act for 2 turns after using Meteoric Smash
-                    this.stunnedTurns = Math.max(this.stunnedTurns, 2);
-                    System.out.println(name + " used Ultimate, Meteoric Smash! Deals " + damage + " damage and is exhausted for 2 turns.");
-                } else System.out.println(name + " doesn't have enough mana!");
-                break;
+            case 1:
+            case 2:
+                return "ENEMY";
+            case 3:
+                return "ALL";
+            default:
+                return "ENEMY";
         }
-    }
-
-    //Pedrosa contribution
-    
-    //Ecarma contribution
-    
-    //Rodrigo contribution
-    
-    //Baraga contribution: Lazuli's Skills
-    // ----------------- Lazuli's Skills -----------------
-        private void lazuliSkills(int skill, Character ally) {
-            switch (skill) {
-                case 1: // Basic Heal
-                    if (manaPoints >= 10) {
-                        manaPoints -= 10;
-                        System.out.println(name + " used Basic Heal! Restores 25% HP + MP to one ally.");
-                    } else System.out.println(name + " doesn't have enough mana!");
-                    break;
-                case 2: // Ocean's Blessing
-                    if (manaPoints >= 20) {
-                        manaPoints -= 20;
-                        System.out.println(name + " used Ocean's Blessing! Heals 15% HP and restores 10 MP to all allies.");
-                    } else System.out.println(name + " doesn't have enough mana!");
-                    break;
-                case 3: // Harmonic Wave
-                    if (manaPoints == 0) {
-                        System.out.println(name + " used Ultimate, Harmonic Wave! Restores 100% MP and 50% HP to all allies.");
-                    } else System.out.println(name + " must have 0 mana to use Harmonic Wave!");
-                    break;
-            }
-        }
-
-    // ----------------- Show Stats -----------------
-    //Everyone contributed
-    public void showStats() {
-        System.out.println("---- " + name + " ----");
-        System.out.println("Class: " + charClass);
-        System.out.println("Type: " + type);
-        System.out.println("Weapon: " + weapon);
-        System.out.println("HP: " + healthPoints + ", MP: " + manaPoints);
-        System.out.println("------------------");
-        System.out.println();
     }
 }
