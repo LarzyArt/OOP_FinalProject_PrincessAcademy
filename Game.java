@@ -1,9 +1,7 @@
-// Scanner removed; GUI uses Swing for input
 
-//Everyone contributed to making this file and methods
 public class Game {
     public static void main(String[] args) {
-        // No console Scanner - GUI will handle input
+        
         Character[] characters = {
             new Audry(),
             new Giantha(),

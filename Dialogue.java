@@ -3,7 +3,29 @@ public class Dialogue{
 
     //Intro
     public String[] prologueDialogue = {
-        "HI"
+        "==================The Academy Tragedy=================\n\n",
+        "In a universe connected by magic and technology, came\n\n" +
+        "life forms with special abilities, one who controls the\n\n" +
+        "elements, those who command the world, one with\n\n" +
+        "infinite strength, a freak of nature, and one against\n\n" +
+        "normality.",
+
+        "Amongst mortals reign kings and queen, and above all Princesses.\n\n" +
+        "Princesses, are not just justified as titles, but also power.\n\n" +
+        "They are mortals blessed by higher beings to rule other their species\n\n" +
+        "and to do that they need teachings, to learn how to rule.\n\n",
+
+        "So, Princess Academy was made. Built by the immortal princess, Twinkle Star\n\n" +
+        "for the solue purpose to help princesses learn to rue for the betterment of their kingdom\n\n",
+
+        "But for some odd reason, princesses are getting corrupted, beast are getting agressive\n\n" +
+        "The academy was brought to chaos, and as the academy was trying to fix the problem,\n\n"+
+        "A few students got swept in all the chaos, our Heroines, as they were finding problems\n\n" +
+        "It turned out to be caused by their principle, and as they wanted to stop her, they were separated\n\n" +
+
+        "Everyone was sent to different areas, and its up to them to stop her on her tracks\n\n"+
+        "This is was how the legacy of a certain princess started, and the end for another\n\n"
+
     };
 
     public String[] playerDefeated = {
@@ -273,14 +295,14 @@ public String[] lavaBeastDefeated = {
     public String[] twinkleDefeated = {
         "*Twinkle Star falls to the ground, her crown shatters into pieces*\n\n"+
         "Twinkle: No... this can't be... I was supposed to be immortal...\n\n"+
-        "Twinkle: How... how could this be...\n\n"+
+        "Twinkle: How... how could this be...\n\n",
 
         "Lynzi: You dont deserve to be a princess...\n\n"+
         "*Lynzi uses Meteoric Smash*\n\n"+
-        "*.... Again... and Again.. And Again...*\n\n"+
+        "*.... Again... and Again.. And Again...*\n\n",
 
         "Lazuli: Lynzi Calm down!! She's alread daed!!\n\n"+
-        "Lynzi: I'm sorry... I killed her... I couldn't control my anger...\n\n"+
+        "Lynzi: I'm sorry... I killed her... I couldn't control my anger...\n\n",
         "I... I should've tortured her... made her suffer...\n\n",
         "Everyone else: ...What...?\n\n",
     };

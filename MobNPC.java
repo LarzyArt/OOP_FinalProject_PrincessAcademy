@@ -1,5 +1,5 @@
 
-public class MobNPC{
+public abstract class MobNPC implements Damageable {
     protected String name;
     protected String charClass;
     protected String type;
@@ -36,6 +36,7 @@ public class MobNPC{
     //simply getname
     public String getName() { return name; }
 
+    @Override
     public void takeDamage(int damage){
         if (damageReductionTurns > 0 && damageReductionPercent > 0.0) {
             int reduced = (int) Math.round(damage * (1.0 - damageReductionPercent));
@@ -44,6 +45,7 @@ public class MobNPC{
         healthPoints -= damage;
     }
     //flag to check if character is alive
+    @Override
     public boolean isAlive(){
         return healthPoints > 0;
     }
@@ -85,16 +87,19 @@ public class MobNPC{
         }
     }
 
-    // Skill implementations 
-    public void useSkill(int skill, Character target) {
-        // if this character is stunned, they cannot use skills
+    public final void useSkill(int skill, Character target) {
         // reset last-skill metadata
         lastSkillHits = 0;
         lastSkillDamage = 0;
 
-        if(isStunned()){
+        if (isStunned()) {
             System.out.println(name + " is stunned and cannot use any skills!");
             return;
         }
+
+        performSkill(skill, target);
     }
+
+    // actual mob skill effects here
+    protected abstract void performSkill(int skill, Character target);
 }

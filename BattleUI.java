@@ -50,9 +50,6 @@ public class BattleUI extends JFrame {
     }
 
     public BattleUI(GameSystem gs, int chapter, Runnable onBattleEnd) {
-        // Start battle music
-        MusicPlayer.playLoop("assets/music/battle_theme.mp3", 0.7);
-        
         this.gs = gs;
         this.chapter = chapter;
         this.bgManager = BackgroundManager.getManager(chapter);
@@ -93,10 +90,12 @@ public class BattleUI extends JFrame {
         setLayout(new BorderLayout());
 
         try {
-                setIconImage(new ImageIcon(MainMenuUI.class.getResource("assets/icon/icon.png")).getImage());
-            } catch(Exception e) {
-                System.out.println("Icon image not found.");
-            }
+            java.net.URL iconUrl = BattleUI.class.getResource("/assets/icon/icon.png");
+            if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
+            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+        } catch (Exception e) {
+            System.out.println("Icon image not found.");
+        }
 
         // HEADER ---------------------
         JLabel title = new JLabel("PRINCESS ACADEMY", SwingConstants.CENTER);
@@ -132,6 +131,7 @@ public class BattleUI extends JFrame {
         partyStatus.setMargin(new Insets(10, 10, 10, 10));
         partyStatus.setFont(FontManager.getPixelFont(11f));
         partyStatus.setForeground(Color.WHITE);
+        
         JScrollPane partyScroll = new JScrollPane(partyStatus);
         partyScroll.setOpaque(false);
         partyScroll.getViewport().setOpaque(false);
@@ -148,6 +148,7 @@ public class BattleUI extends JFrame {
         enemyStatus.setMargin(new Insets(10, 10, 10, 10));
         enemyStatus.setFont(FontManager.getPixelFont(11f));
         enemyStatus.setForeground(Color.WHITE);
+        
         JScrollPane enemyScroll = new JScrollPane(enemyStatus);
         enemyScroll.setOpaque(false);
         enemyScroll.getViewport().setOpaque(false);
@@ -163,7 +164,7 @@ public class BattleUI extends JFrame {
         battleLog.setMargin(new Insets(10, 10, 10, 10));
         battleLog.setFont(FontManager.getPixelFont(10f));
         battleLog.setForeground(Color.WHITE);
-        // caret update will be handled by moving caret to document end after appending
+        
         JScrollPane battleLogScroll = new JScrollPane(battleLog);
         battleLogScroll.setOpaque(false);
         battleLogScroll.getViewport().setOpaque(false);
@@ -171,6 +172,7 @@ public class BattleUI extends JFrame {
         battleLogScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         battleLogScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         battleLogScroll.setBorder(BorderFactory.createEmptyBorder());
+        
         JPanel logSpacer = new JPanel();
         logSpacer.setOpaque(false);
         logSpacer.setPreferredSize(new Dimension(0, 20));
@@ -468,7 +470,6 @@ public class BattleUI extends JFrame {
 
     private void finishBattle() {
         println("\nReturning to story...");
-        MusicPlayer.playLoop("assets/music/story_theme.mp3", 0.6);
         if (onBattleEnd != null) {
             try {
                 onBattleEnd.run();

@@ -1,5 +1,5 @@
 
-public class Character {
+public abstract class Character implements Damageable{
     protected String name;
     protected String charClass;
     protected String type;
@@ -35,6 +35,7 @@ public class Character {
     public String getName() { return name; }
 
     //when character takes damage
+    @Override
     public void takeDamage(int damage){
         if (damageReductionTurns > 0 && damageReductionPercent > 0.0) {
             int reduced = (int) Math.round(damage * (1.0 - damageReductionPercent));
@@ -62,6 +63,7 @@ public class Character {
     }
 
     //flag to check if character is alive
+    @Override
     public boolean isAlive(){
         return healthPoints > 0;
     }
@@ -97,34 +99,25 @@ public class Character {
         }
     }
 
-    // Skill implementations 
-    public void useSkill(int skill, MobNPC target, Character ally, Character[] party) {
-        // if this character is stunned, they cannot use skills
+    public final void useSkill(int skill, MobNPC target, Character ally, Character[] party) {
         // reset last skill metadata
         lastSkillHits = 0;
         lastSkillDamage = 0;
 
-        if(isStunned()){
+        if (isStunned()) {
             System.out.println(name + " is stunned and cannot use any skills!");
             return;
         }
+
+        performSkill(skill, target, ally, party);
     }
+
+    // implement actual skill effects here
+    protected abstract void performSkill(int skill, MobNPC target, Character ally, Character[] party);
 
     // skill list per character
-    public String[] getSkillList() {
-        return new String[] {};
-    }
+    public abstract String[] getSkillList();
 
-    //target type per skill
-    public String getSkillTargetType(int skill) {
-        switch (skill) {
-            case 1:
-            case 2:
-                return "ENEMY";
-            case 3:
-                return "ALL";
-            default:
-                return "ENEMY";
-        }
-    }
+    // target type per skill
+    public abstract String getSkillTargetType(int skill);
 }

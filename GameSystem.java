@@ -26,7 +26,6 @@ public class GameSystem {
     // --- Accessors for other game components to use ---
     public Character[] getCharacters() { return characters; }
     public MobNPC[] getMobs() { return mobs; }
-    // Note: Scanner/console input removed for GUI-only usage
     public int getCurrentChapter() { return currentChapter; }
     public void setCurrentChapter(int c) { this.currentChapter = c; }
     public boolean isAbortBattle() { return abortBattle; }
@@ -69,64 +68,44 @@ public class GameSystem {
         return enemies;
     }
 
-    /**
-     * Returns true if the given chapter is unlocked (player can access it).
-     * Chapters become unlocked only sequentially; you cannot skip ahead.
-     */
+    // return true if the specified chapter is unlocked and accessible to the player
     public boolean isChapterUnlocked(int chapter){
         if (chapter <= 0) return false;
         return chapter <= highestChapterUnlocked;
     }
 
-    /**
-     * Attempt to unlock the specified chapter. This will only succeed if the
-     * chapter is the immediate next chapter after the current highest unlocked
-     * chapter (prevents skipping). Use this when unlocking the next chapter
-     * after the player completes the previous one.
-     */
+    // unlock the specified chapter if it is the next sequential chapter
     public void markUnlockChapter(int chapter){
         if (chapter <= highestChapterUnlocked) return; // already unlocked or lower
         if (chapter == highestChapterUnlocked + 1 && chapter <= MAX_CHAPTER) {
             highestChapterUnlocked = chapter;
         }
-        // otherwise ignore: cannot unlock non-sequential chapters
+        // otherwise ignore
     }
 
-    /**
-     * Convenience helper: call this when a chapter is completed to unlock the next one.
-     */
+    // mark the specified chapter as completed and unlock the next chapter
     public void markChapterCompleted(int completedChapter){
         markUnlockChapter(completedChapter + 1);
     }
 
-    /**
-     * Check if a chapter's pre-dialogue has already been shown.
-     */
+
+    // pre-dialogue and post-dialogue checker
     public boolean hasPreDialogueBeenShown(int chapter) {
         if (chapter < 1 || chapter > MAX_CHAPTER) return true;
         return preDialoguesShown[chapter];
     }
 
-    /**
-     * Mark a chapter's pre-dialogue as shown so it won't play again.
-     */
     public void markPreDialogueAsShown(int chapter) {
         if (chapter >= 1 && chapter <= MAX_CHAPTER) {
             preDialoguesShown[chapter] = true;
         }
     }
 
-    /**
-     * Check if a chapter's post-dialogue has already been shown.
-     */
     public boolean hasPostDialogueBeenShown(int chapter) {
         if (chapter < 1 || chapter > MAX_CHAPTER) return true;
         return postDialoguesShown[chapter];
     }
 
-    /**
-     * Mark a chapter's post-dialogue as shown so it won't play again.
-     */
     public void markPostDialogueAsShown(int chapter) {
         if (chapter >= 1 && chapter <= MAX_CHAPTER) {
             postDialoguesShown[chapter] = true;
