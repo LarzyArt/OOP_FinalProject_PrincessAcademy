@@ -1,10 +1,12 @@
-public class Giantha extends Character {
+package charmees.finalproj.entities;
+
+public class Giantha extends GameCharacter {
     public Giantha() {
         super("Giantha", "Tank", "Melee", "World Tree Branch", 250, 20);
     }
     
     @Override
-    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, GameCharacter ally, GameCharacter[] party) {
         int damage = 0;
         switch (skill) {
             case 1: // Giant Punch

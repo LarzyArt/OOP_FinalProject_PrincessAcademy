@@ -1,10 +1,12 @@
-public class Shiera extends Character {
+package charmees.finalproj.entities;
+
+public class Shiera extends GameCharacter {
     public Shiera() {
         super("Shiera", "Rogue", "Physical", "Dagger", 110, 50);
     }
     
     @Override
-    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, GameCharacter ally, GameCharacter[] party) {
         int damage = 0;
         switch (skill) {
             case 1: // Stone Spikes

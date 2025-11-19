@@ -1,13 +1,17 @@
+package charmees.finalproj.core;
+
+import charmees.finalproj.entities.*;
+import charmees.finalproj.ui.SplashScreenUI;
 
 public class Game {
     public static void main(String[] args) {
         
-        Character[] characters = {
+        GameCharacter[] characters = {
             new Audry(),
             new Giantha(),
             new Lynzi(),
             new Shiera(),
-            new Lazuli(),
+            new Lazuli()
         };
         MobNPC[] mobs = {
             //Boss

@@ -1,3 +1,4 @@
+package charmees.finalproj.core;
 //Everyone contributed to making this file and methods
 public class Dialogue{
 

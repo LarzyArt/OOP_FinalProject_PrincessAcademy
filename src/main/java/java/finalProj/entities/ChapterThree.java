@@ -1,10 +1,12 @@
+package charmees.finalproj.entities;
+
 public class ChapterThree extends MobNPC{
    public ChapterThree(){
         super("Eclipse Core", "Miniboss", "Melee", "Astral Magic", 510, 4);
     }
 
     @Override
-    public void performSkill(int skill, Character target){
+    public void performSkill(int skill, GameCharacter target){
         int damage = 0;
         switch (skill) {
             case 1: // Dark Ooze
