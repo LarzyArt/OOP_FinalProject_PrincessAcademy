@@ -1,7 +1,12 @@
+package charmees.finalproj.ui;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import charmees.finalproj.core.GameSystem;
+import charmees.finalproj.util.FontManager;
+import charmees.finalproj.core.Dialogue;
 
 public class StoryModeUI extends JFrame {
     private GameSystem gameSystem;
@@ -108,7 +113,6 @@ public class StoryModeUI extends JFrame {
             StoryModeUI.this.setVisible(false);
 
             // fade music and show intro dialogue
-            MusicPlayer.fadeOutAndStop(400);
             Dialogue dlg = new Dialogue();
             String[] introLines = dlg.prologueDialogue;
             new DialogueUI(introLines, () -> {
@@ -189,14 +193,12 @@ public class StoryModeUI extends JFrame {
                     // pre-dialogue already shown, check post-dialogue
                     if (gameSystem.hasPostDialogueBeenShown(chapterNumber)) {
                         // both dialogues shown, skip straight to battle
-                        MusicPlayer.fadeOutAndStop(400);
                         BattleUI battle = new BattleUI(gameSystem, chapterNumber, () -> {
                             showRefreshed();
                         });
                         battle.setVisible(true);
                     } else {
                         // pre-dialogue shown but not post, only show post-dialogue after battle
-                        MusicPlayer.fadeOutAndStop(400);
                         BattleUI battle = new BattleUI(gameSystem, chapterNumber, () -> {
                             gameSystem.markPostDialogueAsShown(chapterNumber);
                             new DialogueUI(post, () -> {
@@ -208,7 +210,6 @@ public class StoryModeUI extends JFrame {
                 } else {
                     // first time: show pre-dialogue, then battle with post-dialogue callback
                     gameSystem.markPreDialogueAsShown(chapterNumber);
-                    MusicPlayer.fadeOutAndStop(400);
                     new DialogueUI(pre, () -> {
                         BattleUI battle = new BattleUI(gameSystem, chapterNumber, () -> {
                             gameSystem.markPostDialogueAsShown(chapterNumber);
@@ -265,7 +266,6 @@ public class StoryModeUI extends JFrame {
                 StoryModeUI.this.setVisible(false);
 
                 // fade music and show ending dialogue
-                MusicPlayer.fadeOutAndStop(400);
                 Dialogue dlg = new Dialogue();
                 String[] endingLines = dlg.ending;
                 new DialogueUI(endingLines, () -> {
@@ -307,7 +307,6 @@ public class StoryModeUI extends JFrame {
 
         button.addActionListener(e -> {
             this.dispose(); // Close Story Mode UI
-            MusicPlayer.playLoop("assets/music/menu_theme.mp3", 0.7);
             MainMenuUI mainMenu = new MainMenuUI(gameSystem);
             mainMenu.setVisible(true); // Show main menu
         });

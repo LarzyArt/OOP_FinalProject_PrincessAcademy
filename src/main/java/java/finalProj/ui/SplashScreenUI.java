@@ -1,5 +1,9 @@
+package charmees.finalproj.ui;
+
 import javax.swing.*;
 import java.awt.*;
+import charmees.finalproj.core.*;
+import charmees.finalproj.util.*;
 
 public class SplashScreenUI extends JFrame{
     private float opacity = 0f;

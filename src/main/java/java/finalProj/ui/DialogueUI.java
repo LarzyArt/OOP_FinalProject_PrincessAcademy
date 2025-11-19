@@ -1,6 +1,10 @@
+package charmees.finalproj.ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
+import charmees.finalproj.util.FontManager;
 
 public class DialogueUI extends JFrame {
 
@@ -150,7 +154,6 @@ public class DialogueUI extends JFrame {
             index++;
         } else {
             // restore music volume when dialogue completes
-            MusicPlayer.setVolume(0.6);
             dispose();
             if(onComplete != null) onComplete.run();
         }

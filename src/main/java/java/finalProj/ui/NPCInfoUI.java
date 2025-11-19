@@ -1,6 +1,11 @@
+package charmees.finalproj.ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import charmees.finalproj.core.GameSystem;
+import charmees.finalproj.util.FontManager;
 
 public class NPCInfoUI extends JFrame{
     
@@ -104,7 +109,6 @@ public class NPCInfoUI extends JFrame{
 
         button.addActionListener(e -> {
             this.dispose(); // Close NPC Info UI
-            MusicPlayer.playLoop("assets/music/menu_theme.mp3", 0.7);
             MainMenuUI mainMenu = new MainMenuUI(gameSystem);
             mainMenu.setVisible(true); // Show main menu
         });
