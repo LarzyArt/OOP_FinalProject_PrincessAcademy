@@ -5,7 +5,6 @@ public class MainMenuUI extends JFrame {
     private Image backgroundImage;
 
     public MainMenuUI(GameSystem gameSystem) {
-        
         // Frame settings
         setTitle("Princess Academy: Worlds Collide");
         setSize(800, 600);  // Larger window
@@ -15,16 +14,23 @@ public class MainMenuUI extends JFrame {
 
         // Set icon image
         try {
-            java.awt.Image iconImg = ImageLoader.loadImage("assets/icon/icon.png");
-            if (iconImg != null) setIconImage(iconImg);
-            else System.out.println("Icon image not found.");
+            java.net.URL iconUrl = MainMenuUI.class.getResource("/assets/icon/icon.png");
+            if (iconUrl != null) {
+                setIconImage(new ImageIcon(iconUrl).getImage());
+            } else {
+                setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+            }
         } catch (Exception e) {
             System.out.println("Icon image not found.");
         }
 
-        //background image
-        backgroundImage = ImageLoader.loadImage("assets/backgrounds/main_menubg.gif");
-        if (backgroundImage == null) System.out.println("MainMenuUI: background not found: assets/backgrounds/main_menubg.gif");
+        // background image
+        java.net.URL bgUrl = MainMenuUI.class.getResource("/assets/backgrounds/main_menubg.gif");
+        if (bgUrl != null) {
+            backgroundImage = new ImageIcon(bgUrl).getImage();
+        } else {
+            backgroundImage = new ImageIcon("assets/backgrounds/main_menubg.gif").getImage();
+        }
 
         //Main panel
         JPanel panel = new JPanel(){
@@ -69,7 +75,9 @@ public class MainMenuUI extends JFrame {
                 CreditsUI creditsUI = new CreditsUI(gameSystem);
                 creditsUI.setVisible(true);
             ;});
-        exitButton.addActionListener(e -> {System.exit(0);});
+        exitButton.addActionListener(e -> {
+            System.exit(0);
+        });
 
         // Add components to panel
         panel.add(titleLabel);
@@ -84,7 +92,6 @@ public class MainMenuUI extends JFrame {
         
         // add panel to frame
         add(panel);
-        
     }
         //button design
         private JButton createMenuButton(String text, Font font) {

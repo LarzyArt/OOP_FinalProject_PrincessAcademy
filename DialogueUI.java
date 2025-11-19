@@ -29,12 +29,16 @@ public class DialogueUI extends JFrame {
 
         // Set icon image
         try {
-                setIconImage(new ImageIcon(MainMenuUI.class.getResource("assets/icon/icon.png")).getImage());
-            } catch(Exception e) {
-                System.out.println("Icon image not found.");
-            }
+            java.net.URL iconUrl = DialogueUI.class.getResource("/assets/icon/icon.png");
+            if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
+            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+        } catch (Exception e) {
+            System.out.println("Icon image not found.");
+        }
 
-        BackgroundImage = new ImageIcon("assets/backgrounds/Dialogue_Background.png").getImage();
+        java.net.URL dlgBg = DialogueUI.class.getResource("/assets/backgrounds/Dialogue_Background.png");
+        if (dlgBg != null) BackgroundImage = new ImageIcon(dlgBg).getImage();
+        else BackgroundImage = new ImageIcon("assets/backgrounds/Dialogue_Background.png").getImage();
 
         // Create a panel to draw the background
         JPanel bgPanel = new JPanel(new BorderLayout()) {
@@ -47,6 +51,55 @@ public class DialogueUI extends JFrame {
             }
         };
         bgPanel.setOpaque(true);
+
+        // Top panel with instruction text and skip button
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.setOpaque(false); // keep it transparent so no extra background is drawn
+        topPanel.setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
+
+        JLabel instructionLabel = new JLabel("Press Space to Continue");
+        instructionLabel.setFont(FontManager.getPixelFont(10f));
+        instructionLabel.setForeground(Color.WHITE);
+        instructionLabel.setOpaque(false); // do not draw any background behind the text
+        topPanel.add(instructionLabel, BorderLayout.WEST);
+
+        JButton skipButton = new JButton("Skip");
+        // Make skip larger and match main menu gold styling
+        skipButton.setFont(FontManager.getPixelFont(12f));
+        skipButton.setForeground(Color.DARK_GRAY);
+        skipButton.setOpaque(true);
+        skipButton.setContentAreaFilled(true);
+        skipButton.setBorderPainted(true);
+        // Gold colors consistent with main buttons
+        Color goldNormal = new Color(255, 215, 0);
+        Color goldHover = new Color(255, 235, 59);
+        skipButton.setBackground(goldNormal);
+        skipButton.setBorder(BorderFactory.createLineBorder(new Color(200, 170, 0), 2));
+        skipButton.setFocusPainted(false);
+        // Make button bigger than text
+        skipButton.setPreferredSize(new Dimension(100, 32));
+        skipButton.setBorder(BorderFactory.createCompoundBorder(
+            skipButton.getBorder(), BorderFactory.createEmptyBorder(4, 12, 4, 12)
+        ));
+        skipButton.addActionListener(e -> {
+            dispose();
+            if (onComplete != null) onComplete.run();
+        });
+        // Hover effect: change to hover gold
+        skipButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                if (skipButton.isEnabled()) skipButton.setBackground(goldHover);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                if (skipButton.isEnabled()) skipButton.setBackground(goldNormal);
+            }
+        });
+        topPanel.add(skipButton, BorderLayout.EAST);
+
+        bgPanel.add(topPanel, BorderLayout.NORTH);
 
         //text area
         text = new JTextArea();
@@ -64,6 +117,8 @@ public class DialogueUI extends JFrame {
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
+        // Remove any default border so the dialogue area blends seamlessly with the background
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
         
         bgPanel.add(scrollPane, BorderLayout.CENTER);
         add(bgPanel, BorderLayout.CENTER);
@@ -94,6 +149,8 @@ public class DialogueUI extends JFrame {
             showTypewriterText(dialogues[index]);
             index++;
         } else {
+            // restore music volume when dialogue completes
+            MusicPlayer.setVolume(0.6);
             dispose();
             if(onComplete != null) onComplete.run();
         }
