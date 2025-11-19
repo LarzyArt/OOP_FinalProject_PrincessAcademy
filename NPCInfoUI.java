@@ -8,19 +8,25 @@ public class NPCInfoUI extends JFrame{
     private Font pixelFont = FontManager.getPixelFont(24f);
 
     public NPCInfoUI(GameSystem gameSystem){
-        
         setTitle("Princess Academy: NPC Information");
         setSize(800, 600); // Larger window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Set icon image (classpath first, then fallback to file path)
-        Image icon = ResourceLoader.loadImage("/assets/icon/icon.png", "assets/icon/icon.png");
-        if (icon != null) setIconImage(icon);
+        // Set icon image
+        try {
+            java.net.URL iconUrl = NPCInfoUI.class.getResource("/assets/icon/icon.png");
+            if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
+            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+        } catch (Exception e) {
+            System.out.println("Icon image not found.");
+        }
 
-        // background image (classpath first)
-        backgroundImage = ResourceLoader.loadImage("/assets/backgrounds/main_menubg.gif", "assets/backgrounds/main_menubg.gif");
+        // background image
+        java.net.URL bgUrl = NPCInfoUI.class.getResource("/assets/backgrounds/main_menubg.gif");
+        if (bgUrl != null) backgroundImage = new ImageIcon(bgUrl).getImage();
+        else backgroundImage = new ImageIcon("assets/backgrounds/main_menubg.gif").getImage();
         
         //Main panel
         JPanel panel = new JPanel(){
@@ -97,7 +103,8 @@ public class NPCInfoUI extends JFrame{
         button.setFocusPainted(false);
 
         button.addActionListener(e -> {
-            this.dispose(); // Close Story Mode UI
+            this.dispose(); // Close NPC Info UI
+            MusicPlayer.playLoop("assets/music/menu_theme.mp3", 0.7);
             MainMenuUI mainMenu = new MainMenuUI(gameSystem);
             mainMenu.setVisible(true); // Show main menu
         });

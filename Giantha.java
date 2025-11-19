@@ -4,7 +4,7 @@ public class Giantha extends Character {
     }
     
     @Override
-    public void useSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
         int damage = 0;
         switch (skill) {
             case 1: // Giant Punch

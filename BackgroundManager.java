@@ -11,14 +11,9 @@ public abstract class BackgroundManager {
         this.chapter = chapter;
     }
 
-    /**
-     * Get the main battle background image path
-     */
+    // Get the main battle background image path 
     public abstract String getMainBackgroundPath();
 
-    /**
-     * Factory method to get the appropriate BackgroundManager for a chapter
-     */
     public static BackgroundManager getManager(int chapter) {
         switch (chapter) {
             case 1:

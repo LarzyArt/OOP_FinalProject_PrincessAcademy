@@ -13,12 +13,19 @@ public class CreditsUI extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
 
-        // Set icon image (classpath first, then fallback to file path)
-        Image icon = ResourceLoader.loadImage("/assets/icon/icon.png", "assets/icon/icon.png");
-        if (icon != null) setIconImage(icon);
+        // Set icon image
+        try {
+            java.net.URL iconUrl = CreditsUI.class.getResource("/assets/icon/icon.png");
+            if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
+            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+        } catch (Exception e) {
+            System.out.println("Icon image not found.");
+        }
 
-        // background image (classpath first)
-        backgroundImage = ResourceLoader.loadImage("/assets/backgrounds/main_menubg.gif", "assets/backgrounds/main_menubg.gif");
+        // background image
+        java.net.URL bgUrl = CreditsUI.class.getResource("/assets/backgrounds/main_menubg.gif");
+        if (bgUrl != null) backgroundImage = new ImageIcon(bgUrl).getImage();
+        else backgroundImage = new ImageIcon("assets/backgrounds/main_menubg.gif").getImage();
         
         //Main panel
         JPanel panel = new JPanel(){
@@ -78,7 +85,8 @@ public class CreditsUI extends JFrame{
         returnButton.setBackground(new Color(255, 215, 0));
 
         returnButton.addActionListener(e -> {
-            this.dispose(); // Close Story Mode UI
+            this.dispose(); // Close Credits UI
+            MusicPlayer.playLoop("assets/music/menu_theme.mp3", 0.7);
             MainMenuUI mainMenu = new MainMenuUI(gameSystem);
             mainMenu.setVisible(true); // Show main menu
         });

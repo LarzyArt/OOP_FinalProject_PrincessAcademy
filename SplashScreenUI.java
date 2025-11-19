@@ -12,13 +12,17 @@ public class SplashScreenUI extends JFrame{
 
         // Set icon image
         try {
-                setIconImage(new ImageIcon(MainMenuUI.class.getResource("assets/icon/icon.png")).getImage());
-            } catch(Exception e) {
-                System.out.println("Icon image not found.");
-            }
+            java.net.URL iconUrl = SplashScreenUI.class.getResource("/assets/icon/icon.png");
+            if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
+            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+        } catch (Exception e) {
+            System.out.println("Icon image not found.");
+        }
 
         // Load background image
-        BackgroundImage = new ImageIcon("assets/splashscreen.gif").getImage();
+        java.net.URL splashUrl = SplashScreenUI.class.getResource("/assets/splashscreen.gif");
+        if (splashUrl != null) BackgroundImage = new ImageIcon(splashUrl).getImage();
+        else BackgroundImage = new ImageIcon("assets/splashscreen.gif").getImage();
         Font pixelFont = FontManager.getPixelFont(28f);
         // Frame settings
         setSize(800, 600);

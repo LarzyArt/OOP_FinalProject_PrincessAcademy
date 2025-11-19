@@ -4,7 +4,7 @@ public class Lazuli extends Character {
     }   
     
     @Override
-    public void useSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
         int heal = 0;
         switch (skill) {
             case 1: // Basic Heal

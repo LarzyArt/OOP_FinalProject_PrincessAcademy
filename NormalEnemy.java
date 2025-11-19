@@ -4,7 +4,7 @@ public class NormalEnemy extends MobNPC{
     }
 
     @Override
-    public void useSkill(int skill, Character target){
+    public void performSkill(int skill, Character target){
         int damage = 0;
         switch (skill) {
             case 1:
