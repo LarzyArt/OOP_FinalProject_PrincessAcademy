@@ -1,10 +1,12 @@
+package charmees.finalproj.entities;
+
 public class ChapterFour extends MobNPC{
     public ChapterFour() {
         super("Resonara", "Miniboss", "Ranged", "Sound Magic", 550,4);
     }
 
     @Override
-    public void performSkill(int skill, Character target){
+    public void performSkill(int skill, GameCharacter target){
         int damage = 0;
         int hits = 0;
         switch (skill) {

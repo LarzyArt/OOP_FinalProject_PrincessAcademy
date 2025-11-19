@@ -1,10 +1,12 @@
+package charmees.finalproj.entities;
+
 public class ChapterFive extends MobNPC{
     public ChapterFive() {
         super("Kassundre", "Miniboss", "Ranged", "Dark Magic", 650,5);
     }
     
     @Override
-    public void performSkill(int skill, Character target){
+    public void performSkill(int skill, GameCharacter target){
         int damage = 0;
         switch (skill) {
             case 1: // Corrupted tears

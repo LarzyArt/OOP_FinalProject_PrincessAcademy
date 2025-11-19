@@ -1,8 +1,11 @@
+package charmees.finalproj.core;
+
 //Everyone contributed to making this file and methods
 import java.util.ArrayList;
+import charmees.finalproj.entities.*;
 
 public class GameSystem {
-    protected Character[] characters;
+    protected GameCharacter[] characters;
     protected MobNPC[] mobs;
     protected int currentChapter = -1;
     public Dialogue[] dialogue;
@@ -18,13 +21,13 @@ public class GameSystem {
     private boolean[] preDialoguesShown = new boolean[7];
     private boolean[] postDialoguesShown = new boolean[7];
 
-    public GameSystem(Character[] characters, MobNPC[] mobs) {
+    public GameSystem(GameCharacter[] characters, MobNPC[] mobs) {
         this.characters = characters;
         this.mobs = mobs;
     }
 
     // --- Accessors for other game components to use ---
-    public Character[] getCharacters() { return characters; }
+    public GameCharacter[] getCharacters() { return characters; }
     public MobNPC[] getMobs() { return mobs; }
     public int getCurrentChapter() { return currentChapter; }
     public void setCurrentChapter(int c) { this.currentChapter = c; }
