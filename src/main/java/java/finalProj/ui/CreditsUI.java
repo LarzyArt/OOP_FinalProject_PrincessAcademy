@@ -1,6 +1,11 @@
+package charmees.finalproj.ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import charmees.finalproj.core.GameSystem;
+import charmees.finalproj.util.FontManager;
 
 public class CreditsUI extends JFrame{
     private Image backgroundImage;
@@ -86,7 +91,6 @@ public class CreditsUI extends JFrame{
 
         returnButton.addActionListener(e -> {
             this.dispose(); // Close Credits UI
-            MusicPlayer.playLoop("assets/music/menu_theme.mp3", 0.7);
             MainMenuUI mainMenu = new MainMenuUI(gameSystem);
             mainMenu.setVisible(true); // Show main menu
         });

@@ -1,7 +1,12 @@
+package charmees.finalproj.ui;
+
 import javax.swing.*;
 import java.awt.*;
+import charmees.finalproj.core.*;
+import charmees.finalproj.entities.*;
+import charmees.finalproj.util.*;
 
-public class MainMenuUI extends JFrame {
+public class MainMenuUI extends JFrame{
     private Image backgroundImage;
 
     public MainMenuUI(GameSystem gameSystem) {

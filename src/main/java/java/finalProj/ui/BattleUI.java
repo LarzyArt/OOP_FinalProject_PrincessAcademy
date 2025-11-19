@@ -1,15 +1,64 @@
+package charmees.finalproj.ui;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import java.util.ArrayList;
+
+import charmees.finalproj.core.GameSystem;
+import charmees.finalproj.core.Dialogue;
+import charmees.finalproj.entities.*;
+import charmees.finalproj.util.*;
 
 class BackgroundPanel extends JPanel {
     private Image backgroundImage;
 
     public BackgroundPanel(String imagePath) {
+        // Try classpath via ImageIO (works inside jars and classpath folders)
         try {
-            backgroundImage = new ImageIcon(imagePath).getImage();
-        } catch (Exception e) {
+            BufferedImage img = null;
+            // Try with leading slash using Class.getResourceAsStream
+            java.io.InputStream is = BackgroundPanel.class.getResourceAsStream("/" + imagePath);
+            if (is == null) {
+                // Try without leading slash using ClassLoader
+                is = Thread.currentThread().getContextClassLoader().getResourceAsStream(imagePath);
+            }
+            if (is != null) {
+                try {
+                    img = ImageIO.read(is);
+                } finally {
+                    try { is.close(); } catch (Exception ex) {}
+                }
+            }
+
+            if (img != null) {
+                backgroundImage = img;
+                return;
+            }
+
+            // Fallback: try URL via getResource (some classloaders return a URL)
+            java.net.URL res = BackgroundPanel.class.getResource("/" + imagePath);
+            if (res == null) res = BackgroundPanel.class.getResource(imagePath);
+            if (res != null) {
+                backgroundImage = new ImageIcon(res).getImage();
+                return;
+            }
+
+            // Final fallback: check filesystem path (useful for quick runs where resources aren't on classpath)
+            java.io.File f = new java.io.File(imagePath);
+            if (f.exists()) {
+                try {
+                    backgroundImage = ImageIO.read(f);
+                } catch (Exception ex) {
+                    backgroundImage = new ImageIcon(imagePath).getImage();
+                }
+                return;
+            }
+
             System.out.println("Could not load background image: " + imagePath);
+        } catch (Exception e) {
+            System.out.println("Could not load background image: " + imagePath + " (" + e.getMessage() + ")");
         }
     }
 
@@ -37,7 +86,7 @@ public class BattleUI extends JFrame {
     JPanel skillListPanel;   // New panel to show actual skill names
 
 
-    ArrayList<Character> allies = new ArrayList<>();
+    ArrayList<GameCharacter> allies = new ArrayList<>();
     ArrayList<MobNPC> enemies = new ArrayList<>();
     private boolean skillsVisible = false;  // Track skill panel visibility
     private int currentAllyIndex = 0;  // Track which ally's turn it is
@@ -69,14 +118,16 @@ public class BattleUI extends JFrame {
         println("Battle Start!");
         println("Enemies for chapter " + chapter + ": " + enemies.size());
         for (MobNPC e : enemies) {
-            println("  - " + e.name + " HP: " + e.healthPoints);
+            println("  - " + e.getName() + " HP: " + e.getHealthPoints());
         }
         println("\n========== TURN " + turnCounter + " ==========");
     }
 
     // ---------------- LOAD DATA ------------------
     private void loadAllies() {
-        for (Character c : gs.characters) {
+        GameCharacter[] roster = gs.getCharacters();
+        if (roster == null) return;
+        for (GameCharacter c : roster) {
             if (c != null && c.isAlive()) allies.add(c);
         }
     }
@@ -281,11 +332,11 @@ public class BattleUI extends JFrame {
     // ---------------- STATUS UPDATE ------------------
     private void refreshStatus() {
         partyStatus.setText("\nPARTY:\n");
-        for (Character c : allies) {
+        for (GameCharacter c : allies) {
             if (c.isAlive()) {
                 String tags = "";
-                if (c.isStunned()) tags += " [Stun:" + c.stunnedTurns + "]";
-                partyStatus.append("\n" + c.getName() + "\t||HP:" + c.healthPoints + "/" + c.maxHealthPoints + "   ||MP:" + c.manaPoints + "/" + c.maxManaPoints + tags + "\n");
+                if (c.isStunned()) tags += " [Stun:" + c.getStunnedTurns() + "]";
+                partyStatus.append("\n" + c.getName() + "\t||HP:" + c.getHealthPoints() + "/" + c.getMaxHealthPoints() + "   ||MP:" + c.getManaPoints() + "/" + c.getMaxManaPoints() + tags + "\n");
             } else {
                 partyStatus.append("\n" + c.getName() + "\t||DEFEATED\n");
             }
@@ -295,11 +346,11 @@ public class BattleUI extends JFrame {
         for (MobNPC e : enemies) {
             if (e.isAlive()) {
                 String tags = "";
-                if (e.isStunned()) tags += " [Stun:" + e.stunnedTurns + "]";
-                if (e.isTaunted()) tags += " [Taunt:" + e.tauntTurns + "]";
-                enemyStatus.append("\n" + e.name + " \t||HP:" + e.healthPoints + "/" + e.maxHealthPoints + tags + "\n\n");
+                if (e.isStunned()) tags += " [Stun:" + e.getStunnedTurns() + "]";
+                if (e.isTaunted()) tags += " [Taunt:" + e.getTauntTurns() + "]";
+                enemyStatus.append("\n" + e.getName() + " \t||HP:" + e.getHealthPoints() + "/" + e.getMaxHealthPoints() + tags + "\n\n");
             } else {
-                enemyStatus.append("\n" + e.name + "\t||DEFEATED\n");
+                enemyStatus.append("\n" + e.getName() + "\t||DEFEATED\n");
             }
         }
     }
@@ -316,7 +367,7 @@ public class BattleUI extends JFrame {
 
     // Helper checks for alive members (we keep defeated characters in lists so names stay visible)
     private boolean anyAlliesAlive() {
-        for (Character c : allies) {
+        for (GameCharacter c : allies) {
             if (c != null && c.isAlive()) return true;
         }
         return false;
@@ -338,9 +389,9 @@ public class BattleUI extends JFrame {
         for (MobNPC enemy : enemies) {
             if (!enemy.isAlive()) continue;
                         if (enemy.isStunned()) {
-                            println(enemy.name + " is stunned and cannot act!");
-                            continue;
-                        }
+                                        println(enemy.getName() + " is stunned and cannot act!");
+                                        continue;
+                                    }
             
             // Enemy chooses random skill (1-3 or whatever they have)
             int skillChoice = (int)(Math.random() * 3) + 1; // Random skill 1-3
@@ -348,13 +399,13 @@ public class BattleUI extends JFrame {
             // Special case: skill 3 might be AoE (check for Lava Beast's Corrupted Eruption)
             if (enemy.getName().equals("Lava Beast") && skillChoice == 3) {
                 // AoE attack all allies
-                println(enemy.name + " uses Corrupted Eruption!");
+                println(enemy.getName() + " uses Corrupted Eruption!");
                 int totalDamage = 0;
-                for (Character ally : allies) {
+                for (GameCharacter ally : allies) {
                     if (ally.isAlive()) {
-                        int hpBefore = ally.healthPoints;
+                        int hpBefore = ally.getHealthPoints();
                         enemy.useSkill(skillChoice, ally);
-                        int dmg = hpBefore - ally.healthPoints;
+                        int dmg = hpBefore - ally.getHealthPoints();
                         if (dmg > 0) {
                             totalDamage += dmg;
                             println("  " + ally.getName() + " takes " + dmg + " damage!");
@@ -367,9 +418,9 @@ public class BattleUI extends JFrame {
                 println("Total damage to party: " + totalDamage);
             } else {
                 // Single target attack - if this enemy is taunted, prefer its taunt target
-                Character target = null;
+                GameCharacter target = null;
                 if (enemy.isTaunted()) {
-                    Character tt = enemy.getTauntTarget();
+                    GameCharacter tt = enemy.getTauntTarget();
                     if (tt != null && tt.isAlive()) {
                         target = tt;
                     }
@@ -377,8 +428,8 @@ public class BattleUI extends JFrame {
                 
                 // If no taunted target, pick random alive ally
                 if (target == null || !target.isAlive()) {
-                    java.util.ArrayList<Character> aliveAllies = new java.util.ArrayList<>();
-                    for (Character ally : allies) {
+                    java.util.ArrayList<GameCharacter> aliveAllies = new java.util.ArrayList<>();
+                    for (GameCharacter ally : allies) {
                         if (ally.isAlive()) {
                             aliveAllies.add(ally);
                         }
@@ -392,13 +443,13 @@ public class BattleUI extends JFrame {
                     continue;
                 }
                 
-                int hpBefore = target.healthPoints;
+                int hpBefore = target.getHealthPoints();
                 enemy.useSkill(skillChoice, target);
-                int damageDealt = hpBefore - target.healthPoints;
+                int damageDealt = hpBefore - target.getHealthPoints();
 
-                println(enemy.name + " attacks " + target.getName() + "!");
-                if (enemy.lastSkillHits > 0) {
-                    println("Hits " + enemy.lastSkillHits + " times for " + enemy.lastSkillDamage + " damage!");
+                println(enemy.getName() + " attacks " + target.getName() + "!");
+                if (enemy.getLastSkillHits() > 0) {
+                    println("Hits " + enemy.getLastSkillHits() + " times for " + enemy.getLastSkillDamage() + " damage!");
                 } else {
                     if (damageDealt > 0) {
                         println("Deals " + damageDealt + " damage!");
@@ -414,7 +465,7 @@ public class BattleUI extends JFrame {
 
         // Do not remove dead allies here; keep them to display "DEFEATED"
         // Tick down status effects (stuns, taunt, damage reduction) for all characters
-        for (Character c : allies) {
+        for (GameCharacter c : allies) {
             c.tickStatus();
         }
         for (MobNPC e : enemies) {
@@ -424,12 +475,12 @@ public class BattleUI extends JFrame {
         // Show stun countdowns for any stunned enemies/allies after ticking
         for (MobNPC e : enemies) {
             if (e.isAlive() && e.isStunned()) {
-                println(e.name + " stunned: " + e.stunnedTurns + " turn(s) remaining.");
+                println(e.getName() + " stunned: " + e.getStunnedTurns() + " turn(s) remaining.");
             }
         }
-        for (Character c : allies) {
+        for (GameCharacter c : allies) {
             if (c.isAlive() && c.isStunned()) {
-                println(c.getName() + " stunned: " + c.stunnedTurns + " turn(s) remaining.");
+                println(c.getName() + " stunned: " + c.getStunnedTurns() + " turn(s) remaining.");
             }
         }
 
@@ -496,7 +547,7 @@ public class BattleUI extends JFrame {
 
         // Skip over defeated allies and stunned allies so they don't get prompted to act
         while (currentAllyIndex < allies.size() && (!allies.get(currentAllyIndex).isAlive() || allies.get(currentAllyIndex).isStunned())) {
-            Character skipped = allies.get(currentAllyIndex);
+            GameCharacter skipped = allies.get(currentAllyIndex);
             if (skipped.isStunned()) {
                 println(skipped.getName() + " is stunned and cannot act!");
             }
@@ -510,7 +561,7 @@ public class BattleUI extends JFrame {
             return;
         }
 
-        Character user = allies.get(currentAllyIndex);
+        GameCharacter user = allies.get(currentAllyIndex);
         println("\n\n===================================");
         println("\n" + user.getName() + "'s turn:");
         println("Choose a skill:");
@@ -546,7 +597,7 @@ public class BattleUI extends JFrame {
         skillListPanel.repaint();
     }
 
-    private void selectSkill(Character user, int skillIndex) {
+    private void selectSkill(GameCharacter user, int skillIndex) {
         targetPanel.removeAll();
 
         int skillNumber = skillIndex + 1; // Character expects 1-based skill numbers
@@ -558,7 +609,7 @@ public class BattleUI extends JFrame {
             case "ENEMY":
                 // show enemy choices
                 for (MobNPC enemy : enemies) {
-                    String label = enemy.name + (enemy.isAlive() ? "" : " (DEFEATED)");
+                    String label = enemy.getName() + (enemy.isAlive() ? "" : " (DEFEATED)");
                     JButton b = new JButton(label);
                     // Enemy buttons (red-ish)
                     if (enemy.isAlive()) {
@@ -578,7 +629,7 @@ public class BattleUI extends JFrame {
 
             case "ALLY":
                 // show ally choices
-                for (Character al : allies) {
+                for (GameCharacter al : allies) {
                     String label = al.getName() + (al.isAlive() ? "" : " (DEFEATED)");
                     JButton b = new JButton(label);
                     // Ally buttons (green-ish)
@@ -609,9 +660,9 @@ public class BattleUI extends JFrame {
                 
                 // Special condition for Lazuli's Harmonic Wave (skill 3)
                 if (user.getName().equals("Lazuli") && skillNumber == 3) {
-                    if (user.manaPoints != 0) {
+                    if (user.getManaPoints() != 0) {
                         canUse = false;
-                        errorMessage = "Harmonic Wave requires 0 MP! Current MP: " + user.manaPoints;
+                        errorMessage = "Harmonic Wave requires 0 MP! Current MP: " + user.getManaPoints();
                     }
                 }
                 
@@ -625,15 +676,15 @@ public class BattleUI extends JFrame {
                 
                 // apply immediately to whole party - no character selection needed
                 int hpBefore = 0;
-                for (Character c : allies) {
-                    hpBefore += c.healthPoints;
+                for (GameCharacter c : allies) {
+                    hpBefore += c.getHealthPoints();
                 }
                 
-                user.useSkill(skillNumber, null, null, allies.toArray(new Character[0]));
+                user.useSkill(skillNumber, null, null, allies.toArray(new GameCharacter[0]));
                 
                 int hpAfter = 0;
-                for (Character c : allies) {
-                    hpAfter += c.healthPoints;
+                for (GameCharacter c : allies) {
+                    hpAfter += c.getHealthPoints();
                 }
                 int healAmount = hpAfter - hpBefore;
                 
@@ -659,21 +710,21 @@ public class BattleUI extends JFrame {
         targetPanel.repaint();
     }
 
-    private void executeSkillOnEnemy(Character user, int skillNumber, MobNPC enemy) {
-        int hpBefore = enemy.healthPoints;
-        user.useSkill(skillNumber, enemy, null, allies.toArray(new Character[0]));
-        int damageDealt = hpBefore - enemy.healthPoints;
+    private void executeSkillOnEnemy(GameCharacter user, int skillNumber, MobNPC enemy) {
+        int hpBefore = enemy.getHealthPoints();
+        user.useSkill(skillNumber, enemy, null, allies.toArray(new GameCharacter[0]));
+        int damageDealt = hpBefore - enemy.getHealthPoints();
 
         // Log damage
-        println(user.getName() + " used skill on " + enemy.name + "!");
-        if (user.lastSkillHits > 0) {
-            println("Hits " + user.lastSkillHits + " times for " + user.lastSkillDamage + " damage!");
+        println(user.getName() + " used skill on " + enemy.getName() + "!");
+        if (user.getLastSkillHits() > 0) {
+            println("Hits " + user.getLastSkillHits() + " times for " + user.getLastSkillDamage() + " damage!");
         } else {
             println("Deals " + damageDealt + " damage!");
         }
 
         if (!enemy.isAlive()) {
-            println(enemy.name + " was defeated!");
+            println(enemy.getName() + " was defeated!");
             // keep defeated enemy in the list so their name remains visible
         }
 
@@ -697,8 +748,8 @@ public class BattleUI extends JFrame {
         showSkillList();
     }
 
-    private void executeSkillOnAlly(Character user, int skillNumber, Character ally) {
-        user.useSkill(skillNumber, null, ally, allies.toArray(new Character[0]));
+    private void executeSkillOnAlly(GameCharacter user, int skillNumber, GameCharacter ally) {
+        user.useSkill(skillNumber, null, ally, allies.toArray(new GameCharacter[0]));
 
         println(user.getName() + " used skill on " + ally.getName() + ".");
 
@@ -711,16 +762,16 @@ public class BattleUI extends JFrame {
         showSkillList();
     }
 
-    private void executeSelfSkill(Character user, int skillNumber) {
+    private void executeSelfSkill(GameCharacter user, int skillNumber) {
         // Check special conditions before executing
         boolean canUse = true;
         String errorMessage = "";
         
         // Special condition for Lazuli's Harmonic Wave (skill 3)
-        if (user.getName().equals("Lazuli") && skillNumber == 3) {
-            if (user.manaPoints != 0) {
+                if (user.getName().equals("Lazuli") && skillNumber == 3) {
+            if (user.getManaPoints() != 0) {
                 canUse = false;
-                errorMessage = "Harmonic Wave requires 0 MP! Current MP: " + user.manaPoints;
+                errorMessage = "Harmonic Wave requires 0 MP! Current MP: " + user.getManaPoints();
             }
         }
         
@@ -733,14 +784,14 @@ public class BattleUI extends JFrame {
         }
         
         // Call useSkill only if condition is met
-        user.useSkill(skillNumber, null, null, allies.toArray(new Character[0]));
+        user.useSkill(skillNumber, null, null, allies.toArray(new GameCharacter[0]));
 
         // Special: Giantha's Giant's Roar taunts enemies to target her immediately
         if (user.getName().equals("Giantha") && skillNumber == 2) {
             for (MobNPC enemy : enemies) {
                 if (enemy.isAlive()) {
                     enemy.applyTaunt(2, user);
-                    println(enemy.name + " is now taunted to target " + user.getName() + " for 2 turns.");
+                    println(enemy.getName() + " is now taunted to target " + user.getName() + " for 2 turns.");
                 }
             }
             refreshStatus();

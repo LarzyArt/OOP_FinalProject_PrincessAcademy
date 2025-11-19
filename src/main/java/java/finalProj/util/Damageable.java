@@ -1,3 +1,4 @@
+package charmees.finalproj.util;
 
 public interface Damageable {
     // Apply damage to mobs

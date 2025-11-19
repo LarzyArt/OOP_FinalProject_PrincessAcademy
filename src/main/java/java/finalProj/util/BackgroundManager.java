@@ -1,4 +1,4 @@
-
+package charmees.finalproj.util;
 
 /**
  * Abstract class for managing chapter backgrounds and text area backgrounds
