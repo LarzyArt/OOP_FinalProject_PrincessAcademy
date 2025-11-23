@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import charmees.finalproj.core.*;
 import charmees.finalproj.util.*;
+import charmees.finalproj.util.BackgroundManager;
 
 public class SplashScreenUI extends JFrame{
     private float opacity = 0f;
@@ -23,11 +24,10 @@ public class SplashScreenUI extends JFrame{
             System.out.println("Icon image not found.");
         }
 
-        // Load background image
-        java.net.URL splashUrl = SplashScreenUI.class.getResource("/assets/splashscreen.gif");
-        if (splashUrl != null) BackgroundImage = new ImageIcon(splashUrl).getImage();
-        else BackgroundImage = new ImageIcon("assets/splashscreen.gif").getImage();
-        Font pixelFont = FontManager.getPixelFont(28f);
+        // Load background image via centralized loader (use ImageIcon to preserve animation)
+        final javax.swing.ImageIcon splashIcon = BackgroundManager.loadIcon("/assets/splashscreen.gif");
+        BackgroundImage = (splashIcon != null) ? splashIcon.getImage() : null;
+        final Font pixelFont = FontManager.getPixelFont(28f);
         // Frame settings
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -46,12 +46,23 @@ public class SplashScreenUI extends JFrame{
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
                 
-                // image centering
-                int imageWidth = BackgroundImage.getWidth(this);
-                int imageHeight = BackgroundImage.getHeight(this);
-                int x = (getWidth() - imageWidth) / 2;
-                int y = (getHeight() - imageHeight) / 2;
-                g2d.drawImage(BackgroundImage, x, y, this);
+                // image centering (only when available)
+                int imageWidth = 0;
+                int imageHeight = 0;
+                if (splashIcon != null) {
+                    imageWidth = splashIcon.getIconWidth();
+                    imageHeight = splashIcon.getIconHeight();
+                    int x = (getWidth() - imageWidth) / 2;
+                    int y = (getHeight() - imageHeight) / 2;
+                    // paintIcon allows the JVM to animate GIF frames
+                    splashIcon.paintIcon(this, g2d, x, y);
+                } else if (BackgroundImage != null) {
+                    imageWidth = BackgroundImage.getWidth(this);
+                    imageHeight = BackgroundImage.getHeight(this);
+                    int x = (getWidth() - imageWidth) / 2;
+                    int y = (getHeight() - imageHeight) / 2;
+                    g2d.drawImage(BackgroundImage, x, y, this);
+                }
 
                 // text centering
                 g2d.setColor(Color.WHITE);

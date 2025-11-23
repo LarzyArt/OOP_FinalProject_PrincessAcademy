@@ -23,15 +23,14 @@ public class NPCInfoUI extends JFrame{
         try {
             java.net.URL iconUrl = NPCInfoUI.class.getResource("/assets/icon/icon.png");
             if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
-            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
-        } catch (Exception e) {
-            System.out.println("Icon image not found.");
-        }
+            else {
+                java.io.File iconFile = charmees.finalproj.util.FontManager.locateResourceFile("assets/icon/icon.png");
+                if (iconFile != null && iconFile.exists()) setIconImage(new ImageIcon(iconFile.getAbsolutePath()).getImage());
+            }
+        } catch (Exception ignore) {}
 
         // background image
-        java.net.URL bgUrl = NPCInfoUI.class.getResource("/assets/backgrounds/main_menubg.gif");
-        if (bgUrl != null) backgroundImage = new ImageIcon(bgUrl).getImage();
-        else backgroundImage = new ImageIcon("assets/backgrounds/main_menubg.gif").getImage();
+            backgroundImage = charmees.finalproj.util.BackgroundManager.loadImage("/assets/backgrounds/main_menubg.gif");
         
         //Main panel
         JPanel panel = new JPanel(){

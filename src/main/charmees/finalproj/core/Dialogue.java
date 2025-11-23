@@ -17,15 +17,15 @@ public class Dialogue{
         "and to do that they need teachings, to learn how to rule.\n\n",
 
         "So, Princess Academy was made. Built by the immortal princess, Twinkle Star\n\n" +
-        "for the solue purpose to help princesses learn to rue for the betterment of their kingdom\n\n",
+        "for the sole purpose to help princesses learn to rule for the betterment of their kingdom\n\n",
 
         "But for some odd reason, princesses are getting corrupted, beast are getting agressive\n\n" +
         "The academy was brought to chaos, and as the academy was trying to fix the problem,\n\n"+
         "A few students got swept in all the chaos, our Heroines, as they were finding problems\n\n" +
-        "It turned out to be caused by their principle, and as they wanted to stop her, they were separated\n\n" +
+        "It turned out to be caused by their principle, and as they wanted to stop her, they were separated\n\n",
 
         "Everyone was sent to different areas, and its up to them to stop her on her tracks\n\n"+
-        "This is was how the legacy of a certain princess started, and the end for another\n\n"
+        "This was how the legacy of a certain princess started, and the end for another\n\n"
 
     };
 
@@ -81,7 +81,7 @@ public class Dialogue{
         "She never said a word, she rushed to the nearest door\n\n"+
         "With the serious look on her face, she lost her smile\n\n"+
         "It was time she got serious, As she was approaching the throne room\n\n"+
-        "=======================================================\n\n",
+        "====================================================\n\n",
     };
 
     //Pedrosa contribution
@@ -90,7 +90,7 @@ public class Dialogue{
         "The air grows heavy as molten cracks glow beneath Audry's feet...\n\n"+
         "From the fiery depths, the Lava Beast rises,\n\n" +
         "its body burning like a living volcano.\n\n" +
-        "=======================================================\n\n",
+        "===================================================\n\n",
 
         "Audry: So... you're the guardian of this place? You don't scare me.\n\n"+
         "Lava Beast: FOOLISH HUMAN... I AM THE HEART OF FIRE! NONE SHALL PASS MY DOMAIN!\n\n"+
@@ -120,19 +120,19 @@ public String[] lavaBeastDefeated = {
         "With the Lava Beast defeated, Audry feels a renewed sense of purpose.\n\n"+
         "With the beast gone, the path to the throne room is clear.\n\n"+
         "SHe knows what awaits, the queen, her creator, her mother.\n\n"+
-        "=======================================================\n\n",
+        "====================================================\n\n",
     };
 
     
     //Ecarma contribution
     public String[] resonaraInteraction = {
-        "===================Heart of the Living Forest===================\n\n"+
+        "============Heart of the Living Forest=============\n\n"+
         "As Giantha venture deeper into the Garden of Ancients, She felt\n\n" + 
         "a strange melody in the air, a song that called to her very soul\n\n"+
         "The air Shimmers faintly — a hum of vibration runs through the trees.\n\n"+
         "Between the trees she saw, a strange figure, humming between dryads\n\n"+
         "The Queen of Serenity, Resonara\n\n"+
-        "===============================================================\n\n",
+        "===================================================\n\n",
 
         "Resonara: Mmm... this forest sings beautifully. Each leaf... each heartbeat... a perfect note.\n\n"+
         "Giantha: That song — it's not from the forest. It's you, isn't it?" +
@@ -159,22 +159,22 @@ public String[] lavaBeastDefeated = {
         "The forest glows softly as both warrior and minstrel share a silent understanding.\n\n"+
         "The melody of the Living Forest plays on — peaceful once more.\n\n",
 
-        "===================The Sound of Silence===================\n\n"+
+        "===================The Sound of Silence==========\n\n"+
         "With Resonara defeated, Giantha feels a deep connection to\n\n"+
         "the forest. The path to the throne room is now clear.\n\n"+
         "She wonders what awaits her there, but she knows one thing for\n\n"+
         "sure. She will face it with the strength of the earth and the\n\n"+
         "harmony of the forest.\n\n"+
-        "===========================================================\n\n"
+        "=================================================\n\n"
     };
 
     //Rodrigo contribution: Eclipse Core and Shiera dialogue
     public String[] eclipseCoreInteraction = {
-        "===================Darkness and Void===================\n\n" +
+        "=================Darkness and Void==============\n\n" +
         "As SHIERA was thrown through the portal, she found herself in a desolate wasteland.\n\n"+
-        "It was dark, String[] of life, and filled with an eerie silence.\n\n"+
+        "It was dark, void of life, and filled with an eerie silence.\n\n"+
         "Then she was ambushed\n\n"+
-        "==========================================================\n\n",
+        "================================================\n\n",
 
         "Eclipse Core attacks with [Dark Ooze]\n\n"+
         "Shiera: (dodging) You'll have to do better than that.\n\n"+
@@ -190,23 +190,23 @@ public String[] lavaBeastDefeated = {
         "Eclipse Core shatters into light.\n\n"+
         "Shiera: Mission complete.\n\n",
 
-        "====================Calm and Serene====================\n\n"+
+        "================Calm and Serene===============\n\n"+
         "With the Eclipse Core defeated, Shiera feels a strange calmness.\n\n"+
         "She knows the path to the throne room is clear.\n\n"+
         "For the first time she felt an emotion she didn't know she could feel.\n\n"+
         "                        FEAR\n\n"+
-        "=======================================================\n\n",
+        "==============================================\n\n",
     };
     
     //Baraga contribution: Kassundre and twinkle dialogueu
     public String[] kassundreInteraction = {
-        "===================The Castle Memoir===================\n\n"+
+        "===============The Castle Memoir=============\n\n"+
         "As the princesses opened the door, What they saw was utter disgust.\n\n"+
         "Princesses from different world covered in dark ooze, with expressions of dread, fear, and death\n\n"+
         "As the walked through the corridor filled with the stench of death, and the slime of dark ooze\n\n"+
         "In the distance, they saw, a girl, long of hair, stance of a ghoul, and eyes crying dark ooze\n\n"+
         "They saw her, she saw her, Lazuli's love who was thought to be dead, Kassundrre\n\n"+
-        "========================================================\n\n",
+        "=============================================\n\n",
 
         "Kassundre: Help me... please\n\n",
         "Lazuli: Kassundre... is that you?\n\n"+
@@ -234,7 +234,7 @@ public String[] lavaBeastDefeated = {
             "*Lazuli used Harmonic Wave*\n\n"+   
             "*Lazuli used Harmonic Wave*\n\n",    
 
-        "===================The Face of Beauty===================\n\n"+
+        "============The Face of Beauty============\n\n"+
         "As the ooze dissipates, Kassundre took her last breath.\n\n"+
         "Her body void of mana, void of life.\n\n"+
         "As she looked up, she saw Lazuli, her love, crying over her.\n\n"+
@@ -248,15 +248,15 @@ public String[] lavaBeastDefeated = {
         "As they went through the castle, they saw the throne room\n\n"+
         "In there they saw her, the cause of their suffering, the mastermind\n\n"+
         "The First Princess, Twinkle Star\n\n"+
-        "========================================================\n\n",
+        "=========================================\n\n",
     };
 
     public String[] twinkleInteraction = {
-        "====================The Final Show===================\n\n"+
+        "===============The Final Show===========\n\n"+
         "As they entered the throne room, they saw her, Twinkle Star\n\n"+
         "With the princesses filled with anger and hatred\n\n"+
         "They looked right at her, composed and calm\n\n"+
-        "=======================================================\n\n",
+        "========================================\n\n",
 
         "Twinkle: Oh... I see you've met my lovely puppets\n\n"+
         "How do you like them? I made them myself\n\n"+

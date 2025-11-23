@@ -8,6 +8,6 @@ public class DefaultBackgroundManager extends BackgroundManager {
 
     @Override
     public String getMainBackgroundPath() {
-        return "assets/backgrounds/Chapterdefaultbg.png";
+        return "/assets/backgrounds/Chapterdefaultbg.png";
     }
 }

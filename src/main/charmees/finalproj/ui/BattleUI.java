@@ -2,71 +2,49 @@ package charmees.finalproj.ui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
 import java.util.ArrayList;
 
 import charmees.finalproj.core.GameSystem;
 import charmees.finalproj.core.Dialogue;
 import charmees.finalproj.entities.*;
 import charmees.finalproj.util.*;
+import charmees.finalproj.util.BackgroundManager;
 
 class BackgroundPanel extends JPanel {
     private Image backgroundImage;
+    private javax.swing.ImageIcon backgroundIcon;
 
     public BackgroundPanel(String imagePath) {
-        // Try classpath via ImageIO (works inside jars and classpath folders)
         try {
-            BufferedImage img = null;
-            // Try with leading slash using Class.getResourceAsStream
-            java.io.InputStream is = BackgroundPanel.class.getResourceAsStream("/" + imagePath);
-            if (is == null) {
-                // Try without leading slash using ClassLoader
-                is = Thread.currentThread().getContextClassLoader().getResourceAsStream(imagePath);
-            }
-            if (is != null) {
-                try {
-                    img = ImageIO.read(is);
-                } finally {
-                    try { is.close(); } catch (Exception ex) {}
-                }
-            }
-
-            if (img != null) {
-                backgroundImage = img;
+            // Prefer an ImageIcon so animated GIFs keep animating. Fall back to static image.
+            backgroundIcon = BackgroundManager.loadIcon(imagePath);
+            if (backgroundIcon != null) {
+                backgroundImage = backgroundIcon.getImage();
+                System.out.println("BackgroundPanel: loaded icon: " + imagePath);
                 return;
             }
-
-            // Fallback: try URL via getResource (some classloaders return a URL)
-            java.net.URL res = BackgroundPanel.class.getResource("/" + imagePath);
-            if (res == null) res = BackgroundPanel.class.getResource(imagePath);
-            if (res != null) {
-                backgroundImage = new ImageIcon(res).getImage();
-                return;
+            backgroundImage = BackgroundManager.loadImage(imagePath);
+            if (backgroundImage != null) {
+                System.out.println("BackgroundPanel: loaded image: " + imagePath);
+            } else {
+                System.out.println("BackgroundPanel: image not found: " + imagePath);
             }
-
-            // Final fallback: check filesystem path (useful for quick runs where resources aren't on classpath)
-            java.io.File f = new java.io.File(imagePath);
-            if (f.exists()) {
-                try {
-                    backgroundImage = ImageIO.read(f);
-                } catch (Exception ex) {
-                    backgroundImage = new ImageIcon(imagePath).getImage();
-                }
-                return;
-            }
-
-            System.out.println("Could not load background image: " + imagePath);
         } catch (Exception e) {
-            System.out.println("Could not load background image: " + imagePath + " (" + e.getMessage() + ")");
+            System.out.println("Error loading background '" + imagePath + "': " + e.getMessage());
         }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if (backgroundImage != null) {
+        if (backgroundIcon != null) {
+            // draw scaled - let ImageProducer handle animation
+            g.drawImage(backgroundIcon.getImage(), 0, 0, getWidth(), getHeight(), this);
+        } else if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        } else {
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
         }
     }
 }
@@ -603,7 +581,48 @@ public class BattleUI extends JFrame {
         int skillNumber = skillIndex + 1; // Character expects 1-based skill numbers
         String targetType = user.getSkillTargetType(skillNumber);
 
-        println(user.getName() + " uses skill: " + user.getSkillList()[skillIndex]);
+
+        // if the character has 0 mana, cant use skill them use a skill
+        if (user.getManaPoints() == 0) {
+            println(user.getName() + " is out of mana and can't use this skill!");
+            println("Choose another skill.");
+            toggleSkillList();
+            toggleSkillList();
+            return;
+        }
+
+        String[] skills = user.getSkillList();
+        String skillName = skills[skillIndex];
+
+
+        // Beginner-friendly way to get mana cost from skill name
+        int requiredMana = 0;
+        if (skillName.contains("MP")) {
+            int openParen = skillName.indexOf('(');
+            int mpIndex = skillName.indexOf("MP");
+            if (openParen != -1 && mpIndex > openParen) {
+                String inside = skillName.substring(openParen + 1, mpIndex).trim();
+                // inside should be like "10"
+                String[] parts = inside.split(" ");
+                if (parts.length > 0) {
+                    try {
+                        requiredMana = Integer.parseInt(parts[0]);
+                    } catch (Exception e) {
+                        requiredMana = 0;
+                    }
+                }
+            }
+        }
+        // If not enough mana, show message and let player pick again
+        if (requiredMana > 0 && user.getManaPoints() < requiredMana) {
+            println(user.getName() + " doesn't have enough mana for this skill!");
+            println("Choose another skill.");
+            toggleSkillList();
+            toggleSkillList();
+            return;
+        }
+
+        println(user.getName() + " uses skill: " + skillName);
 
         switch (targetType.toUpperCase()) {
             case "ENEMY":

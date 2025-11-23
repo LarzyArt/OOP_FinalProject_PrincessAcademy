@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import charmees.finalproj.core.GameSystem;
 import charmees.finalproj.util.FontManager;
+import charmees.finalproj.util.BackgroundManager;
 
 public class CreditsUI extends JFrame{
     private Image backgroundImage;
@@ -22,22 +23,26 @@ public class CreditsUI extends JFrame{
         try {
             java.net.URL iconUrl = CreditsUI.class.getResource("/assets/icon/icon.png");
             if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
-            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
-        } catch (Exception e) {
-            System.out.println("Icon image not found.");
-        }
+            else {
+                java.io.File iconFile = charmees.finalproj.util.FontManager.locateResourceFile("assets/icon/icon.png");
+                if (iconFile != null && iconFile.exists()) setIconImage(new ImageIcon(iconFile.getAbsolutePath()).getImage());
+            }
+        } catch (Exception ignore) {}
 
-        // background image
-        java.net.URL bgUrl = CreditsUI.class.getResource("/assets/backgrounds/main_menubg.gif");
-        if (bgUrl != null) backgroundImage = new ImageIcon(bgUrl).getImage();
-        else backgroundImage = new ImageIcon("assets/backgrounds/main_menubg.gif").getImage();
+        // background image (centralized loader)
+        backgroundImage = BackgroundManager.loadImage("/assets/backgrounds/main_menubg.gif");
         
         //Main panel
         JPanel panel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                if (backgroundImage != null) {
+                    g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+                } else {
+                    g.setColor(Color.BLACK);
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                }
             }
         };
         panel.setLayout(new BorderLayout());
@@ -70,13 +75,12 @@ public class CreditsUI extends JFrame{
 
             Music & Sound:     NON-EXISTENT
             
-            Story & Writing:   LYNZY_002(A.K.A: 2021-2022 LARZ)
+            Story & Writing:   LYNZY_002
+                                (AKA: 2021-2022 LARZ)
                 
             Testing:           HI MAAM!
-
-
+            
                         === SPECIAL THANKS ===
-
                         
             Special Person 1: SIYA
 

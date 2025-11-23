@@ -3,11 +3,11 @@ package charmees.finalproj.ui;
 import javax.swing.*;
 import java.awt.*;
 import charmees.finalproj.core.*;
-import charmees.finalproj.entities.*;
 import charmees.finalproj.util.*;
 
 public class MainMenuUI extends JFrame{
     private Image backgroundImage;
+    private javax.swing.ImageIcon backgroundIcon;
 
     public MainMenuUI(GameSystem gameSystem) {
         // Frame settings
@@ -20,21 +20,21 @@ public class MainMenuUI extends JFrame{
         // Set icon image
         try {
             java.net.URL iconUrl = MainMenuUI.class.getResource("/assets/icon/icon.png");
-            if (iconUrl != null) {
-                setIconImage(new ImageIcon(iconUrl).getImage());
-            } else {
-                setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+            if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
+            else {
+                java.io.File iconFile = charmees.finalproj.util.FontManager.locateResourceFile("assets/icon/icon.png");
+                if (iconFile != null && iconFile.exists()) setIconImage(new ImageIcon(iconFile.getAbsolutePath()).getImage());
             }
         } catch (Exception e) {
             System.out.println("Icon image not found.");
         }
 
-        // background image
-        java.net.URL bgUrl = MainMenuUI.class.getResource("/assets/backgrounds/main_menubg.gif");
-        if (bgUrl != null) {
-            backgroundImage = new ImageIcon(bgUrl).getImage();
+        // background image (centralized loader) - prefer ImageIcon for animated GIFs
+        backgroundIcon = charmees.finalproj.util.BackgroundManager.loadIcon("/assets/backgrounds/main_menubg.gif");
+        if (backgroundIcon != null) {
+            backgroundImage = backgroundIcon.getImage();
         } else {
-            backgroundImage = new ImageIcon("assets/backgrounds/main_menubg.gif").getImage();
+            backgroundImage = charmees.finalproj.util.BackgroundManager.loadImage("/assets/backgrounds/main_menubg.gif");
         }
 
         //Main panel

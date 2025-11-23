@@ -35,14 +35,21 @@ public class DialogueUI extends JFrame {
         try {
             java.net.URL iconUrl = DialogueUI.class.getResource("/assets/icon/icon.png");
             if (iconUrl != null) setIconImage(new ImageIcon(iconUrl).getImage());
-            else setIconImage(new ImageIcon("assets/icon/icon.png").getImage());
+            else {
+                java.io.File iconFile = charmees.finalproj.util.FontManager.locateResourceFile("assets/icon/icon.png");
+                if (iconFile != null && iconFile.exists()) setIconImage(new ImageIcon(iconFile.getAbsolutePath()).getImage());
+            }
         } catch (Exception e) {
             System.out.println("Icon image not found.");
         }
 
         java.net.URL dlgBg = DialogueUI.class.getResource("/assets/backgrounds/Dialogue_Background.png");
         if (dlgBg != null) BackgroundImage = new ImageIcon(dlgBg).getImage();
-        else BackgroundImage = new ImageIcon("assets/backgrounds/Dialogue_Background.png").getImage();
+        else {
+            java.io.File df = charmees.finalproj.util.FontManager.locateResourceFile("assets/backgrounds/Dialogue_Background.png");
+            if (df != null && df.exists()) BackgroundImage = new ImageIcon(df.getAbsolutePath()).getImage();
+            else System.out.println("Warning: dialogue background not found: /assets/backgrounds/Dialogue_Background.png");
+        }
 
         // Create a panel to draw the background
         JPanel bgPanel = new JPanel(new BorderLayout()) {
