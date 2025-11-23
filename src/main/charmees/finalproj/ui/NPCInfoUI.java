@@ -68,16 +68,16 @@ public class NPCInfoUI extends JFrame{
 
                                 ===FINAL BOSS ===
 
-                    Twinkle Star    - HP: 500 || Chapter: 6
+                    Twinkle Star    - HP: 999 || Chapter: 6
 
 
                                 === MINIBOSSES ===
 
-                    Kassundre       - HP: 300 || Chapter: 5
-                    Resonara        - HP: 310 || Chapter: 4
-                    Eclipse Core    - HP: 350 || Chapter: 3
-                    Lava Beast      - HP: 350 || Chapter: 2
-                    Siren Empress   - HP: 320 || Chapter: 1
+                    Kassundre       - HP: 650 || Chapter: 5
+                    Resonara        - HP: 550 || Chapter: 4
+                    Eclipse Core    - HP: 510 || Chapter: 3
+                    Lava Beast      - HP: 520 || Chapter: 2
+                    Siren Empress   - HP: 470 || Chapter: 1
 
 
                                 === MOBS ===
