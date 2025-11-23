@@ -339,7 +339,7 @@ public String[] lavaBeastDefeated = {
         "Lynzi: So you'd rather let the world live in a lie? \n\n",
 
         "Everyone else: ....\n\n",
-        "Aundry: ... I'm sorry Lynzi... but their right...\n\n"+
+        "Aundry: ... I'm sorry Lynzi... but they're right...\n\n"+
         "This Academy gives hope for small nations/kingdoms...\n\n"+
         "It allows them to have a chance in this world... to start a new with their daughters...\n\n",
         "Lynzi: ....\n\n"+
@@ -347,7 +347,7 @@ public String[] lavaBeastDefeated = {
         
         "*Lynzi swiftly takes Audry'ss core and crushes it*\n\n"+
         "Audry: Ahhh... Lynzi... why...?\n\n"+
-        "Lynz: I'm sorry Audry... but I can't let the universe live in a lie...\n\n",
+        "Lynzi: I'm sorry Audry... but I can't let the universe live in a lie...\n\n",
         "Lynzi: Farewell... sister...\n\n",
         "*Audry's body melts down to a watery goop*\n\n"+
         "Lynzi: I'm sorry everyone...\n\n"+

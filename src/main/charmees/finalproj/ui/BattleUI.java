@@ -582,12 +582,15 @@ public class BattleUI extends JFrame {
         String targetType = user.getSkillTargetType(skillNumber);
 
 
-        // if the character has 0 mana, cant use skill them use a skill
-        if (user.getManaPoints() == 0) {
+        boolean lazuliUltimateZeroGimmick = user.getName().equals("Lazuli") && skillNumber == 3;
+
+        if (user.getManaPoints() == 0 && !lazuliUltimateZeroGimmick) {
             println(user.getName() + " is out of mana and can't use this skill!");
-            println("Choose another skill.");
-            toggleSkillList();
-            toggleSkillList();
+            println("Skipping to next character.");
+            // Advance to next ally and continue
+            currentAllyIndex++;
+            skillListPanel.removeAll();
+            showSkillList();
             return;
         }
 
@@ -613,12 +616,14 @@ public class BattleUI extends JFrame {
                 }
             }
         }
-        // If not enough mana, show message and let player pick again
-        if (requiredMana > 0 && user.getManaPoints() < requiredMana) {
-            println(user.getName() + " doesn't have enough mana for this skill!");
-            println("Choose another skill.");
-            toggleSkillList();
-            toggleSkillList();
+        // If not enough mana, inform and skip this character to avoid trapping the player.
+        // Allow Lazuli's gimmick ultimate to proceed when MP == 0.
+        if (requiredMana > 0 && user.getManaPoints() < requiredMana && !(lazuliUltimateZeroGimmick && user.getManaPoints() == 0)) {
+            println(user.getName() + " doesn't have enough mana for this skill! (requires " + requiredMana + " MP)");
+            println("Skipping to next character.");
+            currentAllyIndex++;
+            skillListPanel.removeAll();
+            showSkillList();
             return;
         }
 
@@ -687,9 +692,10 @@ public class BattleUI extends JFrame {
                 
                 if (!canUse) {
                     println(errorMessage);
-                    println("Choose another skill.");
-                    toggleSkillList();
-                    toggleSkillList();
+                    println("Skipping to next character.");
+                    currentAllyIndex++;
+                    skillListPanel.removeAll();
+                    showSkillList();
                     return;
                 }
                 
