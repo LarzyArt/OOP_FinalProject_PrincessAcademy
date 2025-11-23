@@ -1,3 +1,6 @@
+package charmees.finalproj.entities;
+
+import charmees.finalproj.util.Damageable;
 
 public abstract class MobNPC implements Damageable {
     protected String name;
@@ -10,7 +13,7 @@ public abstract class MobNPC implements Damageable {
     //Status effects
     int tauntTurns = 0;
     // if this mob is taunted, this is the target they should focus on
-    protected Character tauntTarget = null;
+    protected GameCharacter tauntTarget = null;
     int damageReductionTurns = 0;
     double damageReductionPercent = 0.0;
     int stunnedTurns = 0;
@@ -32,9 +35,6 @@ public abstract class MobNPC implements Damageable {
         this.maxHealthPoints = healthPoints;
         this.chapter = chapter;
     }
-
-    //simply getname
-    public String getName() { return name; }
 
     @Override
     public void takeDamage(int damage){
@@ -58,14 +58,14 @@ public abstract class MobNPC implements Damageable {
         System.out.println(name + " will be stunned for " + stunnedTurns + " turn(s) starting next turn."); 
     }
     public boolean isTaunted() { return tauntTurns > 0; }
-    public void applyTaunt(int turns, Character target) { 
+    public void applyTaunt(int turns, GameCharacter target) { 
         // apply taunt immediately and set which character to target
         tauntTurns = Math.max(tauntTurns, turns);
         tauntTarget = target;
         System.out.println(name + " is taunted to target " + target.getName() + " for " + tauntTurns + " turn(s)."); 
     }
 
-    public Character getTauntTarget() { return tauntTarget; }
+    public GameCharacter getTauntTarget() { return tauntTarget; }
     public void applyDamageReduction(double percent, int turns) { damageReductionPercent = percent; damageReductionTurns = Math.max(damageReductionTurns, turns); System.out.println(name + " has damage reduction for " + damageReductionTurns + " turn(s)."); }
     
 
@@ -87,7 +87,7 @@ public abstract class MobNPC implements Damageable {
         }
     }
 
-    public final void useSkill(int skill, Character target) {
+    public final void useSkill(int skill, GameCharacter target) {
         // reset last-skill metadata
         lastSkillHits = 0;
         lastSkillDamage = 0;
@@ -100,6 +100,15 @@ public abstract class MobNPC implements Damageable {
         performSkill(skill, target);
     }
 
+    // Public getters for UI and other packages
+    public String getName() { return name; }
+    public int getHealthPoints() { return healthPoints; }
+    public int getMaxHealthPoints() { return maxHealthPoints; }
+    public int getTauntTurns() { return tauntTurns; }
+    public int getStunnedTurns() { return stunnedTurns; }
+    public int getLastSkillHits() { return lastSkillHits; }
+    public int getLastSkillDamage() { return lastSkillDamage; }
+
     // actual mob skill effects here
-    protected abstract void performSkill(int skill, Character target);
+    protected abstract void performSkill(int skill, GameCharacter target);
 }

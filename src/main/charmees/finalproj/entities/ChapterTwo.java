@@ -1,10 +1,12 @@
+package charmees.finalproj.entities;
+
 public class ChapterTwo extends MobNPC{
     public ChapterTwo(){
         super("Lava Beast", "Miniboss", "Melee", "Fire Magic", 520,2);
     }
 
     @Override
-    public void performSkill(int skill, Character target){
+    public void performSkill(int skill, GameCharacter target){
         int damage = 0;
         switch (skill) {
             case 1: // Lava Burst

@@ -1,10 +1,12 @@
-public class Lazuli extends Character {
+package charmees.finalproj.entities;
+
+public class Lazuli extends GameCharacter {
     public Lazuli() {
         super("Lazuli", "Healer", "Ranged", "Staff", 150, 30);
     }   
     
     @Override
-    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, GameCharacter ally, GameCharacter[] party) {
         int heal = 0;
         switch (skill) {
             case 1: // Basic Heal
@@ -21,7 +23,7 @@ public class Lazuli extends Character {
                 if (manaPoints >= 20) {
                     manaPoints -= 20;
                     // heal and restore MP to all allies
-                    for (Character c : party) {
+                    for (GameCharacter c : party) {
                         if (c != null && c.isAlive()) {
                             int h = Math.max(10, c.healthPoints / 7); // ~15% of current
                             c.healAlly(h);
@@ -33,7 +35,7 @@ public class Lazuli extends Character {
                 break;
             case 3: // Harmonic Wave
                 if (manaPoints == 0) {
-                    for (Character c : party) {
+                    for (GameCharacter c : party) {
                         if (c != null && c.isAlive()) {
                             int h = Math.max(20, c.healthPoints / 2);
                             c.healAlly(h);

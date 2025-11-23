@@ -1,10 +1,12 @@
+package charmees.finalproj.entities;
+
 public class ChapterOne extends MobNPC{
     public ChapterOne(){
         super("Siren Empress", "Miniboss", "Ranged", "Water Magic", 470,1);
     }
     
     @Override
-    public void performSkill(int skill, Character target){
+    public void performSkill(int skill, GameCharacter target){
         int damage = 0;
         switch (skill) {
             case 1: // Water Vortex

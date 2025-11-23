@@ -1,10 +1,12 @@
+package charmees.finalproj.entities;
+
 public class ChapterSix extends MobNPC{
     public ChapterSix() {
         super("Twinkle", "Boss", "Melee", "Puppet", 999,6);
     }
 
     @Override
-    public void performSkill(int skill, Character target){
+    public void performSkill(int skill, GameCharacter target){
         int damage = 0;
         switch (skill) {
             case 1: // Puppet Slash

@@ -1,5 +1,8 @@
+package charmees.finalproj.core;
 import javax.swing.*;
 import java.awt.*;
+import charmees.finalproj.entities.*;
+import charmees.finalproj.ui.*;
 
 /**
  * BattleTester: A quick testing utility to run any chapter battle directly.
@@ -27,7 +30,7 @@ public class BattleTester extends JFrame {
         setLayout(new BorderLayout(30, 30));
 
         // Initialize GameSystem with characters and enemies
-        Character[] characters = {
+        GameCharacter[] characters = {
             new Audry(),
             new Giantha(),
             new Lynzi(),

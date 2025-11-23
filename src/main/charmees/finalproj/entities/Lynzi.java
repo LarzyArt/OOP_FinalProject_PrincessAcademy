@@ -1,10 +1,12 @@
-public class Lynzi extends Character {
+package charmees.finalproj.entities;
+
+public class Lynzi extends GameCharacter {
     public Lynzi() {
         super("Lynzi", "Dealer", "Melee", "Star Magic", 170, 30);
     }
     
     @Override
-    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, GameCharacter ally, GameCharacter[] party) {
         int damage = 0;
         
         switch (skill) {

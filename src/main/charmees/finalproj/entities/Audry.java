@@ -1,10 +1,12 @@
-public class Audry extends Character {
+package charmees.finalproj.entities;
+
+public class Audry extends GameCharacter {
     public Audry() {
         super("Audry", "Assassin", "Melee", "Acidic Slime", 100, 25);
     }
     
     @Override
-    public void performSkill(int skill, MobNPC target, Character ally, Character[] party) {
+    public void performSkill(int skill, MobNPC target, GameCharacter ally, GameCharacter[] party) {
          int damage = 0;
         switch (skill) {
             case 1: // Slime Bounce
