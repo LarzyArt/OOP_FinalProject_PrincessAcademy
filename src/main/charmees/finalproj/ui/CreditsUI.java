@@ -66,10 +66,11 @@ public class CreditsUI extends JFrame{
                                 RODRIGO, ABIGAIL  
                                 
             Art & Animation:   LARZ
+            Battle Background: KAMI TANAN
 
-            Music & Sound:     GOOGLE
+            Music & Sound:     NON-EXISTENT
             
-            Story & Writing:   LYNZY_002
+            Story & Writing:   LYNZY_002(A.K.A: 2021-2022 LARZ)
                 
             Testing:           HI MAAM!
 
