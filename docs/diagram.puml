@@ -1,0 +1,182 @@
+@startuml Diagram
+allowmixing
+title Project Structure — OOP_FinalProject_PrincessAcademy
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+left to right direction
+
+package "Project / File Tree" <<folder>> {
+  package "src/main/charmees/finalproj/core" as CORE {
+  
+  }
+  note top of CORE
+  core/BattleTester.java
+  core/Dialogue.java
+  core/Game.java
+  core/GameSystem.java
+  end note
+
+  package "src/main/charmees/finalproj/entities" as ENT {
+  }
+note top of ENT
+entities/Audry.java
+entities/ChapterOne.java
+entities/ChapterTwo.java
+entities/ChapterThree.java
+entities/ChapterFour.java
+entities/ChapterFive.java
+entities/ChapterSix.java
+entities/GameCharacter.java
+entities/Giantha.java
+entities/Lazuli.java
+entities/Lynzi.java
+entities/MobNPC.java
+entities/NormalEnemy.java
+entities/Shiera.java
+end note
+
+  package "src/main/charmees/finalproj/ui" as UIV {
+  }
+note top of UIV
+ui/BattleUI.java
+ui/CreditsUI.java
+ui/DialogueUI.java
+ui/MainMenuUI.java
+ui/NPCInfoUI.java
+ui/SplashScreenUI.java
+ui/StoryModeUI.java
+end note
+
+  package "src/main/charmees/finalproj/util" as UTIL {
+  }
+note top of UTIL
+util/BackgroundManager.java
+util/DefaultBackgroundManager.java
+util/Chapter1BackgroundManager.java
+util/Chapter2BackgroundManager.java
+util/Chapter3BackgroundManager.java
+util/Chapter4BackgroundManager.java
+util/Chapter5BackgroundManager.java
+util/Chapter6BackgroundManager.java
+util/Damageable.java
+util/FontManager.java
+end note
+
+  package "src/main/resources/assets" as ASSETS {
+  }
+note top of ASSETS
+assets/backgrounds/
+assets/fonts/
+assets/icon/
+assets/music/
+end note
+}
+
+' -----------------------------
+package "Implementation (class view)" {
+  class Game
+  class GameSystem
+  class Dialogue
+
+  abstract class GameCharacter
+  interface Damageable
+  abstract class MobNPC
+
+  class Audry
+  class Giantha
+  class Lazuli
+  class Lynzi
+  class Shiera
+  class NormalEnemy
+  class ChapterOne
+  class ChapterTwo
+  class ChapterThree
+  class ChapterFour
+  class ChapterFive
+  class ChapterSix
+
+  class BattleUI
+  class CreditsUI
+  class DialogueUI
+  class MainMenuUI
+  class NPCInfoUI
+  class SplashScreenUI
+  class StoryModeUI
+  
+  class BackgroundManager
+  class DefaultBackgroundManager
+  class FontManager
+}
+
+' file path notes connected to classes (points to implementation)
+note right of Game : src/main/charmees/finalproj/core/Game.java
+note right of GameSystem : src/main/charmees/finalproj/core/GameSystem.java
+note right of Dialogue : src/main/charmees/finalproj/core/Dialogue.java
+note right of GameCharacter : src/main/charmees/finalproj/entities/GameCharacter.java
+note right of MobNPC : src/main/charmees/finalproj/entities/MobNPC.java
+note right of BattleUI : src/main/charmees/finalproj/ui/BattleUI.java
+note right of CreditsUI : src/main/charmees/finalproj/ui/CreditsUI.java
+note right of DialogueUI : src/main/charmees/finalproj/ui/DialogueUI.java
+note right of MainMenuUI : src/main/charmees/finalproj/ui/MainMenuUI.java
+note right of NPCInfoUI : src/main/charmees/finalproj/ui/NPCInfoUI.java
+note right of SplashScreenUI : src/main/charmees/finalproj/ui/SplashScreenUI.java
+note right of StoryModeUI : src/main/charmees/finalproj/ui/StoryModeUI.java
+
+' Inheritance / implementation
+GameCharacter ..|> Damageable
+MobNPC ..|> Damageable
+Audry --|> GameCharacter
+Giantha --|> GameCharacter
+Lazuli --|> GameCharacter
+Lynzi --|> GameCharacter
+Shiera --|> GameCharacter
+
+NormalEnemy --|> MobNPC
+ChapterOne --|> MobNPC
+ChapterTwo --|> MobNPC
+ChapterThree --|> MobNPC
+ChapterFour --|> MobNPC
+ChapterFive --|> MobNPC
+ChapterSix --|> MobNPC
+
+' Associations / usages (compact)
+Game --> GameSystem : creates/controls
+Game --> Dialogue : uses
+GameSystem "1" *-- "*" GameCharacter : holds
+GameSystem "1" *-- "*" MobNPC : holds
+
+' Background manager family mapping
+DefaultBackgroundManager --|> BackgroundManager
+Chapter1BackgroundManager --|> BackgroundManager
+Chapter2BackgroundManager --|> BackgroundManager
+Chapter3BackgroundManager --|> BackgroundManager
+Chapter4BackgroundManager --|> BackgroundManager
+Chapter5BackgroundManager --|> BackgroundManager
+Chapter6BackgroundManager --|> BackgroundManager
+
+' UI connections
+BattleUI --> BackgroundManager : uses (getManager)
+BattleUI --> FontManager : uses (getPixelFont)
+BattleUI --> GameSystem : gets characters from
+DialogueUI --> Dialogue : displays
+
+MainMenuUI --> FontManager
+DialogueUI --> FontManager
+NPCInfoUI --> FontManager
+CreditsUI --> FontManager
+StoryModeUI --> FontManager
+SplashScreenUI --> FontManager
+
+' indicate where background managers live
+note left of DefaultBackgroundManager : src/main/charmees/finalproj/util/DefaultBackgroundManager.java
+note left of BackgroundManager : src/main/charmees/finalproj/util/BackgroundManager.java
+
+' small legend for clarity
+legend right
+|= Symbol |= Meaning |
+| Class | runtime class |
+| note | file path / folder |
+endlegend
+
+@enduml
