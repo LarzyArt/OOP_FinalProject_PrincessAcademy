@@ -66,7 +66,7 @@ The game uses try-catch blocks for:
 - Image, font 
 - Missing resources
 - Ui and thread-related errors
-Ensures the game does not crash due to missing assets.
+- Ensures the game does not crash due to missing assets.
 
 ---
 
