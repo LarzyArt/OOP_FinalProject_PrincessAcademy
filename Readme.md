@@ -1,5 +1,6 @@
 # Princess Academy : Worlds Collide
 ## Project created by **Group Charmees**
+![Boss Silhouette](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/for_readme.png)
 
 Princess Academy is a 2D story-driven RPG built using OOP principles for CSIT227 Final Project.
 
