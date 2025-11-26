@@ -94,7 +94,7 @@ The game uses try-catch blocks for:
 ![Twinkle Star](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Twinkle.jpg)
 ![Lazuli](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Lazuli.jpg)
 ![Lynzi](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Lynzi.jpg)
-![Audry](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Audry.jp)
+![Audry](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Audry.jpg)
 ![Giantha](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Giantha.jpg)
 ![Shiera](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Shiera.jpg)
 
