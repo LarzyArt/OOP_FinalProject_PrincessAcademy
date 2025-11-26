@@ -90,5 +90,15 @@ The game uses try-catch blocks for:
 
 ---
 
+## Presumed character designs for Playable Characters and Final Boss designed by Laurence Baraga
+![Twinkle Star](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Twinkle.jpg)
+![Lazuli](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Lazuli.jpg)
+![Lynzi](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Lynzi.jpg)
+![Audry](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Audry.jp)
+![Giantha](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Giantha.jpg)
+![Shiera](https://github.com/LarzyArt/OOP_FinalProject_PrincessAcademy/blob/main/For_Github_ReadMe/Shiera.jpg)
+
+---
+
 ## License
 This project is for academic and educational purposes.
